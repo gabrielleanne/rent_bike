@@ -44,6 +44,11 @@ void excluir_promo(void);
 
 ///////////////////////////////////////////////////////////////////
 
+
+// MÓDULO ALUGUEL
+
+
+
 int main(void) {
     setlocale(LC_ALL,"Portuguese_Brazil");
     menu_principal();
@@ -127,14 +132,14 @@ void cadastrar_bike(void) {
     printf("-------------------------------------------------\n");
     printf("-------------------MENU BIKES--------------------\n");
     printf("-------------------------------------------------\n");
-    printf("Vamos cadastrar uma bike no sistema!");
+    printf("Vamos cadastrar uma bike no sistema!\n");
     printf("\n");
     printf("\n");
-    printf("Tipo da bike (Mountain Bike, Elétrica,\nEstrada/speed ou Urbana):");
-    printf("Aro da bike:");
-    printf("Tamanho de quadro:");
-    printf("Marca da bike:");
-    printf("Código gerado da bike:");
+    printf("Tipo da bike (Mountain Bike, Elétrica, Estrada/speed ou Urbana):\n");
+    printf("Aro da bike:\n");
+    printf("Tamanho de quadro:\n");
+    printf("Marca da bike:\n");
+    printf("Código gerado da bike:\n");
     printf("\n");
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
@@ -370,9 +375,9 @@ void cadastrar_promo(void) {
     printf("Vamos cadastrar uma promoção no sistema!");
     printf("\n");
     printf("\n");
-    printf("Anúncio:");
-    printf("Validade:");
-    printf("Código gerado da promoção:");
+    printf("Anúncio:\n");
+    printf("Validade:\n");
+    printf("Código gerado da promoção:\n");
     printf("\n");
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
