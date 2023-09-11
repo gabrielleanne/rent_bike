@@ -724,7 +724,7 @@ void modulo_sobre(void) {
     printf("            * * * * RENT A BIKE * * * *\n");
     printf("\n");
     printf("  Programa desenvolvido na linguagem C para a   \n");
-    printf("  disciplina de Programaçãoo do curso de Sistemas\n");
+    printf("  disciplina de Programação do curso de Sistemas\n");
     printf("  de Informação. O programa será desenvolvido   \n");
     printf("  para uma empresa de aluguel de bicicletas -   \n");
     printf("  a Rent a Bike.                                \n");
