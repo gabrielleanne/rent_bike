@@ -1,16 +1,17 @@
 #include<stdio.h>
 #include<stdlib.h>
+#include <unistd.h>
 #include<locale.h>
 
 ///////////////////////////////////////////////////////////////
 //MENU PRINCIPAL
-void menu_principal(void);
+char menu_principal(void);
 //////////////////////////////////////////////////////////////
 
 //////////////////////////////////////////////////////////////
 // MÓDULOS GERAIS
-void modulo_bikes(void);
-void modulo_clientes(void);
+void modulo_bike(void);
+void modulo_cliente(void);
 void modulo_aluguel(void);
 void modulo_promo(void);
 void modulo_sobre(void);
@@ -18,6 +19,7 @@ void modulo_sobre(void);
 
 /////////////////////////////////////////////////////////////
 //MÓDULO BIKES
+char bikes(void);
 void cadastrar_bike(void);
 void editar_bike(void);
 void buscar_bike(void);
@@ -26,6 +28,7 @@ void listar_bikes(void);
 ////////////////////////////////////////////////////////////
 
 //MÓDULO CLIENTES
+char clientes(void);
 void cadastrar_cliente(void);
 void buscar_cliente(void);
 void editar_cliente(void);
@@ -36,44 +39,53 @@ void listar_clientes(void);
 
 //MÓDULO PROMOÇÕES
 
+char promo(void);
 void listar_promo(void);
 void cadastrar_promo(void);
 void editar_promo(void);
 void excluir_promo(void);
 
-
 ///////////////////////////////////////////////////////////////////
 
-
 // MÓDULO ALUGUEL
+
+char aluguel(void);
+void bike_disponivel(void);
+void alugar_bike(void);
+void buscar_aluguel(void);
+void excluir_aluguel(void);
+void listar_aluguel (void);
+
+///////////////////////////////////////////////////////////////////
 
 
 
 int main(void) {
     setlocale(LC_ALL,"Portuguese_Brazil");
-    menu_principal();
-    modulo_sobre();
-    modulo_bikes();
-    modulo_promo();
-    modulo_aluguel();
-    modulo_clientes();
-    cadastrar_bike();
-    editar_bike();
-    buscar_bike();
-    excluir_bike();
-    listar_bikes();
-    cadastrar_cliente();
-    buscar_cliente();
-    editar_cliente();
-    excluir_cliente();
-    listar_clientes();
+    char opcao;
+
+    do {
+        opcao = menu_principal();
+        switch(opcao) {
+          case '1': modulo_bike();
+                    break;
+          case '2': modulo_cliente();
+                    break;
+          case '3': modulo_aluguel();
+                    break;
+          case '4': modulo_promo();
+                    break;
+          case '5': modulo_sobre();
+                    break;
+        } 	
+    } while (opcao != '0');
     return 0;
 }
 
 ///////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////
 
-void menu_principal(void) {
+char menu_principal(void) {
     char esc;
     system("clear||cls");
     printf("\n");
@@ -91,15 +103,38 @@ void menu_principal(void) {
     scanf("%c", &esc);
     getchar();
     printf("\n");
-    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    printf("\t\t\t>>>Aguarde\n");
     getchar();
+    return esc;
 }
 
 ////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////
 
 
-void modulo_bikes(void) {
+
+void modulo_bike (void) {
+   char opcao;
+    do {
+        opcao = bikes();
+        switch(opcao) {
+            case '1': 	cadastrar_bike();
+                        break;
+            case '2': 	editar_bike();
+                        break;
+            case '3': 	buscar_bike();
+                        break;
+            case '4': 	excluir_bike();
+                        break;
+            case '5':   listar_bikes();
+                        break;
+        } 		
+    } while (opcao != '0');
+}
+
+
+
+char bikes(void) {
 
     char esc;
     system("clear||cls");
@@ -122,9 +157,17 @@ void modulo_bikes(void) {
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
+    return esc;
 }
 
 void cadastrar_bike(void) {
+
+    char tipo[30];
+    char aro[25];
+    char quadro[22];
+    char marca[20];
+    char cod[15];
+
     system("clear||cls");
     printf("\n");
     printf("-------------------------------------------------\n");
@@ -136,14 +179,23 @@ void cadastrar_bike(void) {
     printf("\n");
     printf("\n");
     printf("Tipo da bike (Mountain Bike, Elétrica, Estrada/speed ou Urbana):\n");
+    scanf("%c", tipo);
+    getchar();
     printf("Aro da bike:\n");
+    scanf("%c",aro);
+    getchar();
     printf("Tamanho de quadro:\n");
+    scanf("%c", quadro);
+    getchar();
     printf("Marca da bike:\n");
+    scanf("%c", marca);
+    getchar();
     printf("Código gerado da bike:\n");
+    scanf("%c", cod);
+    getchar();
     printf("\n");
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-    getchar();
 
 }
 
@@ -216,7 +268,28 @@ void listar_bikes(void) {
 ////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////
 
-void modulo_clientes(void) {
+
+void modulo_cliente (void) {
+   char opcao;
+    do {
+        opcao = clientes();
+        switch(opcao) {
+            case '1': 	cadastrar_cliente();
+                        break;
+            case '2': 	buscar_cliente();
+                        break;
+            case '3': 	editar_cliente();
+                        break;
+            case '4': 	excluir_cliente();
+                        break;
+            case '5':   listar_clientes();
+                        break;
+        } 		
+    } while (opcao != '0');
+}
+
+
+char clientes(void) {
     char esc;
     system("clear||cls");
     printf("\n");
@@ -236,6 +309,7 @@ void modulo_clientes(void) {
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
+    return esc;
 }
 
 void cadastrar_cliente(void) {
@@ -330,7 +404,25 @@ void listar_clientes(void) {
 ////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
 
-void modulo_promo(void) {
+void modulo_promo (void) {
+   char opcao;
+    do {
+        opcao = promo();
+        switch(opcao) {
+            case '1': listar_promo();
+                        break;
+            case '2': 	cadastrar_promo();
+                        break;
+            case '3': 	editar_promo();
+                        break;
+            case '4': 	excluir_promo();
+                        break;
+        } 		
+    } while (opcao != '0');
+}
+
+
+char promo(void) {
     char esc;
     system("clear||cls");
     printf("\n");
@@ -349,6 +441,7 @@ void modulo_promo(void) {
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
+    return esc;
 }
 
 void listar_promo(void) {
@@ -424,7 +517,27 @@ void excluir_promo(void) {
 ////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////
 
-void modulo_aluguel(void) {
+
+void modulo_aluguel (void) {
+   char opcao;
+    do {
+        opcao = aluguel();
+        switch(opcao) {
+            case '1': 	bike_disponivel();
+                        break;
+            case '2': 	alugar_bike();
+                        break;
+            case '3': 	buscar_aluguel();
+                        break;
+            case '4': 	excluir_aluguel();
+                        break;
+            case '5':   listar_aluguel();
+                        break;
+        } 		
+    } while (opcao != '0');
+}
+
+char aluguel(void) {
     char esc;
     system("clear||cls");
     printf("\n");
@@ -443,6 +556,7 @@ void modulo_aluguel(void) {
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
+    return esc;
 }
 
 //////////////////////////////////////////////////////////////////////////////
