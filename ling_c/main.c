@@ -104,7 +104,6 @@ char menu_principal(void) {
     getchar();
     printf("\n");
     printf("\t\t\t>>>Aguarde\n");
-    getchar();
     return esc;
 }
 
@@ -155,8 +154,8 @@ char bikes(void) {
     scanf("%c", &esc);
     getchar();
     printf("\n");
-    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-    getchar();
+    printf("\t\t\t>>> Aguarde...\n");
+    sleep(1);
     return esc;
 }
 
@@ -195,7 +194,11 @@ void cadastrar_bike(void) {
     getchar();
     printf("\n");
     printf("\n");
+     printf("Cadastro realizado com sucesso!\n");
+    printf("\n");
+    printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    getchar();
 
 }
 
@@ -208,6 +211,7 @@ void editar_bike(void) {
     printf("-------------------------------------------------\n");
     printf("-------------------MENU BIKES--------------------\n");
     printf("-------------------------------------------------\n");
+    printf("\n");
     printf("Vamos editar dados de uma bike no sistema!");
     printf("\n");
     printf("\n");
@@ -227,6 +231,7 @@ void editar_bike(void) {
 }
 
 void buscar_bike(void) {
+    char cod;
     system("clear||cls");
     printf("\n");
     printf("-------------------------------------------------\n");
@@ -235,11 +240,16 @@ void buscar_bike(void) {
     printf("-------------------MENU BIKES--------------------\n");
     printf("-------------------------------------------------\n");
     printf("Informe o código da bike:");
+    scanf("%c",&cod);
+    getchar();
     printf("\n");
     printf("\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    getchar();
 }
 
 void excluir_bike(void) {
+    char cod;
     system("clear||cls");
     printf("\n");
     printf("-------------------------------------------------\n");
@@ -248,8 +258,11 @@ void excluir_bike(void) {
     printf("-------------------MENU BIKES--------------------\n");
     printf("-------------------------------------------------\n");
     printf("Informe o código da bike:");
+    scanf("%c", &cod);
     printf("\n");
     printf("\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    getchar();
 }
 
 void listar_bikes(void) {
@@ -263,6 +276,8 @@ void listar_bikes(void) {
     printf("programa em desenvolvimento...");
     printf("\n");
     printf("\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    getchar();
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -307,12 +322,19 @@ char clientes(void) {
     scanf("%c", &esc);
     getchar();
     printf("\n");
-    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-    getchar();
+    printf("\t\t\t>>> Aguarde...\n");
+    sleep(1);
     return esc;
 }
 
 void cadastrar_cliente(void) {
+
+    char nome[40];
+    char cpf[12];
+    char tel[12];
+    char end[30];
+    char mail[40];
+
     system("clear||cls");
     printf("\n");
     printf("-------------------------------------------------\n");
@@ -320,14 +342,32 @@ void cadastrar_cliente(void) {
     printf("-------------------------------------------------\n");
     printf("------------------MENU CLIENTES------------------\n");
     printf("-------------------------------------------------\n");
+    printf("\n");
     printf("Vamos cadastrar um cliente no sistema!");
     printf("\n");
     printf("\n");
     printf("Nome:");
+    scanf("%c", nome);
+    getchar();
+    printf("\n");
     printf("CPF:");
+    scanf("%c",cpf);
+    getchar();
+    printf("\n");
     printf("Telefone:");
+    scanf("%c", tel);
+    getchar();
+    printf("\n");
     printf("Endereço:");
+    scanf("%c", end);
+    getchar();
+    printf("\n");
     printf("E-mail:");
+    scanf("%c", mail);
+    getchar();
+    printf("\n");
+    printf("\n");
+    printf("Cadastro realizado com sucesso!\n");
     printf("\n");
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
@@ -336,6 +376,7 @@ void cadastrar_cliente(void) {
 }
 
 void buscar_cliente(void) {
+    char cpf;
     system("clear||cls");
     printf("\n");
     printf("-------------------------------------------------\n");
@@ -344,8 +385,12 @@ void buscar_cliente(void) {
     printf("------------------MENU CLIENTES------------------\n");
     printf("-------------------------------------------------\n");
     printf("Informe o cpf do cliente:");
+    scanf("%c", &cpf);
+    getchar();
     printf("\n");
     printf("\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    getchar();
 }
 
 void editar_cliente(void) {
@@ -376,6 +421,7 @@ void editar_cliente(void) {
 }
 
 void excluir_cliente(void) {
+    char cpf;
     system("clear||cls");
     printf("\n");
     printf("-------------------------------------------------\n");
@@ -384,8 +430,11 @@ void excluir_cliente(void) {
     printf("------------------MENU CLIENTES------------------\n");
     printf("-------------------------------------------------\n");
     printf("Informe o cpf do cliente:");
+    scanf("%c",&cpf);
     printf("\n");
     printf("\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    getchar();
 }
 
 void listar_clientes(void) {
@@ -399,6 +448,8 @@ void listar_clientes(void) {
     printf("programa em desenvolvimento...");
     printf("\n");
     printf("\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    getchar();
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -439,8 +490,8 @@ char promo(void) {
     scanf("%c", &esc);
     getchar();
     printf("\n");
-    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-    getchar();
+    printf("\t\t\t>>> Aguarde...\n");
+    sleep(1);
     return esc;
 }
 
@@ -455,9 +506,16 @@ void listar_promo(void) {
     printf("programa em desenvolvimento...");
     printf("\n");
     printf("\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    getchar();
 }
 
 void cadastrar_promo(void) {
+
+    char anuncio[40];
+    char val[12];
+    char cod[12];
+
     system("clear||cls");
     printf("\n");
     printf("-------------------------------------------------\n");
@@ -469,17 +527,28 @@ void cadastrar_promo(void) {
     printf("\n");
     printf("\n");
     printf("Anúncio:\n");
+    scanf("%c",anuncio);
+    getchar();
+    printf("\n");
     printf("Validade:\n");
+    scanf("%c",val);
+    getchar();
+    printf("\n");
     printf("Código gerado da promoção:\n");
+    scanf("%c", cod);
+    printf("\n");
+    printf("\n");
+    printf("Cadastro realizado com sucesso!");
     printf("\n");
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
 
+
 }
 
 void editar_promo(void) {
-     char esc;
+    char esc;
     system("clear||cls");
     printf("\n");
     printf("-------------------------------------------------\n");
@@ -503,6 +572,7 @@ void editar_promo(void) {
 }
 
 void excluir_promo(void) {
+    char cod;
     system("clear||cls");
     printf("\n");
     printf("-------------------------------------------------\n");
@@ -511,8 +581,14 @@ void excluir_promo(void) {
     printf("------------------MENU PROMOÇÕES-----------------\n");
     printf("-------------------------------------------------\n");
     printf("Informe o código da promoção:");
+    scanf("%c", &cod);
+    getchar();
     printf("\n");
     printf("\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    getchar();
+    
+
 }
 ////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////
@@ -558,6 +634,86 @@ char aluguel(void) {
     getchar();
     return esc;
 }
+
+
+void bike_disponivel(void) {
+    system("clear||cls");
+    printf("\n");
+    printf("-------------------------------------------------\n");
+    printf("*******************RENT A BIKE*******************\n");
+    printf("-------------------------------------------------\n");
+    printf("------------------MENU ALUGUEL-------------------\n");
+    printf("-------------------------------------------------\n");
+    printf("programa em desenvolvimento...");
+    printf("\n");
+    printf("\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    getchar();
+}
+
+void alugar_bike(void) {
+    system("clear||cls");
+    printf("\n");
+    printf("-------------------------------------------------\n");
+    printf("*******************RENT A BIKE*******************\n");
+    printf("-------------------------------------------------\n");
+    printf("------------------MENU ALUGUEL-------------------\n");
+    printf("-------------------------------------------------\n");
+    printf("programa em desenvolvimento...");
+    printf("\n");
+    printf("\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    getchar();  
+}
+
+void buscar_aluguel(void) {
+    system("clear||cls");
+    printf("\n");
+    printf("-------------------------------------------------\n");
+    printf("*******************RENT A BIKE*******************\n");
+    printf("-------------------------------------------------\n");
+    printf("------------------MENU ALUGUEL-------------------\n");
+    printf("-------------------------------------------------\n");
+    printf("programa em desenvolvimento...");
+    printf("\n");
+    printf("\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    getchar();
+  
+}
+
+void excluir_aluguel(void) {
+    system("clear||cls");
+    printf("\n");
+    printf("-------------------------------------------------\n");
+    printf("*******************RENT A BIKE*******************\n");
+    printf("-------------------------------------------------\n");
+    printf("------------------MENU ALUGUEL-------------------\n");
+    printf("-------------------------------------------------\n");
+    printf("programa em desenvolvimento...");
+    printf("\n");
+    printf("\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    getchar();
+  
+}
+
+void listar_aluguel(void) {
+    system("clear||cls");
+    printf("\n");
+    printf("-------------------------------------------------\n");
+    printf("*******************RENT A BIKE*******************\n");
+    printf("-------------------------------------------------\n");
+    printf("------------------MENU ALUGUEL-------------------\n");
+    printf("-------------------------------------------------\n");
+    printf("programa em desenvolvimento...");
+    printf("\n");
+    printf("\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    getchar();
+  
+}
+
 
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////
