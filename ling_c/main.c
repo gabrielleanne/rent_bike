@@ -2,6 +2,7 @@
 #include<stdlib.h>
 #include <unistd.h>
 #include<locale.h>
+//#include"cliente.h"
 
 ///////////////////////////////////////////////////////////////
 //MENU PRINCIPAL
@@ -64,7 +65,7 @@ int main(void) {
         switch(opcao) {
           case '1': modulo_bike();
                     break;
-          case '2': modulo_cliente();
+          //case '2': modulo_cliente();
                     break;
           case '3': modulo_aluguel();
                     break;
