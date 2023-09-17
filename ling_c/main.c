@@ -3,6 +3,7 @@
 #include <unistd.h>
 #include<locale.h>
 #include"cliente.h"
+#include"bike.h"
 //#include"bike.h"
 
 ///////////////////////////////////////////////////////////////
