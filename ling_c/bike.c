@@ -58,11 +58,11 @@ char bikes(void) {
 
 void cadastrar_bike(void) {
 
-    char tipo[30];
-    char aro[25];
-    char quadro[22];
-    char marca[20];
-    char cod[15];
+    char tipo;
+    char aro;
+    char quadro;
+    char marca;
+    char cod;
 
     system("clear||cls");
     printf("\n");
@@ -75,19 +75,19 @@ void cadastrar_bike(void) {
     printf("\n");
     printf("\n");
     printf("Tipo da bike (Mountain Bike, Elétrica, Estrada/speed ou Urbana):\n");
-    scanf("%c", tipo);
+    scanf("%c", &tipo);
     getchar();
     printf("Aro da bike:\n");
-    scanf("%c",aro);
+    scanf("%c",&aro);
     getchar();
     printf("Tamanho de quadro:\n");
-    scanf("%c", quadro);
+    scanf("%c", &quadro);
     getchar();
     printf("Marca da bike:\n");
-    scanf("%c", marca);
+    scanf("%c", &marca);
     getchar();
     printf("Código gerado da bike:\n");
-    scanf("%c", cod);
+    scanf("%c", &cod);
     getchar();
     printf("\n");
     printf("\n");
