@@ -123,8 +123,9 @@ void editar_bike(void) {
     scanf("%c", &esc);
     getchar();
     printf("\n");
-    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-    getchar();
+    printf("\t\t\t>>> Aguarde...\n");
+    sleep(1);
+    
 }
 
 void buscar_bike(void) {
@@ -139,6 +140,8 @@ void buscar_bike(void) {
     printf("Informe o código da bike:\n");
     scanf("%c",&cod);
     getchar();
+    printf("\n");
+    printf("\n");
     printf("Programa em desenvolvimento!\n");
     printf("\n");
     printf("\n");
@@ -157,6 +160,10 @@ void excluir_bike(void) {
     printf("-------------------------------------------------\n");
     printf("Informe o código da bike:");
     scanf("%c", &cod);
+    getchar();
+    printf("\n");
+    printf("\n");
+    printf("Programa em desenvolvimento!\n");
     printf("\n");
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
@@ -171,6 +178,8 @@ void listar_bikes(void) {
     printf("-------------------------------------------------\n");
     printf("-------------------MENU BIKES--------------------\n");
     printf("-------------------------------------------------\n");
+    printf("\n");
+    printf("\n");
     printf("programa em desenvolvimento...");
     printf("\n");
     printf("\n");
