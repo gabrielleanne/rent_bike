@@ -52,11 +52,11 @@ char menu_principal(void) {
     printf(" 1. BIKES--------------------------------DIGITE 1\n");
     printf(" 2. CLIENTES-----------------------------DIGITE 2\n");
     printf(" 3. ALUGUEL------------------------------DIGITE 3\n");
-    printf(" 4. PROMOÃ‡OES----------------------------DIGITE 4\n");
-    printf(" 5. SOBRE NÃ“S----------------------------DIGITE 5\n");
+    printf(" 4. PROMOÇÕOES----------------------------DIGITE 4\n");
+    printf(" 5. SOBRE NÓS----------------------------DIGITE 5\n");
     printf(" 0. SAIR---------------------------------DIGITE 0\n");
     printf("\n");
-    printf("Escolha sua opÃ§Ã£o: ");
+    printf("Escolha sua opção: ");
     scanf("%c", &esc);
     getchar();
     printf("\n");
