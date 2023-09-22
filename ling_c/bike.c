@@ -91,7 +91,7 @@ void cadastrar_bike(void) {
     getchar();
     printf("\n");
     printf("\n");
-     printf("Cadastro realizado com sucesso!\n");
+    printf("Cadastro realizado com sucesso!\n");
     printf("\n");
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
