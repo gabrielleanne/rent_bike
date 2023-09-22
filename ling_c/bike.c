@@ -136,9 +136,10 @@ void buscar_bike(void) {
     printf("-------------------------------------------------\n");
     printf("-------------------MENU BIKES--------------------\n");
     printf("-------------------------------------------------\n");
-    printf("Informe o código da bike:");
+    printf("Informe o código da bike:\n");
     scanf("%c",&cod);
     getchar();
+    printf("Programa em desenvolvimento!\n");
     printf("\n");
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
