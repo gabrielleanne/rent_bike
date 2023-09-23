@@ -26,19 +26,20 @@ void modulo_aluguel (void) {
 }
 
 char aluguel(void) {
+    setlocale(LC_ALL,"Portuguese_Brazil");
     char esc;
     system("clear||cls");
     printf("\n");
     printf("-------------------------------------------------\n");
     printf("*******************RENT A BIKE*******************\n");
     printf("-------------------------------------------------\n");
-    printf(" 1. BIKES DISPON√çVEIS--------------------DIGITE 1\n");
+    printf(" 1. BIKES DISPONÕVEIS--------------------DIGITE 1\n");
     printf(" 2. ALUGAR BIKE--------------------------DIGITE 2\n");
     printf(" 3. BUSCAR ALUGUEL-----------------------DIGITE 3\n");
     printf(" 4. EXCLUIR ALUGUEL----------------------DIGITE 4\n");
     printf(" 0. VOLTAR-------------------------------DIGITE 0\n");
     printf("\n");
-    printf("Escolha sua op√ß√£o: ");
+    printf("Escolha sua opÁ„o: ");
     scanf("%c", &esc);
     getchar();
     printf("\n");

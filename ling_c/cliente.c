@@ -28,6 +28,7 @@ void modulo_cliente (void) {
 
 
 char clientes(void) {
+    setlocale(LC_ALL,"Portuguese_Brazil");
     char esc;
     system("clear||cls");
     printf("\n");
@@ -41,7 +42,7 @@ char clientes(void) {
     printf(" 5. LISTAR TODOS-------------------------DIGITE 5\n");
     printf(" 0. VOLTAR-------------------------------DIGITE 0\n");
     printf("\n");
-    printf("Escolha sua op√ß√£o: ");
+    printf("Escolha sua opÁ„o: ");
     scanf("%c", &esc);
     getchar();
     printf("\n");
@@ -70,7 +71,7 @@ void cadastrar_cliente(void) {
     printf("\n");
     printf("\n");
     printf("Nome:");
-    scanf("%c[A-Z√Å√â√ç√ì√ö√Ç√ä√î√á√Ä√É√ï a-z√°√©√≠√≥√∫√¢√™√¥√ß√†√£√µ]", nome);
+    scanf("%c[A-Z¡…Õ”⁄¬ ‘«¿√’ a-z·ÈÌÛ˙‚ÍÙÁ‡„ı]", nome);
     getchar();
     printf("\n");
     printf("CPF:");
@@ -81,8 +82,8 @@ void cadastrar_cliente(void) {
     scanf("%c[0-9]", tel);
     getchar();
     printf("\n");
-    printf("Endere√ßo:");
-    scanf("%c[A-Z√Å√â√ç√ì√ö√Ç√ä√î√á√Ä√É√ï a-z√°√©√≠√≥√∫√¢√™√¥√ß√†√£√µ]", end);
+    printf("EndereÁo:");
+    scanf("%c[A-Z¡…Õ”⁄¬ ‘«¿√’ a-z·ÈÌÛ˙‚ÍÙÁ‡„ı]", end);
     getchar();
     printf("\n");
     printf("E-mail:");
@@ -134,11 +135,11 @@ void editar_cliente(void) {
     printf(" 1. EDITAR NOME--------------------------DIGITE 1\n");
     printf(" 2. EDITAR CPF---------------------------DIGITE 2\n");
     printf(" 3. EDITAR TELEFONE----------------------DIGITE 3\n");
-    printf(" 4. EDITAR ENDERE√áO----------------------DIGITE 4\n");
+    printf(" 4. EDITAR ENDERE«O----------------------DIGITE 4\n");
     printf(" 5. EDITAR E-MAIL------------------------DIGITE 5\n");
     printf(" 0. VOLTAR-------------------------------DIGITE 0\n");
     printf("\n");
-    printf("Escolha sua op√ß√£o: \n");
+    printf("Escolha sua opÁ„o: \n");
     scanf("%c", &esc);
     getchar();
     printf("\n");

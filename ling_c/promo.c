@@ -27,19 +27,20 @@ void modulo_promo (void) {
 
 
 char promo(void) {
+    setlocale(LC_ALL,"Portuguese_Brazil");
     char esc;
     system("clear||cls");
     printf("\n");
     printf("-------------------------------------------------\n");
     printf("*******************RENT A BIKE*******************\n");
     printf("-------------------------------------------------\n");
-    printf(" 1. LISTAR PROMOÃ‡Ã•ES --------------------DIGITE 1\n");
-    printf(" 2. CADASTRAR PROMOÃ‡ÃƒO-------------------DIGITE 2\n");
-    printf(" 3. EDITAR PROMOÃ‡ÃƒO----------------------DIGITE 3\n");
-    printf(" 4. EXCLUIR PROMOÃ‡ÃƒO---------------------DIGITE 4\n");
+    printf(" 1. LISTAR PROMOÇÕES --------------------DIGITE 1\n");
+    printf(" 2. CADASTRAR PROMOÇÃO-------------------DIGITE 2\n");
+    printf(" 3. EDITAR PROMOÇÃO----------------------DIGITE 3\n");
+    printf(" 4. EXCLUIR PROMOÇÃO---------------------DIGITE 4\n");
     printf(" 0. VOLTAR-------------------------------DIGITE 0\n");
     printf("\n");
-    printf("Escolha sua opÃ§Ã£o: ");
+    printf("Escolha sua opção: ");
     scanf("%c", &esc);
     getchar();
     printf("\n");
@@ -54,7 +55,7 @@ void listar_promo(void) {
     printf("-------------------------------------------------\n");
     printf("*******************RENT A BIKE*******************\n");
     printf("-------------------------------------------------\n");
-    printf("------------------MENU PROMOÃ‡Ã•ES-----------------\n");
+    printf("------------------MENU PROMOÇÕES-----------------\n");
     printf("-------------------------------------------------\n");
     printf("\n");
     printf("programa em desenvolvimento...");
@@ -75,12 +76,12 @@ void cadastrar_promo(void) {
     printf("-------------------------------------------------\n");
     printf("*******************RENT A BIKE*******************\n");
     printf("-------------------------------------------------\n");
-    printf("------------------MENU PROMOÃ‡Ã•ES-----------------\n");
+    printf("------------------MENU PROMOÇÕES-----------------\n");
     printf("-------------------------------------------------\n");
-    printf("Vamos cadastrar uma promoÃ§Ã£o no sistema!");
+    printf("Vamos cadastrar uma promoção no sistema!");
     printf("\n");
     printf("\n");
-    printf("AnÃºncio:\n");
+    printf("Anúncio:\n");
     scanf("%c",anuncio);
     getchar();
     printf("\n");
@@ -88,7 +89,7 @@ void cadastrar_promo(void) {
     scanf("%c",val);
     getchar();
     printf("\n");
-    printf("CÃ³digo gerado da promoÃ§Ã£o:\n");
+    printf("Código gerado da promoção:\n");
     scanf("%c", cod);
     printf("\n");
     printf("\n");
@@ -108,16 +109,16 @@ void editar_promo(void) {
     printf("-------------------------------------------------\n");
     printf("*******************RENT A BIKE*******************\n");
     printf("-------------------------------------------------\n");
-    printf("------------------MENU PROMOÃ‡Ã•ES-----------------\n");
+    printf("------------------MENU PROMOÇÕES-----------------\n");
     printf("-------------------------------------------------\n");
-    printf("Vamos editar dados de uma promoÃ§Ã£o no sistema!");
+    printf("Vamos editar dados de uma promoção no sistema!");
     printf("\n");
     printf("\n");
-    printf(" 1. EDITAR ANÃšNCIO-----------------------DIGITE 1\n");
+    printf(" 1. EDITAR ANÚNCIO-----------------------DIGITE 1\n");
     printf(" 2. EDITAR VALIDADE----------------------DIGITE 2\n");
     printf(" 0. VOLTAR-------------------------------DIGITE 0\n");
     printf("\n");
-    printf("Escolha sua opÃ§Ã£o: \n");
+    printf("Escolha sua opção: \n");
     scanf("%c", &esc);
     getchar();
      printf("\n");
@@ -134,10 +135,10 @@ void excluir_promo(void) {
     printf("-------------------------------------------------\n");
     printf("*******************RENT A BIKE*******************\n");
     printf("-------------------------------------------------\n");
-    printf("------------------MENU PROMOÃ‡Ã•ES-----------------\n");
+    printf("------------------MENU PROMOÇÕES-----------------\n");
     printf("-------------------------------------------------\n");
     printf("\n");
-    printf("Informe o cÃ³digo da promoÃ§Ã£o:");
+    printf("Informe o código da promoção:");
     scanf("%c", &cod);
     getchar();
     printf("\n");

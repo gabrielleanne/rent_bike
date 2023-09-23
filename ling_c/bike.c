@@ -31,7 +31,7 @@ void modulo_bike (void) {
 
 
 char bikes(void) {
-
+    setlocale(LC_ALL,"Portuguese_Brazil");
     char esc;
     system("clear||cls");
     printf("\n");
@@ -47,7 +47,7 @@ char bikes(void) {
     printf(" 5. LISTAR BIKES-------------------------DIGITE 5\n");
     printf(" 0. VOLTAR-------------------------------DIGITE 0\n");
     printf("\n");
-    printf("Escolha sua op√ß√£o: ");
+    printf("Escolha sua opÁ„o: ");
     scanf("%c", &esc);
     getchar();
     printf("\n");
@@ -75,8 +75,8 @@ void cadastrar_bike(void) {
     printf("Vamos cadastrar uma bike no sistema!\n");
     printf("\n");
     printf("\n");
-    printf("Tipo da bike (Mountain Bike, El√©trica, Estrada/speed ou Urbana):\n");
-    scanf("%c[A-Z√Å√â√ç√ì√ö√Ç√ä√î√á√Ä√É√ï a-z√°√©√≠√≥√∫√¢√™√¥√ß√†√£√µ]", tipo);
+    printf("Tipo da bike (Mountain Bike, ElÈtrica, Estrada/speed ou Urbana):\n");
+    scanf("%c[A-Z¡…Õ”⁄¬ ‘«¿√’ a-z·ÈÌÛ˙‚ÍÙÁ‡„ı]", tipo);
     getchar();
     printf("Aro da bike:\n");
     scanf("%c[0-9]",aro);
@@ -85,9 +85,9 @@ void cadastrar_bike(void) {
     scanf("%c[0-9]", quadro);
     getchar();
     printf("Marca da bike:\n");
-    scanf("%c[A-Z√Å√â√ç√ì√ö√Ç√ä√î√á√Ä√É√ï a-z√°√©√≠√≥√∫√¢√™√¥√ß√†√£√µ]", marca);
+    scanf("%c[A-Z¡…Õ”⁄¬ ‘«¿√’ a-z·ÈÌÛ˙‚ÍÙÁ‡„ı]", marca);
     getchar();
-    printf("C√≥digo gerado da bike:\n");
+    printf("CÛdigo gerado da bike:\n");
     scanf("%c[0-9]", cod);
     getchar();
     printf("\n");
@@ -120,10 +120,10 @@ void editar_bike(void) {
     printf(" 2. EDITAR ARO---------------------------DIGITE 2\n");
     printf(" 3. EDITAR TAMANHO DE QUADRO-------------DIGITE 3\n");
     printf(" 4. EDITAR MARCA-------------------------DIGITE 4\n");
-    printf(" 5. EDITAR C√ìDIGO------------------------DIGITE 5\n");
+    printf(" 5. EDITAR C”DIGO------------------------DIGITE 5\n");
     printf(" 0. VOLTAR-------------------------------DIGITE 0\n");
     printf("\n");
-    printf("Escolha sua op√ß√£o: \n");
+    printf("Escolha sua opÁ„o: \n");
     scanf("%c", &esc);
     getchar();
     printf("\n");
@@ -146,7 +146,7 @@ void tipo_bike(void) {
     printf("-------------------------------------------------\n");
     printf("-------------------MENU BIKES--------------------\n");
     printf("-------------------------------------------------\n");
-    printf("Informe o c√≥digo da bike:\n");
+    printf("Informe o cÛdigo da bike:\n");
     scanf("%c",&cod);
     getchar();
     printf("\n");
@@ -168,7 +168,7 @@ void aro_bike(void) {
     printf("-------------------------------------------------\n");
     printf("-------------------MENU BIKES--------------------\n");
     printf("-------------------------------------------------\n");
-    printf("Informe o c√≥digo da bike:\n");
+    printf("Informe o cÛdigo da bike:\n");
     scanf("%c",&cod);
     getchar();
     printf("\n");
@@ -189,7 +189,7 @@ void quadro_bike(void) {
     printf("-------------------------------------------------\n");
     printf("-------------------MENU BIKES--------------------\n");
     printf("-------------------------------------------------\n");
-    printf("Informe o c√≥digo da bike:\n");
+    printf("Informe o cÛdigo da bike:\n");
     scanf("%c",&cod);
     getchar();
     printf("\n");
@@ -211,7 +211,7 @@ void marca_bike(void) {
     printf("-------------------------------------------------\n");
     printf("-------------------MENU BIKES--------------------\n");
     printf("-------------------------------------------------\n");
-    printf("Informe o c√≥digo da bike:\n");
+    printf("Informe o cÛdigo da bike:\n");
     scanf("%c",&cod);
     getchar();
     printf("\n");
@@ -233,7 +233,7 @@ void codigo_bike(void) {
     printf("-------------------------------------------------\n");
     printf("-------------------MENU BIKES--------------------\n");
     printf("-------------------------------------------------\n");
-    printf("Informe o c√≥digo da bike:\n");
+    printf("Informe o cÛdigo da bike:\n");
     scanf("%c",&cod);
     getchar();
     printf("\n");
@@ -256,7 +256,7 @@ void buscar_bike(void) {
     printf("-------------------------------------------------\n");
     printf("-------------------MENU BIKES--------------------\n");
     printf("-------------------------------------------------\n");
-    printf("Informe o c√≥digo da bike:\n");
+    printf("Informe o cÛdigo da bike:\n");
     scanf("%c",&cod);
     getchar();
     printf("\n");
@@ -277,7 +277,7 @@ void excluir_bike(void) {
     printf("-------------------------------------------------\n");
     printf("-------------------MENU BIKES--------------------\n");
     printf("-------------------------------------------------\n");
-    printf("Informe o c√≥digo da bike:");
+    printf("Informe o cÛdigo da bike:");
     scanf("%c", &cod);
     getchar();
     printf("\n");
