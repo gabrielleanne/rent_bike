@@ -56,6 +56,7 @@ void listar_promo(void) {
     printf("-------------------------------------------------\n");
     printf("------------------MENU PROMOÇÕES-----------------\n");
     printf("-------------------------------------------------\n");
+    printf("\n");
     printf("programa em desenvolvimento...");
     printf("\n");
     printf("\n");
@@ -116,9 +117,11 @@ void editar_promo(void) {
     printf(" 2. EDITAR VALIDADE----------------------DIGITE 2\n");
     printf(" 0. VOLTAR-------------------------------DIGITE 0\n");
     printf("\n");
-    printf("Escolha sua opção: ");
+    printf("Escolha sua opção: \n");
     scanf("%c", &esc);
     getchar();
+     printf("\n");
+    printf("programa em desenvolvimento...");
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
@@ -133,10 +136,13 @@ void excluir_promo(void) {
     printf("-------------------------------------------------\n");
     printf("------------------MENU PROMOÇÕES-----------------\n");
     printf("-------------------------------------------------\n");
+    printf("\n");
     printf("Informe o código da promoção:");
     scanf("%c", &cod);
     getchar();
     printf("\n");
+     printf("\n");
+    printf("programa em desenvolvimento...");
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();

@@ -42,8 +42,8 @@ char aluguel(void) {
     scanf("%c", &esc);
     getchar();
     printf("\n");
-    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-    getchar();
+    printf("\t\t\t>>> Aguarde...\n");
+    sleep(1);
     return esc;
 }
 
@@ -56,6 +56,8 @@ void bike_disponivel(void) {
     printf("-------------------------------------------------\n");
     printf("------------------MENU ALUGUEL-------------------\n");
     printf("-------------------------------------------------\n");
+    printf("\n");
+    printf("\n");
     printf("programa em desenvolvimento...");
     printf("\n");
     printf("\n");
@@ -71,6 +73,8 @@ void alugar_bike(void) {
     printf("-------------------------------------------------\n");
     printf("------------------MENU ALUGUEL-------------------\n");
     printf("-------------------------------------------------\n");
+    printf("\n");
+    printf("\n");
     printf("programa em desenvolvimento...");
     printf("\n");
     printf("\n");
@@ -86,6 +90,8 @@ void buscar_aluguel(void) {
     printf("-------------------------------------------------\n");
     printf("------------------MENU ALUGUEL-------------------\n");
     printf("-------------------------------------------------\n");
+    printf("\n");
+    printf("\n");
     printf("programa em desenvolvimento...");
     printf("\n");
     printf("\n");
@@ -102,6 +108,8 @@ void excluir_aluguel(void) {
     printf("-------------------------------------------------\n");
     printf("------------------MENU ALUGUEL-------------------\n");
     printf("-------------------------------------------------\n");
+    printf("\n");
+    printf("\n");
     printf("programa em desenvolvimento...");
     printf("\n");
     printf("\n");
@@ -118,6 +126,8 @@ void listar_aluguel(void) {
     printf("-------------------------------------------------\n");
     printf("------------------MENU ALUGUEL-------------------\n");
     printf("-------------------------------------------------\n");
+    printf("\n");
+    printf("\n");
     printf("programa em desenvolvimento...");
     printf("\n");
     printf("\n");
