@@ -113,9 +113,9 @@ void buscar_cliente(void) {
     printf("Informe o cpf do cliente:\n");
     printf("\n");
     printf("\n");
-    printf("Programa em desenvolvimento\n");
     scanf("%c", &cpf);
     getchar();
+    printf("Programa em desenvolvimento\n");
     printf("\n");
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
@@ -161,7 +161,7 @@ void excluir_cliente(void) {
     printf("-------------------------------------------------\n");
     printf("------------------MENU CLIENTES------------------\n");
     printf("-------------------------------------------------\n");
-     printf("\n");
+    printf("\n");
     printf("\n");
     printf("Informe o cpf do cliente: \n");
     scanf("%c",&cpf);
