@@ -11,11 +11,15 @@ void modulo_sobre(void) {
     setlocale(LC_ALL,"Portuguese_Brazil");
     system("clear||cls");
     printf("\n");
+    printf("\n");
+    printf("\n");
     printf("            * * * * RENT A BIKE * * * *\n");
     printf("\n");
+    printf("\n");
+    printf("\n");
     printf("  Programa desenvolvido na linguagem C para a   \n");
-    printf("  disciplina de ProgramaÁ„o do curso de Sistemas\n");
-    printf("  de InformaÁ„o. O programa ser· desenvolvido   \n");
+    printf("  disciplina de Programa√ß√£o do curso de Sistemas\n");
+    printf("  de Informa√ß√£o. O programa ser√° desenvolvido   \n");
     printf("  para uma empresa de aluguel de bicicletas -   \n");
     printf("  a Rent a Bike.                                \n");
     printf("  Desenvolvedora: Anne Gabrielle!!!!!           \n"); 

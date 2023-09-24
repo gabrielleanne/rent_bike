@@ -74,7 +74,7 @@ void cadastrar_bike(void) {
     printf("Vamos cadastrar uma bike no sistema!\n");
     printf("\n");
     printf("\n");
-    printf("Tipo da bike (Mountain Bike, El�trica, Estrada/speed ou Urbana):\n");
+    printf("Tipo da bike (Mountain Bike, Elétrica, Estrada/speed ou Urbana):\n");
     scanf("%c[A-Z������������ a-z������������]", tipo);
     getchar();
     printf("Aro da bike:\n");
@@ -142,7 +142,7 @@ void editar_bike(void) {
 
 
 void buscar_bike(void) {
-    char cod;
+    char cod [10];
     system("clear||cls");
     printf("\n");
     printf("-------------------------------------------------\n");
@@ -150,8 +150,10 @@ void buscar_bike(void) {
     printf("-------------------------------------------------\n");
     printf("-------------------MENU BIKES--------------------\n");
     printf("-------------------------------------------------\n");
-    printf("Informe o c�digo da bike:\n");
-    scanf("%c",&cod);
+    printf("\n");
+    printf("\n");
+    printf("Informe o código da bike:\n");
+    scanf("%c",cod);
     getchar();
     printf("\n");
     printf("\n");
@@ -163,7 +165,7 @@ void buscar_bike(void) {
 }
 
 void excluir_bike(void) {
-    char cod;
+    char cod [10];
     system("clear||cls");
     printf("\n");
     printf("-------------------------------------------------\n");
@@ -171,8 +173,10 @@ void excluir_bike(void) {
     printf("-------------------------------------------------\n");
     printf("-------------------MENU BIKES--------------------\n");
     printf("-------------------------------------------------\n");
-    printf("Informe o c�digo da bike:");
-    scanf("%c", &cod);
+    printf("\n");
+    printf("\n");
+    printf("Informe o código da bike:");
+    scanf("%c", cod);
     getchar();
     printf("\n");
     printf("\n");

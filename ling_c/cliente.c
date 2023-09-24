@@ -42,7 +42,7 @@ char clientes(void) {
     printf(" 5. LISTAR TODOS-------------------------DIGITE 5\n");
     printf(" 0. VOLTAR-------------------------------DIGITE 0\n");
     printf("\n");
-    printf("Escolha sua opção: ");
+    printf("Escolha sua opÃ§Ã£o: ");
     scanf("%c", &esc);
     getchar();
     printf("\n");
@@ -71,7 +71,7 @@ void cadastrar_cliente(void) {
     printf("\n");
     printf("\n");
     printf("Nome:");
-    scanf("%c[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", nome);
+    scanf("%c[A-Zï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ a-zï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½]", nome);
     getchar();
     printf("\n");
     printf("CPF:");
@@ -82,8 +82,8 @@ void cadastrar_cliente(void) {
     scanf("%c[0-9]", tel);
     getchar();
     printf("\n");
-    printf("Endereço:");
-    scanf("%c[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", end);
+    printf("EndereÃ§o:");
+    scanf("%c[A-Zï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ a-zï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½]", end);
     getchar();
     printf("\n");
     printf("E-mail:");
@@ -108,6 +108,8 @@ void buscar_cliente(void) {
     printf("-------------------------------------------------\n");
     printf("------------------MENU CLIENTES------------------\n");
     printf("-------------------------------------------------\n");
+    printf("\n");
+    printf("\n");
     printf("Informe o cpf do cliente:\n");
     printf("\n");
     printf("\n");
@@ -135,11 +137,11 @@ void editar_cliente(void) {
     printf(" 1. EDITAR NOME--------------------------DIGITE 1\n");
     printf(" 2. EDITAR CPF---------------------------DIGITE 2\n");
     printf(" 3. EDITAR TELEFONE----------------------DIGITE 3\n");
-    printf(" 4. EDITAR ENDEREÇO----------------------DIGITE 4\n");
+    printf(" 4. EDITAR ENDEREÃ‡O----------------------DIGITE 4\n");
     printf(" 5. EDITAR E-MAIL------------------------DIGITE 5\n");
     printf(" 0. VOLTAR-------------------------------DIGITE 0\n");
     printf("\n");
-    printf("Escolha sua opção: \n");
+    printf("Escolha sua opÃ§Ã£o: \n");
     scanf("%c", &esc);
     getchar();
     printf("\n");
