@@ -46,7 +46,7 @@ char bikes(void) {
     printf(" 5. LISTAR BIKES-------------------------DIGITE 5\n");
     printf(" 0. VOLTAR-------------------------------DIGITE 0\n");
     printf("\n");
-    printf("Escolha sua op��o: ");
+    printf("Escolha sua opçãoo: ");
     scanf("%c", &esc);
     getchar();
     printf("\n");
@@ -86,7 +86,7 @@ void cadastrar_bike(void) {
     printf("Marca da bike:\n");
     scanf("%c[A-Z������������ a-z������������]", marca);
     getchar();
-    printf("C�digo gerado da bike:\n");
+    printf("Código gerado da bike:\n");
     scanf("%c[0-9]", cod);
     getchar();
     printf("\n");
@@ -102,7 +102,7 @@ void cadastrar_bike(void) {
 
 
 
-char editar_bike(void) {
+void editar_bike(void) {
     char esc;
     system("clear||cls");
     printf("\n");
@@ -119,10 +119,10 @@ char editar_bike(void) {
     printf(" 2. EDITAR ARO---------------------------DIGITE 2\n");
     printf(" 3. EDITAR TAMANHO DE QUADRO-------------DIGITE 3\n");
     printf(" 4. EDITAR MARCA-------------------------DIGITE 4\n");
-    printf(" 5. EDITAR C�DIGO------------------------DIGITE 5\n");
+    printf(" 5. EDITAR CÓDIGO------------------------DIGITE 5\n");
     printf(" 0. VOLTAR-------------------------------DIGITE 0\n");
     printf("\n");
-    printf("Escolha sua op��o: \n");
+    printf("Escolha sua opção: \n");
     scanf("%c", &esc);
     getchar();
     printf("\n");
@@ -132,7 +132,7 @@ char editar_bike(void) {
     printf("\n");
     printf("Tecle <ENTER> para continuar...\n");
     getchar();
-    return esc;
+    
     
     
 }
