@@ -15,7 +15,7 @@ void modulo_bike (void) {
         switch(opcao) {
             case '1': 	cadastrar_bike();
                         break;
-            case '2': 	edit_bike();
+            case '2': 	editar_bike();
                         break;
             case '3': 	buscar_bike();
                         break;
@@ -46,7 +46,7 @@ char bikes(void) {
     printf(" 5. LISTAR BIKES-------------------------DIGITE 5\n");
     printf(" 0. VOLTAR-------------------------------DIGITE 0\n");
     printf("\n");
-    printf("Escolha sua opção: ");
+    printf("Escolha sua opï¿½ï¿½o: ");
     scanf("%c", &esc);
     getchar();
     printf("\n");
@@ -74,8 +74,8 @@ void cadastrar_bike(void) {
     printf("Vamos cadastrar uma bike no sistema!\n");
     printf("\n");
     printf("\n");
-    printf("Tipo da bike (Mountain Bike, Elétrica, Estrada/speed ou Urbana):\n");
-    scanf("%c[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", tipo);
+    printf("Tipo da bike (Mountain Bike, Elï¿½trica, Estrada/speed ou Urbana):\n");
+    scanf("%c[A-Zï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ a-zï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½]", tipo);
     getchar();
     printf("Aro da bike:\n");
     scanf("%c[0-9]",aro);
@@ -84,9 +84,9 @@ void cadastrar_bike(void) {
     scanf("%c[0-9]", quadro);
     getchar();
     printf("Marca da bike:\n");
-    scanf("%c[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", marca);
+    scanf("%c[A-Zï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ a-zï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½]", marca);
     getchar();
-    printf("Código gerado da bike:\n");
+    printf("Cï¿½digo gerado da bike:\n");
     scanf("%c[0-9]", cod);
     getchar();
     printf("\n");
@@ -100,25 +100,6 @@ void cadastrar_bike(void) {
 }
 
 
-
-void edit_bike (void) {
-   char opcao;
-    do {
-        opcao = editar_bikes();
-        switch(opcao) {
-            case '1': 	tipo_bike();
-                        break;
-            case '2': 	aro_bike();
-                        break;
-            case '3': 	quadro_bike();
-                        break;
-            case '4': 	marca_bike();
-                        break;
-            case '5':   codigo_bike();
-                        break;
-        } 		
-    } while (opcao != '0');
-}
 
 
 char editar_bike(void) {
@@ -138,10 +119,10 @@ char editar_bike(void) {
     printf(" 2. EDITAR ARO---------------------------DIGITE 2\n");
     printf(" 3. EDITAR TAMANHO DE QUADRO-------------DIGITE 3\n");
     printf(" 4. EDITAR MARCA-------------------------DIGITE 4\n");
-    printf(" 5. EDITAR CÓDIGO------------------------DIGITE 5\n");
+    printf(" 5. EDITAR Cï¿½DIGO------------------------DIGITE 5\n");
     printf(" 0. VOLTAR-------------------------------DIGITE 0\n");
     printf("\n");
-    printf("Escolha sua opção: \n");
+    printf("Escolha sua opï¿½ï¿½o: \n");
     scanf("%c", &esc);
     getchar();
     printf("\n");
@@ -156,113 +137,7 @@ char editar_bike(void) {
     
 }
 
-void tipo_bike(void) {
-    char cod;
-    system("clear||cls");
-    printf("\n");
-    printf("-------------------------------------------------\n");
-    printf("*******************RENT A BIKE*******************\n");
-    printf("-------------------------------------------------\n");
-    printf("-------------------MENU BIKES--------------------\n");
-    printf("-------------------------------------------------\n");
-    printf("Informe o código da bike:\n");
-    scanf("%c",&cod);
-    getchar();
-    printf("\n");
-    printf("\n");
-    printf("Programa em desenvolvimento!\n");
-    printf("\n");
-    printf("\n");
-    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-    getchar();
-}
 
-
-void aro_bike(void) {
-    char cod;
-    system("clear||cls");
-    printf("\n");
-    printf("-------------------------------------------------\n");
-    printf("*******************RENT A BIKE*******************\n");
-    printf("-------------------------------------------------\n");
-    printf("-------------------MENU BIKES--------------------\n");
-    printf("-------------------------------------------------\n");
-    printf("Informe o código da bike:\n");
-    scanf("%c",&cod);
-    getchar();
-    printf("\n");
-    printf("\n");
-    printf("Programa em desenvolvimento!\n");
-    printf("\n");
-    printf("\n");
-    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-    getchar();
-}
-
-void quadro_bike(void) {
-    char cod;
-    system("clear||cls");
-    printf("\n");
-    printf("-------------------------------------------------\n");
-    printf("*******************RENT A BIKE*******************\n");
-    printf("-------------------------------------------------\n");
-    printf("-------------------MENU BIKES--------------------\n");
-    printf("-------------------------------------------------\n");
-    printf("Informe o código da bike:\n");
-    scanf("%c",&cod);
-    getchar();
-    printf("\n");
-    printf("\n");
-    printf("Programa em desenvolvimento!\n");
-    printf("\n");
-    printf("\n");
-    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-    getchar();
-}
-
-
-void marca_bike(void) {
-    char cod;
-    system("clear||cls");
-    printf("\n");
-    printf("-------------------------------------------------\n");
-    printf("*******************RENT A BIKE*******************\n");
-    printf("-------------------------------------------------\n");
-    printf("-------------------MENU BIKES--------------------\n");
-    printf("-------------------------------------------------\n");
-    printf("Informe o código da bike:\n");
-    scanf("%c",&cod);
-    getchar();
-    printf("\n");
-    printf("\n");
-    printf("Programa em desenvolvimento!\n");
-    printf("\n");
-    printf("\n");
-    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-    getchar();
-}
-
-
-void codigo_bike(void) {
-    char cod;
-    system("clear||cls");
-    printf("\n");
-    printf("-------------------------------------------------\n");
-    printf("*******************RENT A BIKE*******************\n");
-    printf("-------------------------------------------------\n");
-    printf("-------------------MENU BIKES--------------------\n");
-    printf("-------------------------------------------------\n");
-    printf("Informe o código da bike:\n");
-    scanf("%c",&cod);
-    getchar();
-    printf("\n");
-    printf("\n");
-    printf("Programa em desenvolvimento!\n");
-    printf("\n");
-    printf("\n");
-    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-    getchar();
-}
 
 
 
@@ -275,7 +150,7 @@ void buscar_bike(void) {
     printf("-------------------------------------------------\n");
     printf("-------------------MENU BIKES--------------------\n");
     printf("-------------------------------------------------\n");
-    printf("Informe o código da bike:\n");
+    printf("Informe o cï¿½digo da bike:\n");
     scanf("%c",&cod);
     getchar();
     printf("\n");
@@ -296,7 +171,7 @@ void excluir_bike(void) {
     printf("-------------------------------------------------\n");
     printf("-------------------MENU BIKES--------------------\n");
     printf("-------------------------------------------------\n");
-    printf("Informe o código da bike:");
+    printf("Informe o cï¿½digo da bike:");
     scanf("%c", &cod);
     getchar();
     printf("\n");
