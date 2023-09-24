@@ -8,7 +8,6 @@
 
 
 
-
 void modulo_bike (void) {
    char opcao;
     do {
@@ -16,7 +15,7 @@ void modulo_bike (void) {
         switch(opcao) {
             case '1': 	cadastrar_bike();
                         break;
-            case '2': 	editar_bike();
+            case '2': 	edit_bike();
                         break;
             case '3': 	buscar_bike();
                         break;
@@ -102,8 +101,27 @@ void cadastrar_bike(void) {
 
 
 
+void edit_bike (void) {
+   char opcao;
+    do {
+        opcao = editar_bikes();
+        switch(opcao) {
+            case '1': 	tipo_bike();
+                        break;
+            case '2': 	aro_bike();
+                        break;
+            case '3': 	quadro_bike();
+                        break;
+            case '4': 	marca_bike();
+                        break;
+            case '5':   codigo_bike();
+                        break;
+        } 		
+    } while (opcao != '0');
+}
 
-void editar_bike(void) {
+
+char editar_bike(void) {
     char esc;
     system("clear||cls");
     printf("\n");
@@ -133,6 +151,7 @@ void editar_bike(void) {
     printf("\n");
     printf("Tecle <ENTER> para continuar...\n");
     getchar();
+    return esc;
     
     
 }

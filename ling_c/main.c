@@ -61,6 +61,7 @@ char menu_principal(void) {
     getchar();
     printf("\n");
     printf("\t\t\t>>>Aguarde\n");
+    sleep(1);
     return esc;
 }
 
