@@ -109,10 +109,10 @@ void cadastrar_bike(void) {
 
 void opcao_editar (void) {
     char opcao;
-    opcao = editar_bike();
 
     do {
-        
+        opcao = editar_bike();
+
         switch (opcao) {
             case '1': 	tipo_bike();
                         break;
