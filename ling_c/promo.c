@@ -18,7 +18,7 @@ void modulo_promo (void) {
                         break;
             case '2': 	cadastrar_promo();
                         break;
-            case '3': 	editar_promo();
+            case '3': 	edit_promo();
                         break;
             case '4': 	excluir_promo();
                         break;
@@ -114,7 +114,25 @@ void cadastrar_promo(void) {
 
 ////OPÇÃO CASE 3 (ALTERA DADOS/INFORMAÇÕES SOBRE PROMOÇÕES CADASTRADAS)
 
-void editar_promo(void) {
+
+
+void edit_promo (void) {
+    char opcao;
+
+    do {
+        opcao = editar_promo();
+
+        switch (opcao) {
+            case '1': 	edit_anuncio();
+                        break;
+            case '2': 	edit_validade();
+                        break;
+        } 		
+    } while (opcao != '0');
+   
+}
+
+char editar_promo(void) {
     char esc;
     system("clear||cls");
     printf("\n");
@@ -134,11 +152,58 @@ void editar_promo(void) {
     scanf("%c", &esc);
     getchar();
     printf("\n");
-    printf("programa em desenvolvimento...");
+    printf("\n");
+    printf("\t\t\t>>> Aguarde...\n");
+    sleep(1);
+    return esc;
+}
+
+
+
+void edit_anuncio(void) {
+    char cod;
+    system("clear||cls");
+    printf("\n");
+    printf("-------------------------------------------------\n");
+    printf("*******************RENT A BIKE*******************\n");
+    printf("-------------------------------------------------\n");
+    printf("-------------------MENU BIKES--------------------\n");
+    printf("-------------------------------------------------\n");
+    printf("Informe o código da promoção:\n");
+    scanf("%c",&cod);
+    getchar();
+    printf("\n");
+    printf("\n");
+    printf("Programa em desenvolvimento!\n");
+    printf("\n");
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
 }
+
+
+void edit_validade(void) {
+    char cod;
+    system("clear||cls");
+    printf("\n");
+    printf("-------------------------------------------------\n");
+    printf("*******************RENT A BIKE*******************\n");
+    printf("-------------------------------------------------\n");
+    printf("-------------------MENU BIKES--------------------\n");
+    printf("-------------------------------------------------\n");
+    printf("Informe o código da promoção:\n");
+    scanf("%c",&cod);
+    getchar();
+    printf("\n");
+    printf("\n");
+    printf("Programa em desenvolvimento!\n");
+    printf("\n");
+    printf("\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    getchar();
+}
+
+
 
 
 ////OPÇÃO CASE 4 (EXCLUI PROMOÇÃO CADASTRADA NO SISTEMA)
