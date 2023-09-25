@@ -16,7 +16,7 @@ void modulo_cliente (void) {
                         break;
             case '2': 	buscar_cliente();
                         break;
-            case '3': 	editar_cliente();
+            case '3': 	opcao_editar();
                         break;
             case '4': 	excluir_cliente();
                         break;
@@ -130,7 +130,33 @@ void buscar_cliente(void) {
 
 ////OPÇÃO CASE 3 (EDITA DADOS/INFORMAÇÕES DE CLIENTES CADASTRADOS NO SISTEMA)
 
-void editar_cliente(void) {
+
+
+
+void opcao_editar (void) {
+    char opcao;
+
+    do {
+        opcao = editar_cliente();
+
+        switch (opcao) {
+            case '1': 	edit_nome();
+                        break;
+            case '2': 	edit_cpf();
+                        break;
+            case '3': 	edit_tel();
+                        break;
+            case '4': 	edit_end();
+                        break;
+            case '5':   edit_mail();
+                        break;
+        } 		
+    } while (opcao != '0');
+   
+}
+
+
+char editar_cliente(void) {
     char esc;
     system("clear||cls");
     printf("\n");
@@ -153,12 +179,123 @@ void editar_cliente(void) {
     scanf("%c", &esc);
     getchar();
     printf("\n");
+    printf("\t\t\t>>> Aguarde...\n");
+    sleep(1);
+    return esc;
+
+}
+
+
+
+void edit_nome(void) {
+    char cpf;
+    system("clear||cls");
     printf("\n");
-    printf("Programa em desenvolvimento\n");
+    printf("-------------------------------------------------\n");
+    printf("*******************RENT A BIKE*******************\n");
+    printf("-------------------------------------------------\n");
+    printf("-------------------MENU BIKES--------------------\n");
+    printf("-------------------------------------------------\n");
+    printf("Informe o cpf do cliente:\n");
+    scanf("%c",&cpf);
+    getchar();
+    printf("\n");
+    printf("\n");
+    printf("Programa em desenvolvimento!\n");
+    printf("\n");
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
 }
+
+
+void edit_cpf(void) {
+    char cpf;
+    system("clear||cls");
+    printf("\n");
+    printf("-------------------------------------------------\n");
+    printf("*******************RENT A BIKE*******************\n");
+    printf("-------------------------------------------------\n");
+    printf("-------------------MENU BIKES--------------------\n");
+    printf("-------------------------------------------------\n");
+    printf("Informe o cpf do cliente:\n");
+    scanf("%c",&cpf);
+    getchar();
+    printf("\n");
+    printf("\n");
+    printf("Programa em desenvolvimento!\n");
+    printf("\n");
+    printf("\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    getchar();
+}
+
+void edit_tel(void) {
+    char cpf;
+    system("clear||cls");
+    printf("\n");
+    printf("-------------------------------------------------\n");
+    printf("*******************RENT A BIKE*******************\n");
+    printf("-------------------------------------------------\n");
+    printf("-------------------MENU BIKES--------------------\n");
+    printf("-------------------------------------------------\n");
+    printf("Informe o cpf do cliente:\n");
+    scanf("%c",&cpf);
+    getchar();
+    printf("\n");
+    printf("\n");
+    printf("Programa em desenvolvimento!\n");
+    printf("\n");
+    printf("\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    getchar();
+}
+
+
+void edit_end(void) {
+    char cpf;
+    system("clear||cls");
+    printf("\n");
+    printf("-------------------------------------------------\n");
+    printf("*******************RENT A BIKE*******************\n");
+    printf("-------------------------------------------------\n");
+    printf("-------------------MENU BIKES--------------------\n");
+    printf("-------------------------------------------------\n");
+    printf("Informe o cpf do cliente:\n");
+    scanf("%c",&cpf);
+    getchar();
+    printf("\n");
+    printf("\n");
+    printf("Programa em desenvolvimento!\n");
+    printf("\n");
+    printf("\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    getchar();
+}
+
+
+void edit_mail(void) {
+    char cpf;
+    system("clear||cls");
+    printf("\n");
+    printf("-------------------------------------------------\n");
+    printf("*******************RENT A BIKE*******************\n");
+    printf("-------------------------------------------------\n");
+    printf("-------------------MENU BIKES--------------------\n");
+    printf("-------------------------------------------------\n");
+    printf("Informe o cpf do cliente:\n");
+    scanf("%c",&cpf);
+    getchar();
+    printf("\n");
+    printf("\n");
+    printf("Programa em desenvolvimento!\n");
+    printf("\n");
+    printf("\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    getchar();
+}
+
+
 
 
 ///OPÇÃO CASE 4 (EXCLUI CLIENTE CADASTRADO NO SISTEMA)
