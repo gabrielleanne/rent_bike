@@ -15,7 +15,7 @@ void modulo_bike (void) {
         switch(opcao) {
             case '1': 	cadastrar_bike();
                         break;
-            case '2': 	editar_bike();
+            case '2': 	edit();
                         break;
             case '3': 	buscar_bike();
                         break;
@@ -158,7 +158,7 @@ char editar_bike(void) {
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
-    
+    return esc;
 }
 
 
