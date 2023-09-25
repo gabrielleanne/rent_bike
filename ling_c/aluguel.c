@@ -6,6 +6,9 @@
 #include"aluguel.h"
 
 
+////OPÇÕES PARA MENU ALUGUEL
+
+
 void modulo_aluguel (void) {
    char opcao;
     do {
@@ -24,6 +27,9 @@ void modulo_aluguel (void) {
         } 		
     } while (opcao != '0');
 }
+
+
+////MENU ALUGUEL DE BIKES
 
 char aluguel(void) {
     setlocale(LC_ALL,"Portuguese_Brazil");
@@ -48,6 +54,7 @@ char aluguel(void) {
     return esc;
 }
 
+//////ESCOLHA DA OPÇÃO CASE 1 (VISUALIZA BIKES DISPONÍVEIS PARA ALUGAR)
 
 void bike_disponivel(void) {
     system("clear||cls");
@@ -66,6 +73,9 @@ void bike_disponivel(void) {
     getchar();
 }
 
+
+/////ESCOLHA DA OPÇÃO CASE 2 (REALIZAR ALUGUEL DE BIKE)
+
 void alugar_bike(void) {
     system("clear||cls");
     printf("\n");
@@ -82,6 +92,9 @@ void alugar_bike(void) {
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();  
 }
+
+
+///ESCOLHA DA OPÇÃO CASE 3 (BUSCAR ALUGUEL DE BIKE)
 
 void buscar_aluguel(void) {
     system("clear||cls");
@@ -101,6 +114,9 @@ void buscar_aluguel(void) {
   
 }
 
+
+////ESCOLHA DA OPÇÃO CASE 4 (EXCLUIR ALUGUEL DE BIKE)
+
 void excluir_aluguel(void) {
     system("clear||cls");
     printf("\n");
@@ -118,6 +134,8 @@ void excluir_aluguel(void) {
     getchar();
   
 }
+
+//// OPÇÃO CASE 5 (RELATÓRIO DE TODOS OS ALUGUÉIS VIGENTES)
 
 void listar_aluguel(void) {
     system("clear||cls");

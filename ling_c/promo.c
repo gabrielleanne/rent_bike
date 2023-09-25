@@ -7,6 +7,7 @@
 #include"promo.h"
 
 
+////OPÇÕES PARA MENU PROMO
 
 void modulo_promo (void) {
    char opcao;
@@ -24,6 +25,9 @@ void modulo_promo (void) {
         } 		
     } while (opcao != '0');
 }
+
+
+///MENU PROMOÇÕES
 
 
 char promo(void) {
@@ -49,6 +53,8 @@ char promo(void) {
     return esc;
 }
 
+///OPÇÃO CASE 1 (LISTA TODAS AS PROMOÇÕES VÃLIDAS NO SISTEMA)
+
 void listar_promo(void) {
     system("clear||cls");
     printf("\n");
@@ -64,6 +70,9 @@ void listar_promo(void) {
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
 }
+
+
+///OPÇÃO CASE 2 (CADASTRA NOVA PROMOÇÃO NO SISTEMA)
 
 void cadastrar_promo(void) {
 
@@ -102,6 +111,9 @@ void cadastrar_promo(void) {
 
 }
 
+
+////OPÇÃO CASE 3 (ALTERA DADOS/INFORMAÇÕES SOBRE PROMOÇÕES CADASTRADAS)
+
 void editar_promo(void) {
     char esc;
     system("clear||cls");
@@ -127,6 +139,10 @@ void editar_promo(void) {
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
 }
+
+
+////OPÇÃO CASE 4 (EXCLUI PROMOÇÃO CADASTRADA NO SISTEMA)
+
 
 void excluir_promo(void) {
     char cod [10];

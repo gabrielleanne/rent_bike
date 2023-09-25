@@ -11,11 +11,12 @@
 
 
 
-//MENU PRINCIPAL
+//ASSINATURA MENU PRINCIPAL
+
 char menu_principal(void);
 
 
-
+////FUNÇÃO PRINCIPAL
 
 int main(void) {
     setlocale(LC_ALL,"Portuguese_Brazil");
@@ -41,6 +42,9 @@ int main(void) {
 
 ///////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////
+
+
+///JANELA MENU PRINCIPAL
 
 char menu_principal(void) {
     char esc;

@@ -6,7 +6,7 @@
 #include"bike.h"
 
 
-
+////OPÇÕES PARA MENU BIKES)
 
 void modulo_bike (void) {
    char opcao;
@@ -27,7 +27,7 @@ void modulo_bike (void) {
     } while (opcao != '0');
 }
 
-
+////MENU BIKES
 
 char bikes(void) {
     setlocale(LC_ALL,"Portuguese_Brazil");
@@ -54,6 +54,9 @@ char bikes(void) {
     sleep(1);
     return esc;
 }
+
+
+////OPÇÃO CASE 1 (CADASTRA NOVA BIKE NO SISTEMA)
 
 void cadastrar_bike(void) {
 
@@ -100,7 +103,7 @@ void cadastrar_bike(void) {
 }
 
 
-
+////OPÇÃO CASE 2 (ALTERA DADOS/INFORMAÇÕES DE BIKES JÁ CADASTRADAS)
 
 void editar_bike(void) {
     char esc;
@@ -139,7 +142,7 @@ void editar_bike(void) {
 
 
 
-
+/////OPÇÃO CASE 3 (BUSCA BIKE NO SISTEMA ATRAVÉS DO CÓDIGO DA BIKE)
 
 void buscar_bike(void) {
     char cod [10];
@@ -164,6 +167,11 @@ void buscar_bike(void) {
     getchar();
 }
 
+
+
+/// OPÇÃO CASE 4 (EXCLUI BIKE CADASTRADA DO SISTEMA)
+
+  
 void excluir_bike(void) {
     char cod [10];
     system("clear||cls");
@@ -186,6 +194,8 @@ void excluir_bike(void) {
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
 }
+
+////OPÇÃO CASE 5 (LISTA TODAS AS BIKES CADASTRADAS NO SISTEMA)
 
 void listar_bikes(void) {
     system("clear||cls");

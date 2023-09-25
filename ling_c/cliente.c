@@ -5,7 +5,7 @@
 #include<locale.h>
 #include"cliente.h"
 
-
+/// OPÇÕES PARA MENU CLIENTES 
 
 void modulo_cliente (void) {
    char opcao;
@@ -26,6 +26,8 @@ void modulo_cliente (void) {
     } while (opcao != '0');
 }
 
+
+//MENU CLIENTES
 
 char clientes(void) {
     setlocale(LC_ALL,"Portuguese_Brazil");
@@ -50,6 +52,8 @@ char clientes(void) {
     sleep(1);
     return esc;
 }
+
+///OPCÃO CASE 1 (CADASTRA NOVO CLIENTE NO SISTEMA)
 
 void cadastrar_cliente(void) {
 
@@ -99,6 +103,8 @@ void cadastrar_cliente(void) {
 
 }
 
+////OPÇÃO CASE 2 (BUSCA CLIENTE CADASTRADO PELO CPF)
+
 void buscar_cliente(void) {
     char cpf;
     system("clear||cls");
@@ -121,6 +127,8 @@ void buscar_cliente(void) {
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
 }
+
+////OPÇÃO CASE 3 (EDITA DADOS/INFORMAÇÕES DE CLIENTES CADASTRADOS NO SISTEMA)
 
 void editar_cliente(void) {
     char esc;
@@ -152,6 +160,9 @@ void editar_cliente(void) {
     getchar();
 }
 
+
+///OPÇÃO CASE 4 (EXCLUI CLIENTE CADASTRADO NO SISTEMA)
+
 void excluir_cliente(void) {
     char cpf;
     system("clear||cls");
@@ -171,6 +182,9 @@ void excluir_cliente(void) {
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
 }
+
+
+////OPÇÃO CASE 5 (LISTA TODOS OS CLIENTES CADASTRADOS NO SISTEMA)
 
 void listar_clientes(void) {
     system("clear||cls");
