@@ -15,7 +15,7 @@ void modulo_bike (void) {
         switch(opcao) {
             case '1': 	cadastrar_bike();
                         break;
-            case '2': 	edit();
+            case '2': 	opcao_editar();
                         break;
             case '3': 	buscar_bike();
                         break;
@@ -107,7 +107,7 @@ void cadastrar_bike(void) {
 
 
 
-void edit (void) {
+void opcao_editar (void) {
     char opcao;
     opcao = editar_bike();
 
