@@ -126,7 +126,7 @@ void opcao_editar (void) {
                         break;
         } 		
     } while (opcao != '0');
-    return 0;
+   
 }
 
 char editar_bike(void) {
@@ -153,11 +153,9 @@ char editar_bike(void) {
     scanf("%c", &esc);
     getchar();
     printf("\n");
-    printf("Programa em desenvolvimento!\n");
     printf("\n");
-    printf("\n");
-    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-    getchar();
+    printf("\t\t\t>>> Aguarde...\n");
+    sleep(1);
     return esc;
 }
 
