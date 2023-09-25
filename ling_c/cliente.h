@@ -12,4 +12,4 @@ void edit_end (void);
 void edit_mail (void);
 void edit_tel (void);
 void edit_cpf (void);
-void opcao_editar (void);
+void edit_cliente (void);

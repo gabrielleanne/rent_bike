@@ -16,7 +16,7 @@ void modulo_cliente (void) {
                         break;
             case '2': 	buscar_cliente();
                         break;
-            case '3': 	opcao_editar();
+            case '3': 	edit_cliente();
                         break;
             case '4': 	excluir_cliente();
                         break;
@@ -133,7 +133,7 @@ void buscar_cliente(void) {
 
 
 
-void opcao_editar (void) {
+void edit_cliente (void) {
     char opcao;
 
     do {
