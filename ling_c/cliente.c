@@ -1,7 +1,7 @@
 
 #include<stdio.h>
 #include<stdlib.h>
-#include <unistd.h>
+#include<unistd.h>
 #include<locale.h>
 #include"cliente.h"
 #include"util.h"
@@ -106,21 +106,21 @@ void verifica_nome (char* nome){
 }
 
 void verifica_cpf (char* cpf) {
-    printf("CPF:");
+    printf("Informe o CPF (apenas números):");
     fgets(cpf, 12, stdin);
     while (!valida_cpf (cpf)) {
         printf("CPF inválido!\n");
-        printf("Informe o CPF novamente: ");
+        printf("Informe o CPF novamente (apenas números): ");
         fgets(cpf, 12, stdin);
     }
 }
 
 void verifica_telefone (char* tel){
-    printf("Telefone:");
+    printf("Informe o telefone com DDD:");
     fgets(tel, 12, stdin);
     while (!valida_telefone (tel)){
         printf("Telefone inválido!\n");
-        printf("Informe o telefone noavamente: ");
+        printf("Informe o telefone com DDD novamente: ");
         fgets(tel, 12, stdin);
     }
 }
@@ -138,7 +138,7 @@ void verifica_email (char* email){
 ////OPÇÃO CASE 2 (BUSCA CLIENTE CADASTRADO PELO CPF)
 
 void buscar_cliente(void) {
-    char cpf;
+    char cpf [12];
     system("clear||cls");
     printf("\n");
     printf("-------------------------------------------------\n");
@@ -148,11 +148,8 @@ void buscar_cliente(void) {
     printf("-------------------------------------------------\n");
     printf("\n");
     printf("\n");
-    printf("Informe o cpf do cliente:\n");
+    verifica_cpf (cpf);
     printf("\n");
-    printf("\n");
-    scanf("%c", &cpf);
-    getchar();
     printf("Programa em desenvolvimento\n");
     printf("\n");
     printf("\n");
@@ -220,7 +217,7 @@ char editar_cliente(void) {
 
 
 void edit_nome(void) {
-    char cpf;
+    char cpf[12];
     system("clear||cls");
     printf("\n");
     printf("-------------------------------------------------\n");
@@ -228,10 +225,7 @@ void edit_nome(void) {
     printf("-------------------------------------------------\n");
     printf("-------------------MENU BIKES--------------------\n");
     printf("-------------------------------------------------\n");
-    printf("Informe o cpf do cliente:\n");
-    scanf("%c",&cpf);
-    getchar();
-    printf("\n");
+    verifica_cpf (cpf);
     printf("\n");
     printf("Programa em desenvolvimento!\n");
     printf("\n");
@@ -242,7 +236,7 @@ void edit_nome(void) {
 
 
 void edit_cpf(void) {
-    char cpf;
+    char cpf[12];
     system("clear||cls");
     printf("\n");
     printf("-------------------------------------------------\n");
@@ -250,10 +244,7 @@ void edit_cpf(void) {
     printf("-------------------------------------------------\n");
     printf("-------------------MENU BIKES--------------------\n");
     printf("-------------------------------------------------\n");
-    printf("Informe o cpf do cliente:\n");
-    scanf("%c",&cpf);
-    getchar();
-    printf("\n");
+    verifica_cpf (cpf);
     printf("\n");
     printf("Programa em desenvolvimento!\n");
     printf("\n");
@@ -263,7 +254,7 @@ void edit_cpf(void) {
 }
 
 void edit_tel(void) {
-    char cpf;
+    char cpf[12];
     system("clear||cls");
     printf("\n");
     printf("-------------------------------------------------\n");
@@ -271,10 +262,7 @@ void edit_tel(void) {
     printf("-------------------------------------------------\n");
     printf("-------------------MENU BIKES--------------------\n");
     printf("-------------------------------------------------\n");
-    printf("Informe o cpf do cliente:\n");
-    scanf("%c",&cpf);
-    getchar();
-    printf("\n");
+    verifica_cpf (cpf);
     printf("\n");
     printf("Programa em desenvolvimento!\n");
     printf("\n");
@@ -285,7 +273,7 @@ void edit_tel(void) {
 
 
 void edit_end(void) {
-    char cpf;
+    char cpf[12];
     system("clear||cls");
     printf("\n");
     printf("-------------------------------------------------\n");
@@ -293,10 +281,7 @@ void edit_end(void) {
     printf("-------------------------------------------------\n");
     printf("-------------------MENU BIKES--------------------\n");
     printf("-------------------------------------------------\n");
-    printf("Informe o cpf do cliente:\n");
-    scanf("%c",&cpf);
-    getchar();
-    printf("\n");
+    verifica_cpf (cpf);
     printf("\n");
     printf("Programa em desenvolvimento!\n");
     printf("\n");
@@ -307,7 +292,7 @@ void edit_end(void) {
 
 
 void edit_mail(void) {
-    char cpf;
+    char cpf[12];
     system("clear||cls");
     printf("\n");
     printf("-------------------------------------------------\n");
@@ -315,10 +300,7 @@ void edit_mail(void) {
     printf("-------------------------------------------------\n");
     printf("-------------------MENU BIKES--------------------\n");
     printf("-------------------------------------------------\n");
-    printf("Informe o cpf do cliente:\n");
-    scanf("%c",&cpf);
-    getchar();
-    printf("\n");
+    verifica_cpf (cpf);
     printf("\n");
     printf("Programa em desenvolvimento!\n");
     printf("\n");
@@ -333,7 +315,7 @@ void edit_mail(void) {
 ///OPÇÃO CASE 4 (EXCLUI CLIENTE CADASTRADO NO SISTEMA)
 
 void excluir_cliente(void) {
-    char cpf;
+    char cpf[12];
     system("clear||cls");
     printf("\n");
     printf("-------------------------------------------------\n");
@@ -343,8 +325,7 @@ void excluir_cliente(void) {
     printf("-------------------------------------------------\n");
     printf("\n");
     printf("\n");
-    printf("Informe o cpf do cliente: \n");
-    scanf("%c",&cpf);
+    verifica_cpf (cpf);
     printf("\n");
     printf("Programa em desenvolvimento\n");
     printf("\n");

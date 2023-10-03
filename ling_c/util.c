@@ -104,7 +104,7 @@ int valida_cpf (char* cpf){
 }  
 
 int valida_email (char* email){
-     int tam; 
+  int tam; 
   tam = strlen(email);
   int arroba = 0, ponto = 0, antesPonto = 0, depoisPonto = 0, i;
 

@@ -159,7 +159,7 @@ char editar_bike(void) {
     return esc;
 }
 
-
+//FUNÇÃO PARA ALTERAR TIPO DE BIKE CADASTRADA
 
 void tipo_bike(void) {
     char cod;
@@ -182,6 +182,7 @@ void tipo_bike(void) {
     getchar();
 }
 
+//FUNÇÃO PARA ALTERAR ARO DE BIKE CADASTRADA
 
 void aro_bike(void) {
     char cod;
@@ -203,6 +204,10 @@ void aro_bike(void) {
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
 }
+
+
+//FUNÇÃO PARA ALTERAR VALOR DO ALUGUEL DE BIKE CADASTRADA
+
 
 void valor_aluguel(void) {
     char cod;
@@ -226,6 +231,9 @@ void valor_aluguel(void) {
 }
 
 
+//FUNÇÃO PARA ALTERAR MARCA DE BIKE CADASTRADA
+
+
 void marca_bike(void) {
     char cod;
     system("clear||cls");
@@ -247,6 +255,8 @@ void marca_bike(void) {
     getchar();
 }
 
+
+//FUNÇÃO PARA ALTERAR CÓDIGO DE BIKE CADASTRADA
 
 void codigo_bike(void) {
     char cod;
@@ -299,7 +309,7 @@ void buscar_bike(void) {
 
 
 
-/// OPÇÃO CASE 4 (EXCLUI BIKE CADASTRADA DO SISTEMA)
+/// OPÇÃO CASE 4 (EXCLUI BIKE CADASTRADA DO SISTEMA ATRAVÉS DO CÓDIGO DA BIKE)
 
   
 void excluir_bike(void) {
