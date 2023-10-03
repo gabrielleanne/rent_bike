@@ -13,3 +13,7 @@ void edit_mail (void);
 void edit_tel (void);
 void edit_cpf (void);
 void edit_cliente (void);
+void verifica_nome (char*);
+void verifica_cpf (char*);
+void verifica_telefone(char*);
+void verifica_email (char*);

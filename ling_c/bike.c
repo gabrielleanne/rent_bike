@@ -62,7 +62,7 @@ void cadastrar_bike(void) {
 
     char tipo [30];
     char aro[5];
-    char quadro[10];
+    char valor_aluguel[5];
     char marca[20];
     char cod[10];
 
@@ -83,8 +83,8 @@ void cadastrar_bike(void) {
     printf("Aro da bike:\n");
     scanf("%c[0-9]",aro);
     getchar();
-    printf("Tamanho de quadro:\n");
-    scanf("%c[0-9]", quadro);
+    printf("Valor do aluguel:\n");
+    scanf("%c[0-9]", valor_aluguel);
     getchar();
     printf("Marca da bike:\n");
     scanf("%c[A-Z������������ a-z������������]", marca);
@@ -118,7 +118,7 @@ void opcao_editar (void) {
                         break;
             case '2': 	aro_bike();
                         break;
-            case '3': 	quadro_bike();
+            case '3': 	valor_aluguel();
                         break;
             case '4': 	marca_bike();
                         break;
@@ -144,7 +144,7 @@ char editar_bike(void) {
     printf("\n");
     printf(" 1. EDITAR TIPO DE BIKE------------------DIGITE 1\n");
     printf(" 2. EDITAR ARO---------------------------DIGITE 2\n");
-    printf(" 3. EDITAR TAMANHO DE QUADRO-------------DIGITE 3\n");
+    printf(" 3. EDITAR VALOR DO ALUGUEL--------------DIGITE 3\n");
     printf(" 4. EDITAR MARCA-------------------------DIGITE 4\n");
     printf(" 5. EDITAR CÓDIGO------------------------DIGITE 5\n");
     printf(" 0. VOLTAR-------------------------------DIGITE 0\n");
@@ -204,7 +204,7 @@ void aro_bike(void) {
     getchar();
 }
 
-void quadro_bike(void) {
+void valor_aluguel(void) {
     char cod;
     system("clear||cls");
     printf("\n");

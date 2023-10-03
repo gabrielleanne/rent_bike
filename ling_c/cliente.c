@@ -4,6 +4,7 @@
 #include <unistd.h>
 #include<locale.h>
 #include"cliente.h"
+#include"util.h"
 
 /// OPÇÕES PARA MENU CLIENTES 
 
@@ -23,7 +24,7 @@ void modulo_cliente (void) {
             case '5':   listar_clientes();
                         break;
         } 		
-    } while (opcao != '0');
+    } while (opcao != '0'); 
 }
 
 
@@ -57,11 +58,11 @@ char clientes(void) {
 
 void cadastrar_cliente(void) {
 
-    char nome[40];
+    char nome[51];
     char cpf[12];
     char tel[12];
     char end[30];
-    char mail[40];
+    char email[40];
 
     system("clear||cls");
     printf("\n");
@@ -74,26 +75,17 @@ void cadastrar_cliente(void) {
     printf("Vamos cadastrar um cliente no sistema!");
     printf("\n");
     printf("\n");
-    printf("Nome:");
-    scanf("%c[A-Z������������ a-z������������]", nome);
-    getchar();
+    verifica_nome(nome);
     printf("\n");
-    printf("CPF:");
-    scanf("%c[0-9]",cpf);
-    getchar();
+    verifica_cpf (cpf);
     printf("\n");
-    printf("Telefone:");
-    scanf("%c[0-9]", tel);
-    getchar();
+    verifica_telefone (tel);
     printf("\n");
     printf("Endereço:");
     scanf("%c[A-Z������������ a-z������������]", end);
     getchar();
     printf("\n");
-    printf("E-mail:");
-    scanf("%c[A-Za-z0-9@._]", mail);
-    getchar();
-    printf("\n");
+    verifica_email (email);
     printf("\n");
     printf("Cadastro realizado com sucesso!\n");
     printf("\n");
@@ -103,6 +95,46 @@ void cadastrar_cliente(void) {
 
 }
 
+void verifica_nome (char* nome){
+    printf("Nome do cliente: ");
+    fgets(nome, 51, stdin);
+    while (!valida_nome (nome)) {
+        printf("Nome digitado não é válido!\n");
+        printf("Informe o nome novamente: ");
+        fgets(nome, 51, stdin);
+    }
+}
+
+void verifica_cpf (char* cpf) {
+    printf("CPF:");
+    fgets(cpf, 12, stdin);
+    while (!valida_cpf (cpf)) {
+        printf("CPF inválido!\n");
+        printf("Informe o CPF novamente: ");
+        fgets(cpf, 12, stdin);
+    }
+}
+
+void verifica_telefone (char* tel){
+    printf("Telefone:");
+    fgets(tel, 12, stdin);
+    while (!valida_telefone (tel)){
+        printf("Telefone inválido!\n");
+        printf("Informe o telefone noavamente: ");
+        fgets(tel, 12, stdin);
+    }
+}
+
+
+void verifica_email (char* email){
+    printf("Email:");
+    fgets(email, 40, stdin);
+    while (!valida_email (email)){
+        printf("Email inválido!");
+        printf("Informe novamente o email: ");
+        fgets(email, 40, stdin);
+    }
+}
 ////OPÇÃO CASE 2 (BUSCA CLIENTE CADASTRADO PELO CPF)
 
 void buscar_cliente(void) {

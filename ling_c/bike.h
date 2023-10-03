@@ -9,5 +9,5 @@ void opcao_editar (void);
 void tipo_bike (void);
 void aro_bike (void);
 void marca_bike (void);
-void quadro_bike (void);
+void valor_aluguel (void);
 void codigo_bike (void);
