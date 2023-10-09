@@ -6,8 +6,11 @@ void buscar_bike(void);
 void excluir_bike(void);
 void listar_bikes(void);
 void opcao_editar (void);
-void tipo_bike (void);
-void aro_bike (void);
-void marca_bike (void);
-void valor_aluguel (void);
-void codigo_bike (void);
+void altera_tipo (void);
+void altera_aro (void);
+void altera_marca (void);
+void altera_valor (void);
+void verifica_aro (char*);
+char tipo_bike (void);
+void qual_bike (void);
+

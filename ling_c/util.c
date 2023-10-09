@@ -4,6 +4,9 @@
 
 
 
+
+
+
 int valida_nome(char* nome) {
   int tam;
   
@@ -15,6 +18,76 @@ int valida_nome(char* nome) {
   }
   return 1;  
 }
+
+int valida_telefone(char* tel) {
+  int tam;
+  tam = strlen(tel);
+  if (tam != 11) {
+    return 0;
+  }
+  for (int i = 0; i < tam; i++) {
+    if (!so_digito(tel[i])) {
+      return 0;
+    }
+  }
+  return 1;
+}
+
+
+int valida_logradouro(char* log) {
+  int tam;
+  
+  tam = strlen(log);
+  for (int i = 0; i < tam-1; i++) {
+    if (!so_letra(log[i])) {
+      return 0;
+    }
+  }
+  return 1;  
+}
+
+int valida_numero(char* num) {
+  int tam;
+  tam = strlen(num);
+  if (tam <= 5) {
+    return 0;
+  }
+  for (int i = 0; i < tam; i++) {
+    if (!so_digito(num[i])) {
+        return 0;
+    }
+  }
+  return 1;
+}
+  
+ 
+int valida_bairro(char* bai) {
+  int tam;
+  
+  tam = strlen(bai);
+  for (int i = 0; i < tam-1; i++) {
+    if (!so_letra(bai[i])) {
+      return 0;
+    }
+  }
+  return 1;  
+}
+
+ 
+int valida_aro(char* aro) {
+  int tam;
+  tam = strlen(aro);
+  if (tam <= 5) {
+    return 0;
+  }
+  for (int i = 0; i < tam; i++) {
+    if (!so_digito(aro[i])) {
+        return 0;
+    }
+  }
+  return 1;
+}
+  
 
 int so_letra(char c) {
   if (c >= 'A' && c <= 'Z') {
@@ -36,19 +109,6 @@ int so_digito(char c) {
   }
 }
 
-int valida_telefone(char* tel) {
-  int tam;
-  tam = strlen(tel);
-  if (tam != 11) {
-    return 0;
-  }
-  for (int i = 0; i < tam; i++) {
-    if (!so_digito(tel[i])) {
-        return 0;
-    }
-  }
-  return 1;
-}
 
 
 int valida_cpf (char* cpf){

@@ -4,9 +4,10 @@
 #include <unistd.h>
 #include<locale.h>
 #include"bike.h"
+#include"util.h"
 
 
-////OPÇÕES PARA MENU BIKES)
+////OPÇÕES PARA MENU BIKES
 
 void modulo_bike (void) {
    char opcao;
@@ -59,8 +60,6 @@ char bikes(void) {
 ////OPÇÃO CASE 1 (CADASTRA NOVA BIKE NO SISTEMA)
 
 void cadastrar_bike(void) {
-
-    char tipo [30];
     char aro[5];
     char valor_aluguel[5];
     char marca[20];
@@ -77,12 +76,9 @@ void cadastrar_bike(void) {
     printf("Vamos cadastrar uma bike no sistema!\n");
     printf("\n");
     printf("\n");
-    printf("Tipo da bike (Mountain Bike, Elétrica, Estrada/speed ou Urbana):\n");
-    scanf("%c[A-Z������������ a-z������������]", tipo);
-    getchar();
-    printf("Aro da bike:\n");
-    scanf("%c[0-9]",aro);
-    getchar();
+    printf("Qual o tipo da bike?\n");
+    qual_bike();
+    verifica_aro (aro);
     printf("Valor do aluguel:\n");
     scanf("%c[0-9]", valor_aluguel);
     getchar();
@@ -103,6 +99,71 @@ void cadastrar_bike(void) {
 }
 
 
+char tipo_bike(void) {
+    
+    
+    char esc;
+    system("clear||cls");
+    printf("\n");
+    printf("-------------------------------------------------\n");
+    printf("*******************RENT A BIKE*******************\n");
+    printf("-------------------------------------------------\n");
+    printf("-------------------MENU BIKES--------------------\n");
+    printf("-------------------------------------------------\n");
+    printf(" 1. MOUNTAIN BIKE------------------------DIGITE 1\n");
+    printf(" 2. BIKE ELÉTRICA------------------------DIGITE 2\n");
+    printf(" 3. BIKE SPEED/ESTRADA-------------------DIGITE 3\n");
+    printf(" 4. BIKE URBANA--------------------------DIGITE 4\n");
+    printf(" 0. VOLTAR-------------------------------DIGITE 0\n");
+    printf("\n");
+    printf("Escolha sua opçãoo: ");
+    scanf("%c", &esc);
+    getchar();
+    printf("\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    getchar();
+    return esc;
+    
+  
+}
+
+void qual_bike (void) {
+   char opcao;
+    do {
+        opcao = tipo_bike();
+        switch(opcao) {
+            case '1': 	
+                printf("Mountain Bike");
+                        break;
+            case '2': 	
+                printf("Bike elétrica");
+                        break;
+            case '3': 	
+                printf("Speed/estrada");
+                        break;
+            case '4': 	
+                printf("Bike urbana");
+                        break;
+        } 		
+    } while (opcao != '0');
+}
+
+
+
+
+
+void verifica_aro (char* aro){
+    printf("Aro da bike: ");
+    fgets(aro, 5, stdin);
+    while (!valida_aro (aro)) {
+        printf("Aro informado não é válido!\n");
+        printf("Informe o aro novamente: ");
+        fgets(aro, 5, stdin);
+    }
+}
+
+
+
 ////OPÇÃO CASE 2 (ESCOLHA DE DADOS/INFORMAÇÕES PARA EDITAR)
 
 
@@ -114,15 +175,13 @@ void opcao_editar (void) {
         opcao = editar_bike();
 
         switch (opcao) {
-            case '1': 	tipo_bike();
+            case '1': 	altera_tipo();
                         break;
-            case '2': 	aro_bike();
+            case '2': 	altera_aro();
                         break;
-            case '3': 	valor_aluguel();
+            case '3': 	altera_valor();
                         break;
-            case '4': 	marca_bike();
-                        break;
-            case '5':   codigo_bike();
+            case '4': 	altera_marca();
                         break;
         } 		
     } while (opcao != '0');
@@ -146,7 +205,6 @@ char editar_bike(void) {
     printf(" 2. EDITAR ARO---------------------------DIGITE 2\n");
     printf(" 3. EDITAR VALOR DO ALUGUEL--------------DIGITE 3\n");
     printf(" 4. EDITAR MARCA-------------------------DIGITE 4\n");
-    printf(" 5. EDITAR CÓDIGO------------------------DIGITE 5\n");
     printf(" 0. VOLTAR-------------------------------DIGITE 0\n");
     printf("\n");
     printf("Escolha sua opção: \n");
@@ -161,7 +219,7 @@ char editar_bike(void) {
 
 //FUNÇÃO PARA ALTERAR TIPO DE BIKE CADASTRADA
 
-void tipo_bike(void) {
+void altera_tipo(void) {
     char cod;
     system("clear||cls");
     printf("\n");
@@ -184,7 +242,7 @@ void tipo_bike(void) {
 
 //FUNÇÃO PARA ALTERAR ARO DE BIKE CADASTRADA
 
-void aro_bike(void) {
+void altera_aro(void) {
     char cod;
     system("clear||cls");
     printf("\n");
@@ -209,7 +267,7 @@ void aro_bike(void) {
 //FUNÇÃO PARA ALTERAR VALOR DO ALUGUEL DE BIKE CADASTRADA
 
 
-void valor_aluguel(void) {
+void altera_valor(void) {
     char cod;
     system("clear||cls");
     printf("\n");
@@ -234,7 +292,7 @@ void valor_aluguel(void) {
 //FUNÇÃO PARA ALTERAR MARCA DE BIKE CADASTRADA
 
 
-void marca_bike(void) {
+void altera_marca(void) {
     char cod;
     system("clear||cls");
     printf("\n");
@@ -256,28 +314,6 @@ void marca_bike(void) {
 }
 
 
-//FUNÇÃO PARA ALTERAR CÓDIGO DE BIKE CADASTRADA
-
-void codigo_bike(void) {
-    char cod;
-    system("clear||cls");
-    printf("\n");
-    printf("-------------------------------------------------\n");
-    printf("*******************RENT A BIKE*******************\n");
-    printf("-------------------------------------------------\n");
-    printf("-------------------MENU BIKES--------------------\n");
-    printf("-------------------------------------------------\n");
-    printf("Informe o código da bike:\n");
-    scanf("%c",&cod);
-    getchar();
-    printf("\n");
-    printf("\n");
-    printf("Programa em desenvolvimento!\n");
-    printf("\n");
-    printf("\n");
-    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-    getchar();
-}
 
 
 
