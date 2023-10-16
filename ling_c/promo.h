@@ -1,4 +1,18 @@
 
+
+
+typedef struct promo Promo;
+
+struct promo {
+    char anuncio[40];
+    char val[12];
+    char cod[12];
+};
+
+
+
+
+
 void modulo_promo(void);
 char promo(void);
 void listar_promo(void);

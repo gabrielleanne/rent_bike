@@ -60,7 +60,8 @@ char bikes(void) {
 ////OPÇÃO CASE 1 (CADASTRA NOVA BIKE NO SISTEMA)
 
 void cadastrar_bike(void) {
-    char aro[5];
+    //char tipo [14];
+    char aro[3];
     char valor_aluguel[5];
     char marca[20];
     char cod[10];
@@ -77,7 +78,7 @@ void cadastrar_bike(void) {
     printf("\n");
     printf("\n");
     printf("Qual o tipo da bike?\n");
-    qual_bike();
+    //scanf ("%c", &tipo);
     verifica_aro (aro);
     printf("Valor do aluguel:\n");
     scanf("%c[0-9]", valor_aluguel);
@@ -97,6 +98,26 @@ void cadastrar_bike(void) {
     getchar();
 
 }
+
+void qual_bike (void) {
+   char opcao;
+    do {
+        opcao = tipo_bike();
+        switch(opcao) {
+            case '1':printf( "Mountain Bike");
+                        break;
+            case '2':printf ("Bike elétrica");
+                        break;
+            case '3':printf ("Speed/estrada");
+                        break;
+            case '4':printf( "Bike urbana");
+                        break;
+        } 		
+    } while (opcao != '0');
+}
+
+
+
 
 
 char tipo_bike(void) {
@@ -126,28 +147,6 @@ char tipo_bike(void) {
     
   
 }
-
-void qual_bike (void) {
-   char opcao;
-    do {
-        opcao = tipo_bike();
-        switch(opcao) {
-            case '1': 	
-                printf("Mountain Bike");
-                        break;
-            case '2': 	
-                printf("Bike elétrica");
-                        break;
-            case '3': 	
-                printf("Speed/estrada");
-                        break;
-            case '4': 	
-                printf("Bike urbana");
-                        break;
-        } 		
-    } while (opcao != '0');
-}
-
 
 
 

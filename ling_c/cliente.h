@@ -1,5 +1,20 @@
 
 
+
+typedef struct cliente Cliente;
+
+struct cliente {
+    char nome[51];
+    char cpf[12];
+    char tel[12];
+    char log[20];
+    char num[5];
+    char bai[15];
+    char email[40];
+};
+
+
+
 void modulo_cliente(void);
 char clientes(void);
 void cadastrar_cliente(void);

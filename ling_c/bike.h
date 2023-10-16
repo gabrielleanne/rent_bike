@@ -1,3 +1,20 @@
+
+
+typedef struct bike Bike;
+
+struct bike {
+    char tipo [14];
+    char aro[3];
+    char valor_aluguel[5];
+    char marca[20];
+    char cod[10];
+ 
+};
+
+
+
+
+
 void modulo_bike(void);
 char bikes(void);
 void cadastrar_bike(void);
