@@ -60,7 +60,7 @@ char bikes(void) {
 ////OPÇÃO CASE 1 (CADASTRA NOVA BIKE NO SISTEMA)
 
 void cadastrar_bike(void) {
-    //char tipo [14];
+    char tipo;
     char aro[3];
     char valor_aluguel[5];
     char marca[20];
@@ -77,8 +77,7 @@ void cadastrar_bike(void) {
     printf("Vamos cadastrar uma bike no sistema!\n");
     printf("\n");
     printf("\n");
-    printf("Qual o tipo da bike?\n");
-    //scanf ("%c", &tipo);
+    tipo = tipo_bike(); printf("|%c|\n",tipo);
     verifica_aro (aro);
     printf("Valor do aluguel:\n");
     scanf("%c[0-9]", valor_aluguel);
@@ -99,51 +98,48 @@ void cadastrar_bike(void) {
 
 }
 
-void qual_bike (void) {
-   char opcao;
-    do {
-        opcao = tipo_bike();
-        switch(opcao) {
-            case '1':printf( "Mountain Bike");
-                        break;
-            case '2':printf ("Bike elétrica");
-                        break;
-            case '3':printf ("Speed/estrada");
-                        break;
-            case '4':printf( "Bike urbana");
-                        break;
-        } 		
-    } while (opcao != '0');
-}
-
-
-
-
 
 char tipo_bike(void) {
     
-    
     char esc;
-    system("clear||cls");
-    printf("\n");
-    printf("-------------------------------------------------\n");
-    printf("*******************RENT A BIKE*******************\n");
-    printf("-------------------------------------------------\n");
-    printf("-------------------MENU BIKES--------------------\n");
-    printf("-------------------------------------------------\n");
+
     printf(" 1. MOUNTAIN BIKE------------------------DIGITE 1\n");
     printf(" 2. BIKE ELÉTRICA------------------------DIGITE 2\n");
     printf(" 3. BIKE SPEED/ESTRADA-------------------DIGITE 3\n");
     printf(" 4. BIKE URBANA--------------------------DIGITE 4\n");
-    printf(" 0. VOLTAR-------------------------------DIGITE 0\n");
     printf("\n");
     printf("Escolha sua opçãoo: ");
     scanf("%c", &esc);
     getchar();
     printf("\n");
-    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-    getchar();
     return esc;
+
+
+
+    // if (esc==1){
+    //     tipo=1;
+    //     scanf("%c", &tipo);
+    //     getchar();
+    //     //strcpy(tipo, "Mountain Bike");
+    // }
+    // else if (esc==2){
+    //     tipo =2;
+    //     scanf("%c", &tipo);
+    //     getchar();
+    // }
+    // else if (esc==3){
+    //     tipo= 3;
+    //     scanf("%c", &tipo);
+    //     getchar();
+    // }
+    // else if (esc==4){
+    //   tipo= 4;
+    //   scanf("%c", &tipo);
+    //   getchar();
+    // }
+    // printf("\t\t\t>>> Tecle <ENTER> para  continuar...\n");
+    // getchar();
+   
     
   
 }
@@ -151,13 +147,14 @@ char tipo_bike(void) {
 
 
 
+
 void verifica_aro (char* aro){
     printf("Aro da bike: ");
-    fgets(aro, 5, stdin);
+    fgets(aro, 3, stdin);
     while (!valida_aro (aro)) {
         printf("Aro informado não é válido!\n");
         printf("Informe o aro novamente: ");
-        fgets(aro, 5, stdin);
+        fgets(aro, 3, stdin);
     }
 }
 

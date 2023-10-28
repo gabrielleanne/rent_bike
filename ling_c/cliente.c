@@ -46,7 +46,7 @@ char clientes(void) {
     printf(" 0. VOLTAR-------------------------------DIGITE 0\n");
     printf("\n");
     printf("Escolha sua opção: ");
-    scanf("%c", &esc);
+    scanf("%c",&esc);
     getchar();
     printf("\n");
     printf("\t\t\t>>> Aguarde...\n");
@@ -109,6 +109,7 @@ void verifica_nome (char* nome){
         printf("Informe o nome novamente: ");
         fgets(nome, 51, stdin);
     }
+    getchar();
 }
 
 void verifica_cpf (char* cpf) {
@@ -119,6 +120,7 @@ void verifica_cpf (char* cpf) {
         printf("Informe o CPF novamente (apenas números): ");
         fgets(cpf, 12, stdin);
     }
+    getchar();
 }
 
 void verifica_telefone (char* tel){
@@ -129,6 +131,7 @@ void verifica_telefone (char* tel){
         printf("Informe o telefone com DDD novamente: ");
         fgets(tel, 12, stdin);
     }
+    getchar();
 }
 
 
@@ -140,6 +143,7 @@ void verifica_logradouro (char* log) {
         printf("Informe o logradouro novamente: ");
         fgets(log, 20, stdin);
     }
+    getchar();
 }
 
 
@@ -151,6 +155,7 @@ void verifica_numero (char* num){
         printf("Informe o número novamente: ");
         fgets(num, 5, stdin);
     }
+    getchar();
 }
 
 void verifica_bairro (char* bai){
@@ -171,6 +176,7 @@ void verifica_email (char* email){
         printf("Informe novamente o email: ");
         fgets(email, 40, stdin);
     }
+    getchar();
 }
 ////OPÇÃO CASE 2 (BUSCA CLIENTE CADASTRADO PELO CPF)
 
