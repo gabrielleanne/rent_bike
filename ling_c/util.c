@@ -49,7 +49,7 @@ int valida_logradouro(char* log) {
 int valida_numero(char* num) {
   int tam;
   tam = strlen(num);
-  if (tam >5) {
+  if (tam >=5) {
     return 0;
   }
   for (int i = 0; i < tam; i++) {
@@ -73,21 +73,6 @@ int valida_bairro(char* bai) {
   return 1;  
 }
 
- 
-int valida_aro(char* aro) {
-  int tam;
-  tam = strlen(aro);
-  if (tam >3) {
-    return 0;
-  }
-  for (int i = 0; i < tam; i++) {
-    if (!so_digito(aro[i])) {
-        return 0;
-    }
-  }
-  return 1;
-}
-  
 
 int so_letra(char c) {
   if (c >= 'A' && c <= 'Z') {

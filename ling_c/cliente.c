@@ -1,12 +1,14 @@
 
 #include<stdio.h>
 #include<stdlib.h>
+#include<string.h>
 #include<unistd.h>
 #include<locale.h>
 #include"cliente.h"
 #include"util.h"
 
-/// OPÃ‡Ã•ES PARA MENU CLIENTES 
+
+/// OPÇÕES PARA MENU CLIENTES 
 
 void modulo_cliente (void) {
    Cliente* cli;
@@ -16,15 +18,17 @@ void modulo_cliente (void) {
         switch(opcao) {
             case '1': 	cli=cadastrar_cliente();
                         gravar_cliente(cli);
-                        free(cli);
+                        free(cli);                   
                         break;
             case '2': 	cli= buscar_cliente();
                         print_cliente(cli);
+                        printf("\n\nTecle ENTER para continuar!\n\n");
+	                      getchar();
                         free(cli);
                         break;                
-             //case '3': edit_cliente();
-               //        break;
-             case '4': 	excluir_cliente();
+            case '3':   edit_cliente();
+                        break;
+            case '4': 	excluir_cliente();
                         break;
             case '5':   listar_clientes();
                         break;
@@ -50,7 +54,7 @@ char clientes(void) {
     printf(" 5. LISTAR TODOS-------------------------DIGITE 5\n");
     printf(" 0. VOLTAR-------------------------------DIGITE 0\n");
     printf("\n");
-    printf("Escolha sua opÃ§Ã£o: ");
+    printf("Escolha sua opção: ");
     scanf("%c",&esc);
     getchar();
     printf("\n");
@@ -59,7 +63,7 @@ char clientes(void) {
     return esc;
 }
 
-///OPCÃƒO CASE 1 (CADASTRA NOVO CLIENTE NO SISTEMA)
+/// CASE 1 (FUNÇÃO CADASTRA NOVO CLIENTE NO SISTEMA)
 
 Cliente* cadastrar_cliente(void) {
 
@@ -79,59 +83,60 @@ Cliente* cadastrar_cliente(void) {
 	  printf("Nome: ");
 	  fgets(cli->nome, 51, stdin);
     while (!valida_nome (cli->nome)) {
-        printf("Nome digitado nÃ£o Ã© vÃ¡lido!\n");
+        printf("Nome digitado não é válido!\n");
         printf("Informe o nome novamente: ");
         fgets(cli->nome, 51, stdin);
+        getchar();
     }
     printf("\n");
-    printf("CPF: ");
+    printf("CPF (somente números): ");
     fgets(cli->cpf, 12, stdin);
     while (!valida_cpf (cli->cpf)) {
-        printf("Cpf digitado nÃ£o Ã© vÃ¡lido!\n");
-        printf("Informe o cpf novamente: ");
+        printf("Cpf digitado não é válido!\n");
+        printf("Informe o cpf novamente (somente números): ");
         fgets(cli->cpf, 12, stdin);
+        getchar();
     }
     printf("\n");
-    printf("Telefone: ");
+    printf("Telefone com DDD (somente números): ");
     fgets(cli->tel, 12, stdin);
     while (!valida_telefone (cli->tel)) {
-        printf("Telefone invÃ¡lido!\n");
-        printf("Informe o telefone com DDD novamente: ");
+        printf("Telefone inválido!\nInforme o telefone com DDD novamente: ");
         fgets(cli->tel, 12, stdin);
+        getchar();
     }
     printf("\n");
-    printf("Dados do EndereÃ§o:\n");
+    printf("Dados do Endereço:\n");
     printf("\n");
     printf("Logradouro: ");
     fgets(cli->log, 12, stdin);
     while (!valida_logradouro (cli->log)) {
-        printf("Logradouro digitado nÃ£o Ã© vÃ¡lido!\n");
+        printf("Logradouro digitado não é válido!\n");
         printf("Informe o logradouro novamente: ");
         fgets(cli->log, 20, stdin);
+        getchar();
     }
     printf("\n");
-    printf("NÃºmero: ");
+    printf("Número: ");
     fgets(cli->num, 5, stdin);
-    while (!valida_numero (cli->num)) {
-        printf("NÃºmero digitado nÃ£o Ã© vÃ¡lido!\n");
-        printf("Informe o nÃºmero novamente: ");
-        fgets(cli->num, 5, stdin);
-    }
+    getchar();
     printf("\n");
     printf("Bairro: ");
     fgets(cli->bai, 15, stdin);
     while (!valida_bairro (cli->bai)) {
-        printf("Bairro digitado nÃ£o Ã© vÃ¡lido!\n");
+        printf("Bairro digitado não é válido!\n");
         printf("Informe o bairro novamente: ");
         fgets(cli->bai, 15, stdin);
+        getchar();
     }
     printf("\n");
     printf("Email: ");
     fgets(cli->email, 40, stdin);
     while (!valida_email (cli->email)){
-        printf("Email invÃ¡lido!");
+        printf("Email inválido!");
         printf("Informe novamente o email: ");
         fgets(cli->email, 40, stdin);
+        getchar();
     }
     cli->status = 'c';
     printf("\n");
@@ -142,6 +147,9 @@ Cliente* cadastrar_cliente(void) {
     getchar();
     return cli;
 }
+
+/// FUNÇÃO GRAVA CADASTRO NO SISTEMA
+
 
 void gravar_cliente(Cliente* cli) {
   FILE* fp;
@@ -155,7 +163,7 @@ void gravar_cliente(Cliente* cli) {
 }
 
 
-////OPÃ‡ÃƒO CASE 2 (BUSCA CLIENTE CADASTRADO PELO CPF)
+//// CASE 2 (FUNÇÃO BUSCA CLIENTE CADASTRADO PELO CPF)
 
 Cliente* buscar_cliente(void) {
 
@@ -166,330 +174,92 @@ Cliente* buscar_cliente(void) {
 	cli = (Cliente*) malloc(sizeof(Cliente));
 	fp = fopen("clientes.dat", "rb");
 	if (fp == NULL) {
-		printf("NÃ£o foi possÃ­vel abrir o arquivo!");
+		printf("Não foi possível abrir o arquivo!");
     printf("\n\nTecle ENTER para continuar!\n\n");
 	  getchar();
-	  exit(1);
 	}
 	while(fread(cli, sizeof(Cliente), 1, fp)) {
 		if ((strcmp(cli->cpf, cpf) == 0) && (cli->status == 'c')) {
-			fclose(fp);
 			return cli;
 		}
 	}
 	fclose(fp);
 	return NULL;
+
 }
-	
+
+/// FUNÇÃO SOLICITA CPF PARA BUSCA
 
 char* pesquisar_cpf(void) {
 	char* cpf;
 
 	cpf = (char*) malloc(12*sizeof(char));
 	printf("\n");
-	 system("clear||cls");
+	system("clear||cls");
   printf("\n");
   printf("-------------------------------------------------\n");
   printf("*******************RENT A BIKE*******************\n");
   printf("-------------------------------------------------\n");
   printf("-------------------MENU BIKES--------------------\n");
   printf("-------------------------------------------------\n");
-	printf("Digite o CPF:  ");
+  printf("\n");
+  printf("\n");
+	printf("Digite o CPF: \n");
 	fgets(cpf,12,stdin);
-  free(cpf);
+  getchar();
   return cpf;
 }
 
 
+///// FUNÇÃO QUE EXIBE CLIENTE NA TELA
+
 void print_cliente(Cliente* cli) {
   if ((cli == NULL) || (cli->status == 'x')) {
-    printf("\n= = = Aluno Inexistente = = =\n");
+    printf("\nCliente não existe!\n");
   } else {
     printf("Nome: %s\n", cli->nome);
     printf("CPF: %s\n", cli->cpf);
     printf("Email: %s\n", cli->email);
     printf("Logradouro: %s\n", cli->log);
-    printf("NÃºmero: %s\n", cli->num);
+    printf("Número: %s\n", cli->num);
     printf("Bairro: %s\n", cli->bai);
     printf("Email: %s\n", cli->email);
   }
+  
 }
 
 
 
 
-// ////OPÃ‡ÃƒO CASE 3 (EDITA DADOS/INFORMAÃ‡Ã•ES DE CLIENTES CADASTRADOS NO SISTEMA)
+// CASE 3 (EDITA DADOS/INFORMAÇÕES DE CLIENTES CADASTRADOS NO SISTEMA)
 
+// OPÇÕES DO MENU EDITAR CLIENTE
 
+void edit_cliente (void) {
 
+    char opcao;
 
-// void edit_cliente (void) {
+    do {
+        opcao = editar_cliente();
 
-//     Cliente* cli;
-//     char opcao;
-
-//     do {
-//         opcao = editar_cliente();
-
-//         switch (opcao) {
-//             case '1': 	cli=edit_nome();
-//                         break;
-//             // case '2': 	cli=edit_tel();
-//             //             break;
-//             // case '3': 	cli=edit_end();
-//             //             break;
-//             // case '4':   cli=edit_mail();
-//             //             break;
-//         } 		
-//     } while (opcao != '0');
+        switch (opcao) {
+            case '1': 	  edit_nome();
+                          break;
+             case '2': 	  edit_tel();
+                          break;
+             case '3': 	  edit_end();
+                          break;
+             case '4':    edit_mail();
+                          break;
+        } 		
+    } while (opcao != '0');
    
-// }
+}
 
+// MENU EDITAR CLIENTES
 
-// char editar_cliente(void) {
-//     char esc;
-//     system("clear||cls");
-//     printf("\n");
-//     printf("-------------------------------------------------\n");
-//     printf("*******************RENT A BIKE*******************\n");
-//     printf("-------------------------------------------------\n");
-//     printf("------------------MENU CLIENTES------------------\n");
-//     printf("-------------------------------------------------\n");
-//     printf("Vamos editar dados de um cliente no sistema!");
-//     printf("\n");
-//     printf("\n");
-//     printf(" 1. EDITAR NOME--------------------------DIGITE 1\n");
-//     printf(" 2. EDITAR TELEFONE----------------------DIGITE 2\n");
-//     printf(" 3. EDITAR ENDEREÃ‡O----------------------DIGITE 3\n");
-//     printf(" 4. EDITAR E-MAIL------------------------DIGITE 4\n");
-//     printf(" 0. VOLTAR-------------------------------DIGITE 0\n");
-//     printf("\n");
-//     printf("Escolha sua opÃ§Ã£o: \n");
-//     scanf("%c", &esc);
-//     getchar();
-//     printf("\n");
-//     printf("\t\t\t>>> Aguarde...\n");
-//     sleep(1);
-//     return esc;
-
-// }
-
-
-
-// Cliente* edit_nome(void) {
-//     FILE* fp;
-//     Cliente* cli;
-//     char cpf_c[12];
-//     system("clear||cls");
-//     printf("\n");
-//     printf("-------------------------------------------------\n");
-//     printf("*******************RENT A BIKE*******************\n");
-//     printf("-------------------------------------------------\n");
-//     printf("-------------------MENU BIKES--------------------\n");
-//     printf("-------------------------------------------------\n");
-//      printf("Informe o CPF: "); 
-//     fgets(cpf_c, 12, stdin);
-//     while (!valida_cpf (cpf_c)) {
-//         printf("Cpf digitado nÃ£o Ã© vÃ¡lido!\n");
-//         printf("Informe o cpf novamente: ");
-//         fgets(cpf_c, 12, stdin);
-//     }
-//     printf("\n");
-//     if (cli->cpf == cpf_c) {
-//         printf("Digite o nome: \n");
-//         fgets(cli->nome, 51, stdin);
-//         while (!valida_nome (cli->nome)) {
-//             printf("Nome digitado nÃ£o Ã© vÃ¡lido!\n");
-//             printf("Informe o nome novamente: ");
-//             fgets(cli->nome, 51, stdin);    
-//         }
-//     }
-//     printf("\n");
-//     printf("\n");
-//     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-//     getchar();
-// }
-
-
-// void edit_cpf(void) {
-//     char cpf[12];
-//     system("clear||cls");
-//     printf("\n");
-//     printf("-------------------------------------------------\n");
-//     printf("*******************RENT A BIKE*******************\n");
-//     printf("-------------------------------------------------\n");
-//     printf("-------------------MENU BIKES--------------------\n");
-//     printf("-------------------------------------------------\n");
-//     verifica_cpf (cpf);
-//     printf("\n");
-//     printf("Programa em desenvolvimento!\n");
-//     printf("\n");
-//     printf("\n");
-//     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-//     getchar();
-// }
-
-// void edit_tel(void) {
-//     char cpf[12];
-//     system("clear||cls");
-//     printf("\n");
-//     printf("-------------------------------------------------\n");
-//     printf("*******************RENT A BIKE*******************\n");
-//     printf("-------------------------------------------------\n");
-//     printf("-------------------MENU BIKES--------------------\n");
-//     printf("-------------------------------------------------\n");
-//     verifica_cpf (cpf);
-//     printf("\n");
-//     printf("Programa em desenvolvimento!\n");
-//     printf("\n");
-//     printf("\n");
-//     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-//     getchar();
-// }
-
-
-// // void edit_end (void) {
-// //     char opcao;
-
-// //     do {
-// //         opcao = alterar_end();
-
-// //         switch (opcao) {
-// //             case '1': 	altera_logradouro();
-// //                         break;
-// //             case '2': 	altera_numero();
-// //                         break;
-// //             case '3': 	altera_bairro();
-// //                         break;
-// //         } 		
-// //     } while (opcao != '0');
-   
-// // }
-
-
-// char alterar_end (void) {
-//     char esc;
-//     system("clear||cls");
-//     printf("\n");
-//     printf("-------------------------------------------------\n");
-//     printf("*******************RENT A BIKE*******************\n");
-//     printf("-------------------------------------------------\n");
-//     printf("-------------------MENU BIKES--------------------\n");
-//     printf("-------------------------------------------------\n");
-//     printf("\n");
-//     printf("Vamos editar dados do endereÃ§o!");
-//     printf("\n");
-//     printf("\n");
-//     printf(" 1. EDITAR LOGRADOURO--------------------DIGITE 1\n");
-//     printf(" 2. EDITAR NÃšMERO------------------------DIGITE 2\n");
-//     printf(" 3. EDITAR BAIRRO------------------------DIGITE 3\n");
-//     printf(" 0. VOLTAR-------------------------------DIGITE 0\n");
-//     printf("\n");
-//     printf("Escolha sua opÃ§Ã£o: \n");
-//     scanf("%c", &esc);
-//     getchar();
-//     printf("\n");
-//     printf("\n");
-//     printf("\t\t\t>>> Aguarde...\n");
-//     sleep(1);
-//     return esc;
-// }
-
-
-// void altera_logradouro(void) {
-//     char log[20];
-//     system("clear||cls");
-//     printf("\n");
-//     printf("-------------------------------------------------\n");
-//     printf("*******************RENT A BIKE*******************\n");
-//     printf("-------------------------------------------------\n");
-//     printf("-------------------MENU BIKES--------------------\n");
-//     printf("-------------------------------------------------\n");
-//     //verifica_logradouro (log);
-//     printf("\n");
-//     printf("\n");
-//     printf("Logradouro alterado com sucesso!\n");
-//     printf("\n");
-//     printf("\n");
-//     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-//     getchar();
-
-// }
-
-
-// void altera_numero(void) {
-//     char num[5];
-//     system("clear||cls");
-//     printf("\n");
-//     printf("-------------------------------------------------\n");
-//     printf("*******************RENT A BIKE*******************\n");
-//     printf("-------------------------------------------------\n");
-//     printf("-------------------MENU BIKES--------------------\n");
-//     printf("-------------------------------------------------\n");
-//     //verifica_numero (num);
-//     printf("\n");
-//     printf("\n");
-//     printf("NÃºmero alterado com sucesso!\n");
-//     printf("\n");
-//     printf("\n");
-//     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-//     getchar();
-    
-// }
-
-
-
-// void altera_bairro(void) {
-//     char bai[15];
-//     system("clear||cls");
-//     printf("\n");
-//     printf("-------------------------------------------------\n");
-//     printf("*******************RENT A BIKE*******************\n");
-//     printf("-------------------------------------------------\n");
-//     printf("-------------------MENU BIKES--------------------\n");
-//     printf("-------------------------------------------------\n");
-//     //verifica_bairro (bai);
-//     printf("\n");
-//     printf("\n");
-//     printf("Bairro alterado com sucesso!\n");
-//     printf("\n");
-//     printf("\n");
-//     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-//     getchar();
-// }
-
-
-
-// void edit_mail(void) {
-//     char cpf[12];
-//     system("clear||cls");
-//     printf("\n");
-//     printf("-------------------------------------------------\n");
-//     printf("*******************RENT A BIKE*******************\n");
-//     printf("-------------------------------------------------\n");
-//     printf("-------------------MENU BIKES--------------------\n");
-//     printf("-------------------------------------------------\n");
-//     verifica_cpf (cpf);
-//     printf("\n");
-//     printf("Programa em desenvolvimento!\n");
-//     printf("\n");
-//     printf("\n");
-//     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-//     getchar();
-// }
-
-
-
-
-// ///OPÃ‡ÃƒO CASE 4 (EXCLUI CLIENTE CADASTRADO NO SISTEMA)
-
-
-
-
-        
-Cliente* excluir_cliente(void) {
-  
-	
+char editar_cliente(void) {
+    char esc;
     system("clear||cls");
     printf("\n");
     printf("-------------------------------------------------\n");
@@ -497,73 +267,427 @@ Cliente* excluir_cliente(void) {
     printf("-------------------------------------------------\n");
     printf("------------------MENU CLIENTES------------------\n");
     printf("-------------------------------------------------\n");
+    printf("Vamos editar dados de um cliente no sistema!");
     printf("\n");
     printf("\n");
+    printf(" 1. EDITAR NOME--------------------------DIGITE 1\n");
+    printf(" 2. EDITAR TELEFONE----------------------DIGITE 2\n");
+    printf(" 3. EDITAR ENDEREÇO----------------------DIGITE 3\n");
+    printf(" 4. EDITAR E-MAIL------------------------DIGITE 4\n");
+    printf(" 0. VOLTAR-------------------------------DIGITE 0\n");
+    printf("\n");
+    printf("Escolha sua opção: \n");
+    scanf("%c", &esc);
+    getchar();
+    printf("\n");
+    printf("\t\t\t>>> Aguarde...\n");
+    sleep(1);
+    return esc;
 
-    Cliente* cli;
-	  char *cpf;
+}
+
+//FUNÇÃO EDITA NOME DO CLIENTE
+
+void edit_nome(void) {
+
+    char* cpf;
+    Cliente* new = (Cliente*) malloc(sizeof(Cliente));
     FILE* fp;
-	  cpf = pesquisar_cpf();
-	  cli = (Cliente*) malloc(sizeof(Cliente));
-	  fp = fopen("alunos.dat", "rb");
-	  if (fp == NULL) {
-		  printf("NÃ£o foi possÃ­vel abrir o arquivo!");
+    int busca = 0;
+    system("clear||cls");
+    printf("\n");
+    printf("-------------------------------------------------\n");
+    printf("*******************RENT A BIKE*******************\n");
+    printf("-------------------------------------------------\n");
+    printf("-------------------MENU BIKES--------------------\n");
+    printf("-------------------------------------------------\n");
+    printf("\n");
+    printf("\n");
+    cpf = pesquisar_cpf();
+    fp= fopen("clientes.dat", "r+b");
+    if (fp==NULL) {
+      printf("Não foi possível abrir o arquivo!");
       printf("\n\nTecle ENTER para continuar!\n\n");
 	    getchar();
-	  }
-	  while(fread(cli, sizeof(Cliente), 1, fp)) {
-		  if ((strcmp(cli->cpf, cpf) == 0) && (cli->status == 'c')) {
-			  fclose(fp);
-		return cli;
-		  }
-	  }
-	  fclose(fp);
-	  return NULL;
-	  if (cli == NULL) {
-    	  printf("\n\nCadastro nÃ£o encontrado!\n\n");
-  	  } else {
-		      cli->status = 'x';
-		      regravar_cliente(cli);
-		      free(cli);
-	    }
-	  free(cpf);
+    }
+    else {
+      while (fread(new, sizeof(Cliente), 1, fp)==1) {
+        if (strcmp(new->cpf, cpf)==0) {
+          printf("Nome: ");
+	        fgets(new->nome, 51, stdin);
+          while (!valida_nome (new->nome)) {
+            printf("Nome digitado não é válido!\n");
+            printf("Informe o nome novamente: ");
+            fgets(new->nome, 51, stdin);
+            getchar();
+          }       
+          fseek(fp, -sizeof(Cliente), SEEK_CUR);
+          fwrite(new, sizeof(Cliente), 1, fp);
+          busca=1;
+          break;
+        }
+      }
+    }
+    if (!busca) {
+      printf("Cpf não existe!\n");
+    }
+    else {
+      printf("Nome editado com sucesso!\n");
+    }
     printf("\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    getchar();
+}
+
+// FUNÇÃO EDITA TELEFONE DO CLIENTE
+
+
+void edit_tel(void) {
+
+    char* cpf;
+    Cliente* new = (Cliente*) malloc(sizeof(Cliente));
+    FILE* fp;
+    int busca = 0;
+    system("clear||cls");
+    printf("\n");
+    printf("-------------------------------------------------\n");
+    printf("*******************RENT A BIKE*******************\n");
+    printf("-------------------------------------------------\n");
+    printf("-------------------MENU BIKES--------------------\n");
+    printf("-------------------------------------------------\n");
+    cpf= pesquisar_cpf();
+    fp= fopen("clientes.dat", "r+b");
+    if (fp==NULL) {
+      printf("Não foi possível abrir o arquivo!");
+      printf("\n\nTecle ENTER para continuar!\n\n");
+	    getchar();
+    }
+    else {
+      while (fread(new, sizeof(Cliente), 1, fp)==1) {
+        if (strcmp(new->cpf, cpf)==0) {
+          printf("Telefone com DDD (somente números): ");
+	        fgets(new->tel, 12, stdin);
+          while (!valida_telefone (new->tel)) {
+          printf("Telefone inválido!\nInforme o telefone com DDD novamente: ");
+          fgets(new->tel, 12, stdin);
+          getchar();
+    }
+          fseek(fp, -sizeof(Cliente), SEEK_CUR);
+          fwrite(new, sizeof(Cliente), 1, fp);
+          busca=1;
+          break;
+        }
+      }
+    }
+    if (!busca) {
+      printf("Cpf não existe!\n");
+    }
+    else {
+      printf("Telefone editado com sucesso!\n");
+    }
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
 }
 
 
-void regravar_cliente(Cliente* cli) {
-	int busca;
-	FILE* fp;
-	Cliente* ex;
+// OPÇÃOES PARA ALTERAR DADOS DO ENDEREÇO DO CLIENTE
 
-	ex = (Cliente*) malloc(sizeof(Cliente));
-	fp = fopen("clientes.dat", "r+b");
-	if (fp == NULL) {
-		  printf("NÃ£o foi possÃ­vel abrir o arquivo!");
+void edit_end (void) {
+    char opcao;
+
+    do {
+        opcao = alterar_end();
+
+        switch (opcao) {
+            case '1': 	altera_logradouro();
+                        break;
+            case '2': 	altera_numero();
+                        break;
+            case '3': 	altera_bairro();
+                        break;
+        } 		
+    } while (opcao != '0');
+   
+}
+
+// MENU EDITAR DADOS DE ENDEREÇO
+
+char alterar_end (void) {
+    char esc;
+    system("clear||cls");
+    printf("\n");
+    printf("-------------------------------------------------\n");
+    printf("*******************RENT A BIKE*******************\n");
+    printf("-------------------------------------------------\n");
+    printf("-------------------MENU BIKES--------------------\n");
+    printf("-------------------------------------------------\n");
+    printf("\n");
+    printf("Vamos editar dados do endereço!");
+    printf("\n");
+    printf("\n");
+    printf(" 1. EDITAR LOGRADOURO--------------------DIGITE 1\n");
+    printf(" 2. EDITAR NÚMERO------------------------DIGITE 2\n");
+    printf(" 3. EDITAR BAIRRO------------------------DIGITE 3\n");
+    printf(" 0. VOLTAR-------------------------------DIGITE 0\n");
+    printf("\n");
+    printf("Escolha sua opçãoo: \n");
+    scanf("%c", &esc);
+    getchar();
+    printf("\n");
+    printf("\n");
+    printf("\t\t\t>>> Aguarde...\n");
+    sleep(1);
+    return esc;
+}
+
+//FUNÇÃO EDITA LOGRADOURO DO CLIENTE
+
+void altera_logradouro(void) {
+
+    char* cpf;
+    Cliente* new = (Cliente*) malloc(sizeof(Cliente));
+    FILE* fp;
+    int busca = 0;  
+    system("clear||cls");
+    printf("\n");
+    printf("-------------------------------------------------\n");
+    printf("*******************RENT A BIKE*******************\n");
+    printf("-------------------------------------------------\n");
+    printf("-------------------MENU BIKES--------------------\n");
+    printf("-------------------------------------------------\n");
+    printf("\n");
+    printf("\n");
+    cpf= pesquisar_cpf();
+    fp= fopen("clientes.dat", "r+b");
+    if (fp==NULL) {
+      printf("Não foi possível abrir o arquivo!");
       printf("\n\nTecle ENTER para continuar!\n\n");
-	    getchar();;
-	}
-  while(!feof(fp)) {
-	busca = 'x';
-  }
-	while(fread(ex, sizeof(Cliente), 1, fp) && !busca) {
-		fread(ex, sizeof(Cliente), 1, fp);
-		if (strcmp(ex->cpf, cli->cpf) == 0) {
-			busca = 'c';
-			//fseek(fp, -1*sizeof(Cliente), SEEK_CUR);
-        	fwrite(cli, sizeof(Cliente), 1, fp);
-			break;
-		}
-	}
-	fclose(fp);
-	free(ex);
+	    getchar();
+    }
+    else {
+      while (fread(new, sizeof(Cliente), 1, fp)==1) {
+        if (strcmp(new->cpf, cpf)==0) {
+          printf("Logradouro: ");
+	        fgets(new->log, 20, stdin);
+          while (!valida_logradouro (new->log)) {
+            printf("Nome digitado não é válido!\n");
+            printf("Informe o nome novamente: ");
+            fgets(new->log, 20, stdin);
+            getchar();
+          }       
+          fseek(fp, -sizeof(Cliente), SEEK_CUR);
+          fwrite(new, sizeof(Cliente), 1, fp);
+          busca=1;
+          break;
+        }
+      }
+    }
+    if (!busca) {
+      printf("Cpf não existe!\n");
+    }
+    else {
+      printf("Logradouro editado com sucesso!\n");
+    }
+    printf("\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    getchar();
+
 }
 
 
-// ////OPÃ‡ÃƒO CASE 5 (LISTA TODOS OS CLIENTES CADASTRADOS NO SISTEMA)
+//FUNÇÃO EDITA NÚMERO DO ENDEREÇO DO CLIENTE
+
+void altera_numero(void) {
+    
+    char* cpf;
+    Cliente* new = (Cliente*) malloc(sizeof(Cliente));
+    FILE* fp;
+    int busca = 0;  
+    system("clear||cls");
+    printf("\n");
+    printf("-------------------------------------------------\n");
+    printf("*******************RENT A BIKE*******************\n");
+    printf("-------------------------------------------------\n");
+    printf("-------------------MENU BIKES--------------------\n");
+    printf("-------------------------------------------------\n");
+    cpf= pesquisar_cpf();
+    fp= fopen("clientes.dat", "r+b");
+    if (fp==NULL) {
+      printf("Não foi possível abrir o arquivo!");
+      printf("\n\nTecle ENTER para continuar!\n\n");
+	    getchar();
+    }
+    else {
+      while (fread(new, sizeof(Cliente), 1, fp)==1) {
+        if (strcmp(new->cpf, cpf)==0) {
+          printf("Número: ");
+	        fgets(new->num, 5, stdin);
+          getchar();       
+          fseek(fp, -sizeof(Cliente), SEEK_CUR);
+          fwrite(new, sizeof(Cliente), 1, fp);
+          busca=1;
+          break;
+        }
+      }
+    }
+    if (!busca) {
+      printf("Cpf não existe!\n");
+    }
+    else {
+      printf("Número editado com sucesso!\n");
+    }
+    printf("\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    getchar();
+    
+}
+
+// FUNÇÃO EDITA BAIRRO DO CLIENTE
+
+void altera_bairro(void) {
+    char* cpf;
+    Cliente* new = (Cliente*) malloc(sizeof(Cliente));
+    FILE* fp;
+    int busca = 0; 
+    system("clear||cls");
+    printf("\n");
+    printf("-------------------------------------------------\n");
+    printf("*******************RENT A BIKE*******************\n");
+    printf("-------------------------------------------------\n");
+    printf("-------------------MENU BIKES--------------------\n");
+    printf("-------------------------------------------------\n");
+    cpf= pesquisar_cpf();
+    fp= fopen("clientes.dat", "r+b");
+    if (fp==NULL) {
+      printf("Não foi possível abrir o arquivo!");
+      printf("\n\nTecle ENTER para continuar!\n\n");
+	    getchar();
+    }
+    else {
+      while (fread(new, sizeof(Cliente), 1, fp)==1) {
+        if (strcmp(new->cpf, cpf)==0) {
+          printf("Bairro: ");
+	        fgets(new->bai, 15, stdin);
+          while (!valida_nome (new->bai)) {
+            printf("Bairro digitado não é válido!\n");
+            printf("Informe o bairro novamente: ");
+            fgets(new->bai, 15, stdin);
+            getchar();
+          }       
+          fseek(fp, -sizeof(Cliente), SEEK_CUR);
+          fwrite(new, sizeof(Cliente), 1, fp);
+          busca=1;
+          break;
+        }
+      }
+    }
+    if (!busca) {
+      printf("Cpf não existe!\n");
+    }
+    else {
+      printf("Cadastro editado com sucesso!\n");
+    }
+    printf("\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    getchar();
+}
+
+
+//FUNÇÃO EDITA EMAIL CO CLIENTE
+
+void edit_mail(void) {
+    
+    char* cpf;
+    Cliente* new = (Cliente*) malloc(sizeof(Cliente));
+    FILE* fp;
+    int busca = 0; 
+    system("clear||cls");
+    printf("\n");
+    printf("-------------------------------------------------\n");
+    printf("*******************RENT A BIKE*******************\n");
+    printf("-------------------------------------------------\n");
+    printf("-------------------MENU BIKES--------------------\n");
+    printf("-------------------------------------------------\n");
+    printf("\n");
+    cpf= pesquisar_cpf();
+    fp= fopen("clientes.dat", "r+b");
+    if (fp==NULL) {
+      printf("Não foi possível abrir o arquivo!");
+      printf("\n\nTecle ENTER para continuar!\n\n");
+	    getchar();
+    }
+    else {
+      while (fread(new, sizeof(Cliente), 1, fp)==1) {
+        if (strcmp(new->cpf, cpf)==0) {
+          printf("Email: ");
+	        fgets(new->email,40, stdin);
+         while (!valida_email (new->email)){
+          printf("Email inválido!");
+          printf("Informe novamente o email: ");
+          fgets(new->email, 40, stdin);
+          getchar();
+        }       
+          fseek(fp, -sizeof(Cliente), SEEK_CUR);
+          fwrite(new, sizeof(Cliente), 1, fp);
+          busca=1;
+          break;
+        }
+      }
+    }
+    if (!busca) {
+      printf("Cpf não existe!\n");
+    }
+    else {
+      printf("Cadastro editado com sucesso!\n");
+    }
+    printf("\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    getchar();
+}
+
+
+// ///OPÇÃO CASE 4 (EXCLUI CLIENTE CADASTRADO NO SISTEMA)
+
+        
+void excluir_cliente(void) {
+
+  char* cpf;
+  Cliente* ex = (Cliente*) malloc(sizeof(Cliente));
+  FILE* fp;
+  int busca = 0;
+
+  cpf = pesquisar_cpf();
+  fp= fopen("clientes.dat", "r+b");
+  if (fp==NULL) {
+    printf("Não foi possível abrir o arquivo!");
+    printf("\n\nTecle ENTER para continuar!\n\n");
+	  getchar();
+  }
+  else{
+    while (!feof(fp)) {
+      fread(ex, sizeof(Cliente), 1, fp);    
+      if (strcmp(ex->cpf, cpf)==0) {
+        busca=1;
+        ex->status='x'; 
+        fseek(fp, -sizeof(Cliente), SEEK_CUR);
+        fwrite(ex, sizeof(Cliente), 1, fp);  
+        printf("Cliente excluído com sucesso!\n");
+        break;
+      }
+    }
+  } 
+  if (!busca) {
+    printf("Cpf não encontrado!\n");  
+  }
+  printf("\n\nTecle ENTER para continuar!\n\n");
+  getchar();
+  fclose(fp);
+  free(ex);
+}
+    
+
+// ////OPÇÃO CASE 5 (LISTA TODOS OS CLIENTES CADASTRADOS NO SISTEMA)
 
  void listar_clientes(void) {
     FILE* fp;
@@ -588,7 +712,12 @@ void regravar_cliente(Cliente* cli) {
         }
     }
     fclose(fp);
+    free(cli);
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
 }
+
+
+
+

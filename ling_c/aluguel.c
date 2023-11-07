@@ -6,7 +6,7 @@
 #include"aluguel.h"
 
 
-////OP√á√ïES PARA MENU ALUGUEL
+////OP«’ES PARA MENU ALUGUEL
 
 
 void modulo_aluguel (void) {
@@ -39,13 +39,13 @@ char aluguel(void) {
     printf("-------------------------------------------------\n");
     printf("*******************RENT A BIKE*******************\n");
     printf("-------------------------------------------------\n");
-    printf(" 1. BIKES DISPON√çVEIS--------------------DIGITE 1\n");
+    printf(" 1. BIKES DISPONÕVEIS--------------------DIGITE 1\n");
     printf(" 2. ALUGAR BIKE--------------------------DIGITE 2\n");
     printf(" 3. BUSCAR ALUGUEL-----------------------DIGITE 3\n");
     printf(" 4. EXCLUIR ALUGUEL----------------------DIGITE 4\n");
     printf(" 0. VOLTAR-------------------------------DIGITE 0\n");
     printf("\n");
-    printf("Escolha sua op√ß√£o: ");
+    printf("Escolha sua opÁ„o: ");
     scanf("%c", &esc);
     getchar();
     printf("\n");
@@ -54,7 +54,7 @@ char aluguel(void) {
     return esc;
 }
 
-//////ESCOLHA DA OP√á√ÉO CASE 1 (VISUALIZA BIKES DISPON√çVEIS PARA ALUGAR)
+//////ESCOLHA DA OP«√O CASE 1 (VISUALIZA BIKES DISPONÕVEIS PARA ALUGAR)
 
 void bike_disponivel(void) {
     system("clear||cls");
@@ -74,7 +74,7 @@ void bike_disponivel(void) {
 }
 
 
-/////ESCOLHA DA OP√á√ÉO CASE 2 (REALIZAR ALUGUEL DE BIKE)
+/////ESCOLHA DA OP«√O CASE 2 (REALIZAR ALUGUEL DE BIKE)
 
 void alugar_bike(void) {
     system("clear||cls");
@@ -94,7 +94,7 @@ void alugar_bike(void) {
 }
 
 
-///ESCOLHA DA OP√á√ÉO CASE 3 (BUSCAR ALUGUEL DE BIKE)
+///ESCOLHA DA OP«√O CASE 3 (BUSCAR ALUGUEL DE BIKE)
 
 void buscar_aluguel(void) {
     system("clear||cls");
@@ -115,7 +115,7 @@ void buscar_aluguel(void) {
 }
 
 
-////ESCOLHA DA OP√á√ÉO CASE 4 (EXCLUIR ALUGUEL DE BIKE)
+////ESCOLHA DA OP«√O CASE 4 (EXCLUIR ALUGUEL DE BIKE)
 
 void excluir_aluguel(void) {
     system("clear||cls");
@@ -135,7 +135,7 @@ void excluir_aluguel(void) {
   
 }
 
-//// OP√á√ÉO CASE 5 (RELAT√ìRIO DE TODOS OS ALUGU√âIS VIGENTES)
+//// OP«√O CASE 5 (RELAT”RIO DE TODOS OS ALUGU…IS VIGENTES)
 
 void listar_aluguel(void) {
     system("clear||cls");
