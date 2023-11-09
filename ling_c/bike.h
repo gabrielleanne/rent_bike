@@ -29,7 +29,7 @@ void altera_aro (void);
 void altera_marca (void);
 void altera_valor (void);
 char tipo_bike (void);
-char* pesquisar_cod(void);
+void ler_cod_bike (char* cod);
 void print_bike(Bike* bike);
 
 

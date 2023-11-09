@@ -24,4 +24,4 @@ void edit_promo (void);
 void edit_anuncio (void);
 void edit_validade (void);
 void gravar_promo(Promo* pro);
-char* pesquisar_cod(void);
+void ler_cod(char* cod);
