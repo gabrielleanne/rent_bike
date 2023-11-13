@@ -16,15 +16,14 @@ void modulo_promo (void) {
     do {
         opcao = promo();
         switch(opcao) {
-            case '1':   listar_promo();
-                        break;
-            case '2': 	pro=cadastrar_promo();
+            
+            case '1': 	pro=cadastrar_promo();
                         gravar_promo(pro);
                         free(pro);
                         break;
-            case '3': 	edit_promo();
+            case '2': 	edit_promo();
                         break;
-            case '4': 	excluir_promo();
+            case '3': 	excluir_promo();
                         break;
         } 		
     } while (opcao != '0');
@@ -42,10 +41,9 @@ char promo(void) {
     printf("-------------------------------------------------\n");
     printf("*******************RENT A BIKE*******************\n");
     printf("-------------------------------------------------\n");
-    printf(" 1. LISTAR PROMO��ES --------------------DIGITE 1\n");
-    printf(" 2. CADASTRAR PROMO��O-------------------DIGITE 2\n");
-    printf(" 3. EDITAR PROMO��O----------------------DIGITE 3\n");
-    printf(" 4. EXCLUIR PROMO��O---------------------DIGITE 4\n");
+    printf(" 1. CADASTRAR PROMO��O-------------------DIGITE 1\n");
+    printf(" 2. EDITAR PROMO��O----------------------DIGITE 2\n");
+    printf(" 3. EXCLUIR PROMO��O---------------------DIGITE 3\n");
     printf(" 0. VOLTAR-------------------------------DIGITE 0\n");
     printf("\n");
     printf("Escolha sua op��o: ");
@@ -57,26 +55,9 @@ char promo(void) {
     return esc;
 }
 
-///OP��O CASE 1 (LISTA TODAS AS PROMO��ES V�LIDAS NO SISTEMA)
-
-void listar_promo(void) {
-    system("clear||cls");
-    printf("\n");
-    printf("-------------------------------------------------\n");
-    printf("*******************RENT A BIKE*******************\n");
-    printf("-------------------------------------------------\n");
-    printf("------------------MENU PROMO��ES-----------------\n");
-    printf("-------------------------------------------------\n");
-    printf("\n");
-    printf("programa em desenvolvimento...");
-    printf("\n");
-    printf("\n");
-    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-    getchar();
-}
 
 
-///OP��O CASE 2 (CADASTRA NOVA PROMO��O NO SISTEMA)
+///OP��O CASE 1 (CADASTRA NOVA PROMO��O NO SISTEMA)
 
 Promo* cadastrar_promo(void) {
 
@@ -131,7 +112,7 @@ void gravar_promo(Promo* pro) {
 
 
 
-////OP��O CASE 3 (ALTERA DADOS/INFORMA��ES SOBRE PROMO��ES CADASTRADAS)
+////OP��O CASE 2 (ALTERA DADOS/INFORMA��ES SOBRE PROMO��ES CADASTRADAS)
 
 
 
@@ -290,7 +271,7 @@ void edit_validade(void) {
 
 
 
-////OP��O CASE 4 (EXCLUI PROMO��O CADASTRADA NO SISTEMA)
+////OP��O CASE 3 (EXCLUI PROMO��O CADASTRADA NO SISTEMA)
 
 
 void excluir_promo(void) {

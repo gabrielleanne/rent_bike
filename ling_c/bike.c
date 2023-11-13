@@ -66,7 +66,7 @@ char bikes(void) {
 }
 
 
-////OPï¿½ï¿½O CASE 1 (CADASTRA NOVA BIKE NO SISTEMA)
+////OPÇÃO CASE 1 (CADASTRA NOVA BIKE NO SISTEMA)
 
 Bike* cadastrar_bike(void) {
     
@@ -90,7 +90,7 @@ Bike* cadastrar_bike(void) {
     fgets(bike->aro,3,stdin);
     getchar();
     printf("Valor do aluguel:\n");
-	fgets(bike->valor_aluguel, 5,stdin);
+	scanf("%f", &bike->valor_aluguel);
     getchar();
     printf("Marca da bike:\n");
 	fgets(bike->marca,20 ,stdin);
@@ -334,7 +334,7 @@ void altera_valor(void) {
         while (fread(new, sizeof(Bike), 1, fp)==1) {
             if (strcmp(new->cod, cod)==0) {
                 printf("Valor do aluguel: \n");
-                fgets(new->valor_aluguel,5,stdin);
+                scanf("%f", &new->valor_aluguel);
                 getchar();
                 fseek(fp, -sizeof(Bike), SEEK_CUR);
                 fwrite(new, sizeof(Bike), 1, fp);
@@ -436,7 +436,7 @@ void print_bike(Bike* bike) {
   } else {
     printf("Tipo: %d\n", bike->tipo);
     printf("Aro: %s\n", bike->aro);
-    printf("Valor do aluguel: %s\n", bike->valor_aluguel);
+    printf("Valor do aluguel: %f\n", bike->valor_aluguel);
     printf("Marca: %s\n", bike->marca);
     printf("Cï¿½digo: %s\n", bike->cod);   
   } 
@@ -478,35 +478,4 @@ void excluir_bike(void) {
   getchar();
   fclose(fp);
   free(ex);
-}
-
-////OPï¿½ï¿½O CASE 5 (LISTA TODAS AS BIKES CADASTRADAS NO SISTEMA)
-
-void listar_bikes(void) {
-    FILE* fp;
-    Bike* bike;
-    system("clear||cls");
-    printf("\n");
-    printf("-------------------------------------------------\n");
-    printf("*******************RENT A BIKE*******************\n");
-    printf("-------------------------------------------------\n");
-    printf("-------------------MENU BIKES--------------------\n");
-    printf("-------------------------------------------------\n");
-    printf("\n");
-    bike = (Bike*) malloc(sizeof(Bike));
-    fp = fopen("bikes.dat", "rb");
-    if (fp == NULL) {
-        printf("Ops! Erro na abertura do arquivo!\n");
-        exit(1);
-    }
-    while(fread(bike, sizeof(Bike), 1, fp)) {
-        if (bike->status != 'x') {
-            print_bike(bike);
-        }
-    }
-    fclose(fp);
-    free(bike);
-    printf("\n");
-    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-    getchar();
 }

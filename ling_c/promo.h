@@ -16,7 +16,6 @@ struct promo {
 
 void modulo_promo(void);
 char promo(void);
-void listar_promo(void);
 Promo* cadastrar_promo(void);
 char editar_promo(void);
 void excluir_promo(void);

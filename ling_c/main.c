@@ -8,6 +8,7 @@
 #include"aluguel.h"
 #include"sobre.h"
 #include"util.h"
+#include"relatorios.h"
 
 
 
@@ -36,6 +37,7 @@ int main(void) {
                     break;
           case '5': modulo_sobre();
                     break;
+          case '6': modulo_relatorio();
         } 	
     } while (opcao != '0');
     return 0;
@@ -59,6 +61,7 @@ char menu_principal(void) {
     printf(" 3. ALUGUEL------------------------------DIGITE 3\n");
     printf(" 4. PROMOÇÕOES---------------------------DIGITE 4\n");
     printf(" 5. SOBRE NÓS----------------------------DIGITE 5\n");
+    printf(" 6. RELATÓRIOS---------------------------DIGITE 6\n");
     printf(" 0. SAIR---------------------------------DIGITE 0\n");
     printf("\n");
     printf("Escolha sua opção: ");

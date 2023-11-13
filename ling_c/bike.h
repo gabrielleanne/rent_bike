@@ -5,7 +5,7 @@ typedef struct bike Bike;
 struct bike {
     char tipo;
     char aro[3];
-    char valor_aluguel[5];
+    float valor_aluguel;
     char marca[20];
     char cod[2];
     char status;
@@ -22,7 +22,6 @@ void gravar_bike(Bike* bike);
 char editar_bike(void);
 Bike* buscar_bike(void);
 void excluir_bike(void);
-void listar_bikes(void);
 void opcao_editar (void);
 void altera_tipo (void);
 void altera_aro (void);
