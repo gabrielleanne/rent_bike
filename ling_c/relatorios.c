@@ -15,7 +15,7 @@
 
 
 
-/// OPÃ‡Ã•ES PARA MENU RELATÃ“RIOS 
+/// OPÇÕES PARA MENU RELATÓRIOS 
 
 void modulo_relatorio (void) {
 
@@ -37,11 +37,12 @@ void modulo_relatorio (void) {
                         printf("\n");
                         printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
                         getchar();
-
-             case '4': 	listar_aluguel();
-            //             break;
-            // case '5':   listar_clientes();
-            //             break;
+                        break;
+             case '4':  listar_aluguel();
+                        printf("\n");
+                        printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+                        getchar(); 
+                        break;         
          } 		
    } while (opcao != '0'); 
 }
@@ -49,7 +50,7 @@ void modulo_relatorio (void) {
 
 
 
-//MENU RELATÃ“RIOS
+//MENU RELATÓRIOS
 
 char relatorios(void) {
     setlocale(LC_ALL,"Portuguese_Brazil");
@@ -61,11 +62,11 @@ char relatorios(void) {
     printf("-------------------------------------------------\n");
     printf(" 1. LISTAR CLIENTES ---------------------DIGITE 1\n");
     printf(" 2. LISTAR BIKES-------------------------DIGITE 2\n");
-    printf(" 3. LISTAR PROMOÃ‡Ã•ES-------- ------------DIGITE 3\n");
-    printf(" 4. LISTAR ALUGUÃ‰IS----------------------DIGITE 4\n");
+    printf(" 3. LISTAR PROMOÇÕES-------- ------------DIGITE 3\n");
+    printf(" 4. LISTAR ALUGUÉIS----------------------DIGITE 4\n");
     printf(" 0. VOLTAR-------------------------------DIGITE 0\n");
     printf("\n");
-    printf("Escolha sua opÃ§Ã£o: ");
+    printf("Escolha sua opção: ");
     scanf("%c",&esc);
     getchar();
     printf("\n");
@@ -76,7 +77,7 @@ char relatorios(void) {
 
 
 
-// // ////OPÃ‡ÃƒO CASE 1 (LISTA TODOS OS CLIENTES CADASTRADOS NO SISTEMA)
+// // ////OPÇÃO CASE 1 (LISTA TODOS OS CLIENTES CADASTRADOS NO SISTEMA)
 
 void listar_clientes(void) {
   FILE* fp;
@@ -85,7 +86,7 @@ void listar_clientes(void) {
   cli = (Cliente*) malloc(sizeof(Cliente));
   fp = fopen("clientes.dat", "rb");
   if (fp == NULL) {
-    printf("Ops! Erro na abertura do arquivo!\n");
+    printf("Não foi possível abrir o arquivo!\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
   }
@@ -95,29 +96,32 @@ void listar_clientes(void) {
   printf("|");
   printf("%-20s", "LOGRADOURO");
   printf("|");
-  printf("%-5s", "NÃšMERO");
+  printf("%-5s", "NÚMERO");
   printf("|");
   printf("%-15s", "BAIRRO");
   printf("|");
   printf("%-40s", "E-MAIL");
   printf("|");
   printf("\n");
-  printf("%8s", "|");
-  printf("%31s", "|");
+  printf("%51s", "|");
+  printf("%13s", "|");
+  printf("%21s", "|");
+  printf("%6s", "|");
+  printf("%16s", "|");
   printf("\n");
   while (fread(cli, sizeof(Cliente), 1, fp)) { 
     if (cli->status != 'x') {
-      printf("%-30s", cli->nome);
+      printf("%-51s", cli->nome);
       printf("|");
-      printf("%-30s", cli->cpf);
+      printf("%-12s", cli->cpf);
       printf("|");
-      printf("%-30s", cli->log);
+      printf("%-20s", cli->log);
       printf("|");
-      printf("%-30s", cli->num);
+      printf("%-5s", cli->num);
       printf("|");
-      printf("%-30s", cli->bai);
+      printf("%-15s", cli->bai);
       printf("|");
-      printf("%-30s", cli->email);
+      printf("%-40s", cli->email);
       printf("|");
       printf("\n");
     }
@@ -128,7 +132,7 @@ void listar_clientes(void) {
 
 
 
-// // ////OPÃ‡ÃƒO CASE 2 (LISTA TODAS AS BIKES CADASTRADOS NO SISTEMA)
+// // ////OPÇÃO CASE 2 (LISTA TODAS AS BIKES CADASTRADOS NO SISTEMA)
 
 void listar_bikes(void) {
   FILE* fp;
@@ -137,7 +141,7 @@ void listar_bikes(void) {
   bike = (Bike*) malloc(sizeof(Bike));
   fp = fopen("bikes.dat", "rb");
   if (fp == NULL) {
-    printf("Ops! Erro na abertura do arquivo!\n");
+    printf("Não foi possível abrir o arquivo!\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
   }
@@ -149,7 +153,7 @@ void listar_bikes(void) {
   printf("|");
   printf("%-5s", "MARCA DA BIKE");
   printf("|");
-  printf("%-15s", "CÃ“DIGO DA BIKE");
+  printf("%-15s", "CÓDIGO DA BIKE");
   printf("|");
   printf("\n");
   printf("%8s", "|");
@@ -176,7 +180,7 @@ void listar_bikes(void) {
 
 
 
-// // ////OPÃ‡ÃƒO CASE 3 (LISTA TODAS AS PROMOÃ‡Ã•ES CADASTRADAS NO SISTEMA)
+// // ////OPÇÃO CASE 3 (LISTA TODAS AS PROMOÇÕES CADASTRADAS NO SISTEMA)
 
 void listar_promo(void) {
   FILE* fp;
@@ -185,15 +189,15 @@ void listar_promo(void) {
   promo = (Promo*) malloc(sizeof(Promo));
   fp = fopen("promo.dat", "rb");
   if (fp == NULL) {
-    printf("Ops! Erro na abertura do arquivo!\n");
+    printf("Não foi possível abrir o arquivo!\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
   }
-  printf("%-40s", "ANÃšNCIO");
+  printf("%-40s", "ANÚNCIO");
   printf("|");
   printf("%-5s", "VALIDADE");
   printf("|");
-  printf("%-5s", "CÃ“DIGO");
+  printf("%-5s", "CÓDIGO");
   printf("|");
   printf("\n");
   printf("%8s", "|");
@@ -217,22 +221,22 @@ void listar_promo(void) {
 
 
 
-// // ////OPÃ‡ÃƒO CASE 4 (LISTA TODAS OS ALUGUÃ‰IS CADASTRADOS NO SISTEMA)
+// // ////OPÇÃO CASE 4 (LISTA TODAS OS ALUGUÉIS CADASTRADOS NO SISTEMA)
 
 void listar_aluguel(void) {
   FILE* fp;
   Aluguel* aluga;
   printf("\n");
-  aluga = (Promo*) malloc(sizeof(Aluguel));
+  aluga = (Aluguel*) malloc(sizeof(Aluguel));
   fp = fopen("aluguel.dat", "rb");
   if (fp == NULL) {
-    printf("Ops! Erro na abertura do arquivo!\n");
+    printf("Não foi possível abrir o arquivo!\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
   }
-  printf("%-40s", "CÃ“DIGO DO ALUGUEL");
+  printf("%-40s", "CÓDIGO DO ALUGUEL");
   printf("|");
-  printf("%-5s", "CÃ“DIGO DA BIKE");
+  printf("%-5s", "CÓDIGO DA BIKE");
   printf("|");
   printf("%-5s", "TEMPO DE ALUGUEL");
   printf("|");

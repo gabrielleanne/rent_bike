@@ -8,7 +8,7 @@
 #include"util.h"
 
 
-////OPï¿½ï¿½ES PARA MENU BIKES
+////OPÇÕES PARA MENU BIKES
 
 void modulo_bike (void) {
 
@@ -30,8 +30,6 @@ void modulo_bike (void) {
                         free(bike);
                         break;
             case '4': 	excluir_bike();
-                        break;
-            case '5':   listar_bikes();
                         break;
         } 		
     } while (opcao != '0');
@@ -56,7 +54,7 @@ char bikes(void) {
     printf(" 5. LISTAR BIKES-------------------------DIGITE 5\n");
     printf(" 0. VOLTAR-------------------------------DIGITE 0\n");
     printf("\n");
-    printf("Escolha sua opï¿½ï¿½o: ");
+    printf("Escolha sua opção: ");
     scanf("%c", &esc);
     getchar();
     printf("\n");
@@ -95,7 +93,7 @@ Bike* cadastrar_bike(void) {
     printf("Marca da bike:\n");
 	fgets(bike->marca,20 ,stdin);
     getchar();
-    printf("Cï¿½digo da bike:\n");
+    printf("Código da bike:\n");
 	fgets(bike->cod,2 ,stdin);
     getchar();
     bike->status= 'c';
@@ -111,7 +109,7 @@ Bike* cadastrar_bike(void) {
 }
 
 
-/// FUNï¿½ï¿½O GRAVA BIKE NO SISTEMA
+/// FUNÇÃO GRAVA BIKE NO SISTEMA
 
 
 void gravar_bike(Bike* bike) {
@@ -128,18 +126,18 @@ void gravar_bike(Bike* bike) {
 char tipo_bike(void) {
     char esc;
     printf(" 1. MOUNTAIN BIKE------------------------DIGITE 1\n");
-    printf(" 2. BIKE ELï¿½TRICA------------------------DIGITE 2\n");
+    printf(" 2. BIKE ELÉTRICA------------------------DIGITE 2\n");
     printf(" 3. BIKE SPEED/ESTRADA-------------------DIGITE 3\n");
     printf(" 4. BIKE URBANA--------------------------DIGITE 4\n");
     printf("\n");
-    printf("Escolha sua opï¿½ï¿½o: ");
+    printf("Escolha sua opção: ");
     scanf("%c", &esc);
     getchar();
     printf("\n");
     return esc;
 }
 
-////OPï¿½ï¿½O CASE 2 (OPï¿½ï¿½ES DE DADOS DAS BIKES PARA EDITAR)
+////OPÇÃO CASE 2 (OPÇÕES DE DADOS DAS BIKES PARA EDITAR)
 
 void opcao_editar (void) {
     char opcao;
@@ -182,7 +180,7 @@ char editar_bike(void) {
     printf(" 4. EDITAR MARCA-------------------------DIGITE 4\n");
     printf(" 0. VOLTAR-------------------------------DIGITE 0\n");
     printf("\n");
-    printf("Escolha sua opï¿½ï¿½o: \n");
+    printf("Escolha sua opção: \n");
     scanf("%c", &esc);
     getchar();
     printf("\n");
@@ -192,7 +190,7 @@ char editar_bike(void) {
     return esc;
 }
 
-/// FUNï¿½ï¿½O SOLICITA Cï¿½DIGO DA BIKE PARA BUSCA
+/// FUNÇÃO SOLICITA CÓDIGO DA BIKE PARA BUSCA
 
 void ler_cod_bike(char* cod) {
 	printf("\n");
@@ -205,13 +203,13 @@ void ler_cod_bike(char* cod) {
     printf("-------------------------------------------------\n");
     printf("\n");
     printf("\n");
-	printf("Digite o cï¿½digo: \n");
+	printf("Digite o código: \n");
 	fgets(cod,3,stdin);
     getchar();
 }
 
 
-//FUNï¿½ï¿½O PARA ALTERAR TIPO DE BIKE CADASTRADA
+//FUNÇÃO PARA ALTERAR TIPO DE BIKE CADASTRADA
 
 void altera_tipo(void) {
     char cod[5];
@@ -229,7 +227,7 @@ void altera_tipo(void) {
     ler_cod_bike(cod);
     fp= fopen("bikes.dat", "r+b");
     if (fp==NULL) {
-      printf("Nï¿½o foi possï¿½vel abrir o arquivo!");
+      printf("Não foi possível abrir o arquivo!");
       printf("\n\nTecle ENTER para continuar!\n\n");
 	  getchar();
     }
@@ -248,7 +246,7 @@ void altera_tipo(void) {
       
     }
     if (!busca) {
-      printf("Cpf nï¿½o existe!\n");
+      printf("Cpf não existe!\n");
     }
     else {
       printf("Tipo de bike editado com sucesso!\n");
@@ -259,7 +257,7 @@ void altera_tipo(void) {
 }
 
 
-//FUNï¿½ï¿½O PARA ALTERAR ARO DE BIKE CADASTRADA
+//FUNÇÃO PARA ALTERAR ARO DE BIKE CADASTRADA
 
 void altera_aro(void) {
     char cod[5];
@@ -276,7 +274,7 @@ void altera_aro(void) {
     ler_cod_bike(cod);
     fp= fopen("bikes.dat", "r+b");
     if (fp==NULL) {
-      printf("Nï¿½o foi possï¿½vel abrir o arquivo!");
+      printf("Não foi possível abrir o arquivo!");
       printf("\n\nTecle ENTER para continuar!\n\n");
 	  getchar();
     }
@@ -296,7 +294,7 @@ void altera_aro(void) {
       
     }
     if (!busca) {
-      printf("Cpf nï¿½o existe!\n");
+      printf("Cpf não existe!\n");
     }
     else {
       printf("Aro da bike editado com sucesso!\n");
@@ -308,7 +306,7 @@ void altera_aro(void) {
 }
 
 
-//FUNï¿½ï¿½O PARA ALTERAR VALOR DO ALUGUEL DE BIKE CADASTRADA
+//FUNÇÃO PARA ALTERAR VALOR DO ALUGUEL DE BIKE CADASTRADA
 
 
 void altera_valor(void) {
@@ -326,7 +324,7 @@ void altera_valor(void) {
     ler_cod_bike(cod);
     fp= fopen("bikes.dat", "r+b");
     if (fp==NULL) {
-      printf("Nï¿½o foi possï¿½vel abrir o arquivo!");
+      printf("Não foi possível abrir o arquivo!");
       printf("\n\nTecle ENTER para continuar!\n\n");
 	  getchar();
     }
@@ -346,7 +344,7 @@ void altera_valor(void) {
       
     }
     if (!busca) {
-      printf("Cpf nï¿½o existe!\n");
+      printf("Cpf não existe!\n");
     }
     else {
       printf("Valor do aluguel editado com sucesso!\n");
@@ -356,7 +354,7 @@ void altera_valor(void) {
 }
 
 
-//FUNï¿½ï¿½O PARA ALTERAR MARCA DE BIKE CADASTRADA
+//FUNÇÃO PARA ALTERAR MARCA DE BIKE CADASTRADA
 
 
 void altera_marca(void) {
@@ -374,7 +372,7 @@ void altera_marca(void) {
     ler_cod_bike(cod);
     fp= fopen("bikes.dat", "r+b");
     if (fp==NULL) {
-      printf("Nï¿½o foi possï¿½vel abrir o arquivo!");
+      printf("Não foi possível abrir o arquivo!");
       printf("\n\nTecle ENTER para continuar!\n\n");
 	  getchar();
     }
@@ -394,7 +392,7 @@ void altera_marca(void) {
       
     }
     if (!busca) {
-      printf("Cpf nï¿½o existe!\n");
+      printf("Cpf não existe!\n");
     }
     else {
       printf("Marca da bike editado com sucesso!\n");
@@ -404,7 +402,7 @@ void altera_marca(void) {
 }
 
 
-/////OPï¿½ï¿½O CASE 3 (BUSCA BIKE NO SISTEMA ATRAVï¿½S DO Cï¿½DIGO DA BIKE)
+/////OPÇÃO CASE 3 (BUSCA BIKE NO SISTEMA ATRAVï¿½S DO Cï¿½DIGO DA BIKE)
 
 Bike* buscar_bike(void) {
     Bike* bike;
@@ -414,7 +412,7 @@ Bike* buscar_bike(void) {
 	bike = (Bike*) malloc(sizeof(Bike));
 	fp = fopen("bikes.dat", "rb");
 	if (fp == NULL) {
-		printf("Nï¿½o foi possï¿½vel abrir o arquivo!");
+		printf("Não foi possível abrir o arquivo!");
         printf("\n\nTecle ENTER para continuar!\n\n");
 	    getchar();
 	}
@@ -428,21 +426,21 @@ Bike* buscar_bike(void) {
 }
 
 
-///// FUNï¿½ï¿½O QUE EXIBE BIKE NA TELA
+///// FUNÇÃO QUE EXIBE BIKE NA TELA
 
 void print_bike(Bike* bike) {
   if ((bike == NULL) || (bike->status == 'x')) {
-    printf("\nBike nï¿½o existe!\n");
+    printf("\nBike não existe!\n");
   } else {
     printf("Tipo: %d\n", bike->tipo);
     printf("Aro: %s\n", bike->aro);
     printf("Valor do aluguel: %f\n", bike->valor_aluguel);
     printf("Marca: %s\n", bike->marca);
-    printf("Cï¿½digo: %s\n", bike->cod);   
+    printf("Código: %s\n", bike->cod);   
   } 
 }
 
-///  CASE 4 (EXCLUI BIKE CADASTRADA DO SISTEMA ATRAVï¿½S DO Cï¿½DIGO DA BIKE)
+///  CASE 4 (EXCLUI BIKE CADASTRADA DO SISTEMA ATRAVÉS DO CÓDIGO DA BIKE)
 
   
 void excluir_bike(void) {
@@ -454,7 +452,7 @@ void excluir_bike(void) {
     ler_cod_bike(cod);
     fp= fopen("bikes.dat", "r+b");
     if (fp==NULL) {
-        printf("Nï¿½o foi possï¿½vel abrir o arquivo!");
+        printf("Não foi possível abrir o arquivo!");
         printf("\n\nTecle ENTER para continuar!\n\n");
 	    getchar();
     }
@@ -466,13 +464,13 @@ void excluir_bike(void) {
             ex->status='x'; 
             fseek(fp, -sizeof(Bike), SEEK_CUR);
             fwrite(ex, sizeof(Bike), 1, fp);  
-            printf("Bike excluï¿½da com sucesso!\n");
+            printf("Bike excluída com sucesso!\n");
             break;
         }
         }
     } 
   if (!busca) {
-    printf("Cï¿½digo nï¿½o encontrado!\n");  
+    printf("Código não encontrado!\n");  
   }
   printf("\n\nTecle ENTER para continuar!\n\n");
   getchar();

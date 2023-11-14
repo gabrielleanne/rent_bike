@@ -23,7 +23,7 @@ void modulo_aluguel (void) {
             case '2': 	aluga=buscar_aluguel();
                         print_aluguel(aluga);
                         printf("\n\nTecle ENTER para continuar!\n\n");
-	                    getchar();
+	                      getchar();
                         free(aluga);
                         break;
             case '3': 	excluir_aluguel();
@@ -87,10 +87,10 @@ Aluguel* novo_aluguel(void) {
     scanf("%d", &aluga->tempo);
     getchar();
     printf("Valor do aluguel:\n");
-	scanf("%f", &aluga->valor);
+	  scanf("%f", &aluga->valor);
     getchar();
     printf("CPF do cliente:\n");
-	fgets(aluga->cpf,12 ,stdin);
+	  fgets(aluga->cpf,12 ,stdin);
     getchar();
     aluga->status= 'c';
     printf("\n");
@@ -113,7 +113,7 @@ void gravar_aluguel(Aluguel* aluga) {
   FILE* fp;
   fp = fopen("aluguel.dat", "ab");
   if (fp == NULL) {
-    printf("Ocorreu um erro na abertura do arquivo!\n");
+    printf("Não foi possível abrir o arquivo!\n");
     exit(1);
   }
   fwrite(aluga, sizeof(Aluguel), 1, fp);
@@ -126,16 +126,16 @@ void gravar_aluguel(Aluguel* aluga) {
 
 Aluguel* buscar_aluguel(void) {
 
-    Aluguel* aluga;
+  Aluguel* aluga;
 	char* cod;
-    cod=ler_cod_aluguel();
+  cod=ler_cod_aluguel();
 	FILE* fp;
 	aluga = (Aluguel*) malloc(sizeof(Aluguel));
 	fp = fopen("aluguel.dat", "rb");
 	if (fp == NULL) {
 		printf("Não foi possível abrir o arquivo!");
-        printf("\n\nTecle ENTER para continuar!\n\n");
-	    getchar();
+    printf("\n\nTecle ENTER para continuar!\n\n");
+	  getchar();
 	}
 	while(fread(aluga, sizeof(Aluguel), 1, fp)) {
 		if ((strcmp(aluga->cod_aluguel, cod) == 0) && (aluga->status == 'c')) {
@@ -144,10 +144,10 @@ Aluguel* buscar_aluguel(void) {
 	}
 	fclose(fp);
 	return NULL;
-    printf("\n");
-    printf("\n");
-    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-    getchar();
+  printf("\n");
+  printf("\n");
+  printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+  getchar();
   
 }
 
@@ -155,15 +155,15 @@ Aluguel* buscar_aluguel(void) {
 ///// FUNÇÃO QUE EXIBE BIKE NA TELA
 
 void print_aluguel(Aluguel* aluga) {
-  if ((aluga == NULL) || (aluga->status == 'd')) {
-    printf("\nBike não disponível!\n");
+  if ((aluga == NULL) || (aluga->status == 'x')) {
+    printf("\nAluguel não existe!\n");
   } else {
-    printf("Código do aluguel: %s\n", aluga->cod_aluguel);
-     printf("Código da bike: %s\n", aluga->cod_bike);
-    printf("Tempo de aluguel: %d\n", aluga->tempo);
-    printf("CPF do cliente: %s\n", aluga->cpf);
-    printf("Valor: %f\n", aluga->valor);
-    printf("Status: %s\n", aluga->status);
+      printf("Código do aluguel: %s\n", aluga->cod_aluguel);
+      printf("Código da bike: %s\n", aluga->cod_bike);
+      printf("Tempo de aluguel: %d\n", aluga->tempo);
+      printf("CPF do cliente: %s\n", aluga->cpf);
+      printf("Valor: %f\n", aluga->valor);
+      printf("Status: %s\n", aluga->status);
   } 
 }
 
@@ -173,22 +173,22 @@ void print_aluguel(Aluguel* aluga) {
 
 char* ler_cod_aluguel(void) {
 
-    char* cod;
-    cod = (char*) malloc(12*sizeof(char));
+  char* cod;
+  cod = (char*) malloc(12*sizeof(char));
 	printf("\n");
 	system("clear||cls");
-    printf("\n");
-    printf("-------------------------------------------------\n");
-    printf("*******************RENT A BIKE*******************\n");
-    printf("-------------------------------------------------\n");
-    printf("-------------------MENU BIKES--------------------\n");
-    printf("-------------------------------------------------\n");
-    printf("\n");
-    printf("\n");
+  printf("\n");
+  printf("-------------------------------------------------\n");
+  printf("*******************RENT A BIKE*******************\n");
+  printf("-------------------------------------------------\n");
+  printf("-------------------MENU BIKES--------------------\n");
+  printf("-------------------------------------------------\n");
+  printf("\n");
+  printf("\n");
 	printf("Digite o código do aluguel: \n");
 	fgets(cod,4,stdin);
-    getchar();
-    return cod;
+  getchar();
+  return cod;
 }
 
 

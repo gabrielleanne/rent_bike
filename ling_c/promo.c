@@ -8,7 +8,7 @@
 #include"promo.h"
 
 
-////OPï¿½ï¿½ES PARA MENU PROMO
+////OPÇÕES PARA MENU PROMO
 
 void modulo_promo (void) {
    Promo* pro;
@@ -30,7 +30,7 @@ void modulo_promo (void) {
 }
 
 
-///MENU PROMOï¿½ï¿½ES
+///MENU PROMOÇÕES
 
 
 char promo(void) {
@@ -41,12 +41,12 @@ char promo(void) {
     printf("-------------------------------------------------\n");
     printf("*******************RENT A BIKE*******************\n");
     printf("-------------------------------------------------\n");
-    printf(" 1. CADASTRAR PROMOï¿½ï¿½O-------------------DIGITE 1\n");
-    printf(" 2. EDITAR PROMOï¿½ï¿½O----------------------DIGITE 2\n");
-    printf(" 3. EXCLUIR PROMOï¿½ï¿½O---------------------DIGITE 3\n");
+    printf(" 1. CADASTRAR PROMOÇÃO-------------------DIGITE 1\n");
+    printf(" 2. EDITAR PROMOÇÃO----------------------DIGITE 2\n");
+    printf(" 3. EXCLUIR PROMOÇÃO---------------------DIGITE 3\n");
     printf(" 0. VOLTAR-------------------------------DIGITE 0\n");
     printf("\n");
-    printf("Escolha sua opï¿½ï¿½o: ");
+    printf("Escolha opção: ");
     scanf("%c", &esc);
     getchar();
     printf("\n");
@@ -57,7 +57,7 @@ char promo(void) {
 
 
 
-///OPï¿½ï¿½O CASE 1 (CADASTRA NOVA PROMOï¿½ï¿½O NO SISTEMA)
+///OPÇÃO CASE 1 (CADASTRA NOVA PROMOÇÃO NO SISTEMA)
 
 Promo* cadastrar_promo(void) {
 
@@ -68,12 +68,12 @@ Promo* cadastrar_promo(void) {
     printf("-------------------------------------------------\n");
     printf("*******************RENT A BIKE*******************\n");
     printf("-------------------------------------------------\n");
-    printf("------------------MENU PROMOï¿½ï¿½ES-----------------\n");
+    printf("------------------MENU PROMOÇÕES-----------------\n");
     printf("-------------------------------------------------\n");
-    printf("Vamos cadastrar uma promoï¿½ï¿½o no sistema!");
+    printf("Vamos cadastrar uma promoção no sistema!");
     printf("\n");
     printf("\n");
-    printf("Anï¿½ncio:\n");
+    printf("Anúncio:\n");
     fgets(pro->anuncio,40,stdin);
     getchar();
     printf("\n");
@@ -81,7 +81,7 @@ Promo* cadastrar_promo(void) {
     fgets(pro->val,5,stdin);
     getchar();
     printf("\n");
-    printf("Cï¿½digo gerado da promoï¿½ï¿½o:\n");
+    printf("Código gerado da promoção:\n");
     fgets(pro->cod,5,stdin);
     getchar();
     pro->status = 'c';
@@ -96,7 +96,7 @@ Promo* cadastrar_promo(void) {
 }
 
 
-/// FUNï¿½ï¿½O GRAVA PROMOï¿½ï¿½O NO SISTEMA
+/// FUNÇÃO GRAVA PROMOÇÃO NO SISTEMA
 
 
 void gravar_promo(Promo* pro) {
@@ -112,7 +112,7 @@ void gravar_promo(Promo* pro) {
 
 
 
-////OPï¿½ï¿½O CASE 2 (ALTERA DADOS/INFORMAï¿½ï¿½ES SOBRE PROMOï¿½ï¿½ES CADASTRADAS)
+////OPÇÃO CASE 2 (ALTERA DADOS/INFORMAÇÕES SOBRE PROMOÇÕES CADASTRADAS)
 
 
 
@@ -139,16 +139,16 @@ char editar_promo(void) {
     printf("-------------------------------------------------\n");
     printf("*******************RENT A BIKE*******************\n");
     printf("-------------------------------------------------\n");
-    printf("------------------MENU PROMOï¿½ï¿½ES-----------------\n");
+    printf("------------------MENU PROMOÇÕES-----------------\n");
     printf("-------------------------------------------------\n");
-    printf("Vamos editar dados de uma promoï¿½ï¿½o no sistema!");
+    printf("Vamos editar dados de uma promoção no sistema!");
     printf("\n");
     printf("\n");
-    printf(" 1. EDITAR ANï¿½NCIO-----------------------DIGITE 1\n");
+    printf(" 1. EDITAR ANÚNCIO-----------------------DIGITE 1\n");
     printf(" 2. EDITAR VALIDADE----------------------DIGITE 2\n");
     printf(" 0. VOLTAR-------------------------------DIGITE 0\n");
     printf("\n");
-    printf("Escolha sua opï¿½ï¿½o: \n");
+    printf("Escolha sua opção: \n");
     scanf("%c", &esc);
     getchar();
     printf("\n");
@@ -158,7 +158,7 @@ char editar_promo(void) {
     return esc;
 }
 
-/// FUNï¿½ï¿½O SOLICITA Cï¿½DIGO DA BIKE PARA BUSCA
+/// FUNÇÃO SOLICITA CÓDIGO DA BIKE PARA BUSCA
 
 void ler_cod(char* cod) {
 	printf("\n");
@@ -171,7 +171,7 @@ void ler_cod(char* cod) {
   printf("-------------------------------------------------\n");
   printf("\n");
   printf("\n");
-  printf("Digite o cï¿½digo: \n");
+  printf("Digite o código: \n");
   fgets(cod,3,stdin);
   getchar();
 }
@@ -192,14 +192,14 @@ void edit_anuncio(void) {
     ler_cod(cod);
     fp= fopen("promo.dat", "r+b");
     if (fp==NULL) {
-      printf("Nï¿½o foi possï¿½vel abrir o arquivo!");
+      printf("Não foi possível abrir o arquivo!");
       printf("\n\nTecle ENTER para continuar!\n\n");
 	  getchar();
     }
     else {
         while (fread(new, sizeof(Promo), 1, fp)==1) {
             if (strcmp(new->cod, cod)==0) {
-                printf("Anï¿½ncio: \n");
+                printf("Anúncio: \n");
                 fgets(new->anuncio,40,stdin);
                 getchar();
                 fseek(fp, -sizeof(Promo), SEEK_CUR);
@@ -212,10 +212,10 @@ void edit_anuncio(void) {
       
     }
     if (!busca) {
-      printf("Cï¿½digo nï¿½o existe!\n");
+      printf("Código não existe!\n");
     }
     else {
-      printf("Anï¿½ncio editado com sucesso!\n");
+      printf("Anúncio editado com sucesso!\n");
     }
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
@@ -238,7 +238,7 @@ void edit_validade(void) {
     ler_cod(cod);
     fp= fopen("promo.dat", "r+b");
     if (fp==NULL) {
-      printf("Nï¿½o foi possï¿½vel abrir o arquivo!");
+      printf("Não foi possível abrir o arquivo!");
       printf("\n\nTecle ENTER para continuar!\n\n");
 	  getchar();
     }
@@ -258,7 +258,7 @@ void edit_validade(void) {
       
     }
     if (!busca) {
-      printf("Cï¿½digo nï¿½o existe!\n");
+      printf("Código não existe!\n");
     }
     else {
       printf("Validade editada com sucesso!\n");
@@ -271,7 +271,7 @@ void edit_validade(void) {
 
 
 
-////OPï¿½ï¿½O CASE 3 (EXCLUI PROMOï¿½ï¿½O CADASTRADA NO SISTEMA)
+////OPÇÃO CASE 3 (EXCLUI PROMOÇÃO CADASTRADA NO SISTEMA)
 
 
 void excluir_promo(void) {
@@ -284,7 +284,7 @@ void excluir_promo(void) {
   ler_cod(cod);
   fp= fopen("promo.dat", "r+b");
   if (fp==NULL) {
-    printf("Nï¿½o foi possï¿½vel abrir o arquivo!");
+    printf("Não foi possível abrir o arquivo!");
     printf("\n\nTecle ENTER para continuar!\n\n");
 	  getchar();
   }
@@ -296,13 +296,13 @@ void excluir_promo(void) {
         ex->status='x'; 
         fseek(fp, -sizeof(Promo), SEEK_CUR);
         fwrite(ex, sizeof(Promo), 1, fp);  
-        printf("Promoï¿½ï¿½o excluï¿½da com sucesso!\n");
+        printf("Promoção excluída com sucesso!\n");
         break;
       }
     }
   } 
   if (!busca) {
-    printf("Cï¿½digo nï¿½o encontrado!\n");  
+    printf("Código não encontrado!\n");  
   }
   printf("\n\nTecle ENTER para continuar!\n\n");
   getchar();
