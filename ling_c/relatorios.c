@@ -111,7 +111,7 @@ void listar_clientes(void) {
   printf("\n");
   while (fread(cli, sizeof(Cliente), 1, fp)) { 
     if (cli->status != 'x') {
-      printf("%-51s", cli->nome);
+      printf("%-50s", cli->nome);
       printf("|");
       printf("%-12s", cli->cpf);
       printf("|");

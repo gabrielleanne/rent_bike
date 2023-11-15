@@ -8,7 +8,7 @@
 #include"util.h"
 
 
-////OPÇÕES PARA MENU BIKES
+////OP??ES PARA MENU BIKES
 
 void modulo_bike (void) {
 
@@ -51,7 +51,6 @@ char bikes(void) {
     printf(" 2. EDITAR BIKE--------------------------DIGITE 2\n");
     printf(" 3. BUSCAR BIKE--------------------------DIGITE 3\n");
     printf(" 4. EXCLUIR BIKE-------------------------DIGITE 4\n");
-    printf(" 5. LISTAR BIKES-------------------------DIGITE 5\n");
     printf(" 0. VOLTAR-------------------------------DIGITE 0\n");
     printf("\n");
     printf("Escolha sua opção: ");
@@ -203,7 +202,7 @@ void ler_cod_bike(char* cod) {
     printf("-------------------------------------------------\n");
     printf("\n");
     printf("\n");
-	printf("Digite o código: \n");
+	printf("Digite o c?digo: \n");
 	fgets(cod,3,stdin);
     getchar();
 }
@@ -402,7 +401,7 @@ void altera_marca(void) {
 }
 
 
-/////OPÇÃO CASE 3 (BUSCA BIKE NO SISTEMA ATRAVï¿½S DO Cï¿½DIGO DA BIKE)
+/////OPÇÃO CASE 3 (BUSCA BIKE NO SISTEMA ATRAV?S DO C?DIGO DA BIKE)
 
 Bike* buscar_bike(void) {
     Bike* bike;
