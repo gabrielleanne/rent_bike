@@ -4,10 +4,10 @@ typedef struct bike Bike;
 
 struct bike {
     char tipo;
-    char aro[3];
+    char aro[5];
     float valor_aluguel;
     char marca[20];
-    char cod[2];
+    char cod[6];
     char status;
 };
 

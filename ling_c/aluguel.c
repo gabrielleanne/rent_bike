@@ -6,6 +6,7 @@
 #include"aluguel.h"
 
 
+
 ////OPÇÕES PARA MENU ALUGUEL
 
 
@@ -47,7 +48,6 @@ char aluguel(void) {
     printf(" 1. NOVO ALUGUEL-------------------------DIGITE 1\n");
     printf(" 2. BUSCAR ALUGUEL-----------------------DIGITE 2\n");
     printf(" 3. EXCLUIR ALUGUEL----------------------DIGITE 3\n");
-    printf(" 3. LISTAR ALUGUÉIS----------------------DIGITE 4\n");
     printf(" 0. VOLTAR-------------------------------DIGITE 0\n");
     printf("\n");
     printf("Escolha sua opção: ");

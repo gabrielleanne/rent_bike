@@ -92,37 +92,37 @@ void listar_clientes(void) {
   }
   printf("%-50s", "NOME");
   printf("|");
-  printf("%-12s", "CPF");
+  printf("%-15s", "CPF");
   printf("|");
   printf("%-20s", "LOGRADOURO");
   printf("|");
-  printf("%-5s", "NÚMERO");
+  printf("%-9s", "NÚMERO");
   printf("|");
   printf("%-15s", "BAIRRO");
   printf("|");
   printf("%-40s", "E-MAIL");
-  printf("|");
+  //printf("|");
   printf("\n");
-  printf("%51s", "|");
-  printf("%13s", "|");
-  printf("%21s", "|");
-  printf("%6s", "|");
-  printf("%16s", "|");
+  // printf("%50s", "|");
+  // printf("%12s", "|");
+  // printf("%20s", "|");
+  // printf("%6s", "|");
+  // printf("%15s", "|");
   printf("\n");
   while (fread(cli, sizeof(Cliente), 1, fp)) { 
     if (cli->status != 'x') {
       printf("%-50s", cli->nome);
-      printf("|");
-      printf("%-12s", cli->cpf);
-      printf("|");
-      printf("%-20s", cli->log);
-      printf("|");
-      printf("%-5s", cli->num);
-      printf("|");
-      printf("%-15s", cli->bai);
-      printf("|");
-      printf("%-40s", cli->email);
-      printf("|");
+      //printf("|");
+      printf("%-100s", cli->cpf);
+      //printf("|");
+      // printf("%-20s", cli->log);
+      // printf("|");
+      // printf("%-5s", cli->num);
+      // printf("|");
+      // printf("%-15s", cli->bai);
+      // printf("|");
+      // printf("%-40s", cli->email);
+      // printf("|");
       printf("\n");
     }
   }
@@ -156,8 +156,8 @@ void listar_bikes(void) {
   printf("%-15s", "CÓDIGO DA BIKE");
   printf("|");
   printf("\n");
-  printf("%8s", "|");
-  printf("%31s", "|");
+  // printf("%8s", "|");
+  // printf("%31s", "|");
   printf("\n");
   while (fread(bike, sizeof(Bike), 1, fp)) { 
     if (bike->status != 'x') {

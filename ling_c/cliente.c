@@ -5,7 +5,7 @@
 #include<unistd.h>
 #include<locale.h>
 #include"cliente.h"
-#include"util.h"
+#include"valid.h"
 
 
 //MENU CLIENTES
@@ -22,7 +22,6 @@ char clientes(void) {
     printf(" 2. BUSCAR CLIENTE-----------------------DIGITE 2\n");
     printf(" 3. EDITAR CADASTRO----------------------DIGITE 3\n");
     printf(" 4. EXCLUIR CADASTRO---------------------DIGITE 4\n");
-    printf(" 5. LISTAR TODOS-------------------------DIGITE 5\n");
     printf(" 0. VOLTAR-------------------------------DIGITE 0\n");
     printf("\n");
     printf("Escolha sua opção: ");
@@ -55,8 +54,7 @@ void modulo_cliente (void) {
                         break;
             case '4': 	excluir_cliente();
                         break;
-            // case '5':   listar_clientes();
-            //             break;
+            
          } 		
    } while (opcao != '0'); 
 }
@@ -204,6 +202,7 @@ char* ler_cpf(void) {
   printf("\n");
   printf("\n");
 	printf("Digite o CPF: \n");
+  printf("\n");
 	fgets(cpf,12,stdin);
   getchar();
   return cpf;
@@ -227,7 +226,6 @@ void print_cliente(Cliente* cli) {
   }
   
 }
-
 
 
 
