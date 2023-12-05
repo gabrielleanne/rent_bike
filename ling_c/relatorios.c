@@ -9,7 +9,7 @@
 #include "aluguel.h"
 #include "bike.h"
 #include "cliente.h"
-#include "promo.h"
+
 
 
 
@@ -33,12 +33,7 @@ void modulo_relatorio (void) {
                         printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
                         getchar();
                         break;            
-             case '3':  listar_promo();
-                        printf("\n");
-                        printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-                        getchar();
-                        break;
-             case '4':  listar_aluguel();
+             case '3':  listar_aluguel();
                         printf("\n");
                         printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
                         getchar(); 
@@ -62,8 +57,7 @@ char relatorios(void) {
     printf("-------------------------------------------------\n");
     printf(" 1. LISTAR CLIENTES ---------------------DIGITE 1\n");
     printf(" 2. LISTAR BIKES-------------------------DIGITE 2\n");
-    printf(" 3. LISTAR PROMOÇÕES-------- ------------DIGITE 3\n");
-    printf(" 4. LISTAR ALUGUÉIS----------------------DIGITE 4\n");
+    printf(" 3. LISTAR ALUGUÉIS----------------------DIGITE 4\n");
     printf(" 0. VOLTAR-------------------------------DIGITE 0\n");
     printf("\n");
     printf("Escolha sua opção: ");
@@ -90,40 +84,22 @@ void listar_clientes(void) {
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
   }
-  printf("%-50s", "NOME");
+  printf("%-20s", "NOME");
   printf("|");
-  printf("%-15s", "CPF");
+  printf("%-20s", "CPF");
   printf("|");
-  printf("%-20s", "LOGRADOURO");
+  printf("%-20s", "TELEFONE");
   printf("|");
-  printf("%-9s", "NÚMERO");
+  printf("%-20s", "E-MAIL");
   printf("|");
-  printf("%-15s", "BAIRRO");
-  printf("|");
-  printf("%-40s", "E-MAIL");
-  //printf("|");
   printf("\n");
-  // printf("%50s", "|");
-  // printf("%12s", "|");
-  // printf("%20s", "|");
-  // printf("%6s", "|");
-  // printf("%15s", "|");
   printf("\n");
   while (fread(cli, sizeof(Cliente), 1, fp)) { 
     if (cli->status != 'x') {
-      printf("%-50s", cli->nome);
-      //printf("|");
-      printf("%-100s", cli->cpf);
-      //printf("|");
-      // printf("%-20s", cli->log);
-      // printf("|");
-      // printf("%-5s", cli->num);
-      // printf("|");
-      // printf("%-15s", cli->bai);
-      // printf("|");
-      // printf("%-40s", cli->email);
-      // printf("|");
-      printf("\n");
+      printf("%-25s", cli->nome);
+      printf("%-25s", cli->cpf);
+      printf("%-15s", cli->tel);
+      printf("%-20s", cli->email);      
     }
   }
   fclose(fp);
@@ -145,15 +121,15 @@ void listar_bikes(void) {
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
   }
-  printf("%-50s", "TIPO DA BIKE");
+  printf("%-7s", "TIPO DA BIKE");
   printf("|");
-  printf("%-12s", "ARO DA BIKE");
+  printf("%-7s", "ARO");
   printf("|");
-  printf("%-20s", "VALOR DO ALUGUEL");
+  printf("%-18f", "VALOR ALUGUEL");
   printf("|");
-  printf("%-5s", "MARCA DA BIKE");
+  printf("%-15s", "MARCA");
   printf("|");
-  printf("%-15s", "CÓDIGO DA BIKE");
+  printf("%-15s", "CÓDIGO BIKE");
   printf("|");
   printf("\n");
   // printf("%8s", "|");
@@ -165,7 +141,7 @@ void listar_bikes(void) {
       printf("|");
       printf("%-30s", bike->aro);
       printf("|");
-      printf("%-30s", bike->valor_aluguel);
+      printf("%-30f", bike->valor_aluguel);
       printf("|");
       printf("%-30s", bike->marca);
       printf("|");
@@ -180,48 +156,9 @@ void listar_bikes(void) {
 
 
 
-// // ////OPÇÃO CASE 3 (LISTA TODAS AS PROMOÇÕES CADASTRADAS NO SISTEMA)
-
-void listar_promo(void) {
-  FILE* fp;
-  Promo* promo;
-  printf("\n");
-  promo = (Promo*) malloc(sizeof(Promo));
-  fp = fopen("promo.dat", "rb");
-  if (fp == NULL) {
-    printf("Não foi possível abrir o arquivo!\n");
-    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-    getchar();
-  }
-  printf("%-40s", "ANÚNCIO");
-  printf("|");
-  printf("%-5s", "VALIDADE");
-  printf("|");
-  printf("%-5s", "CÓDIGO");
-  printf("|");
-  printf("\n");
-  printf("%8s", "|");
-  printf("%31s", "|");
-  printf("\n");
-  while (fread(promo, sizeof(Promo), 1, fp)) { 
-    if (promo->status != 'x') {
-      printf("%-30s", promo->anuncio);
-      printf("|");
-      printf("%-30s", promo->val);
-      printf("|");
-      printf("%-30s", promo->cod);
-      printf("|");
-      printf("\n");
-    }
-  }
-  fclose(fp);
-  free(promo);
-}
 
 
-
-
-// // ////OPÇÃO CASE 4 (LISTA TODAS OS ALUGUÉIS CADASTRADOS NO SISTEMA)
+// // ////OPÇÃO CASE 3 (LISTA TODAS OS ALUGUÉIS CADASTRADOS NO SISTEMA)
 
 void listar_aluguel(void) {
   FILE* fp;
@@ -238,10 +175,6 @@ void listar_aluguel(void) {
   printf("|");
   printf("%-5s", "CÓDIGO DA BIKE");
   printf("|");
-  printf("%-5s", "TEMPO DE ALUGUEL");
-  printf("|");
-  printf("%-5s", "CPF DO CLIENTE");
-  printf("|");
   printf("%-5s", "VALOR");
   printf("|");
   printf("\n");
@@ -254,11 +187,11 @@ void listar_aluguel(void) {
       printf("|");
       printf("%-30s", aluga->cod_bike);
       printf("|");
-      printf("%-30s", aluga->tempo);
+     // printf("%-30d", aluga->tempo);
       printf("|");
       printf("%-30s", aluga->cpf);
       printf("|");
-      printf("%-30s", aluga->valor);
+      printf("%-30f", aluga->valor);
       printf("|");
       printf("\n");
     }

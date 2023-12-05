@@ -4,6 +4,7 @@
 #include <unistd.h>
 #include<locale.h>
 #include"aluguel.h"
+#include"bike.h"
 
 
 
@@ -64,6 +65,7 @@ char aluguel(void) {
 Aluguel* novo_aluguel(void) {
 
     Aluguel* aluga;
+    float valor;
     aluga = (Aluguel*) malloc(sizeof(Aluguel));
     system("clear||cls");
     printf("\n");
@@ -83,12 +85,17 @@ Aluguel* novo_aluguel(void) {
     printf("Código da bike: \n");
     fgets(aluga->cod_bike,4,stdin);
     getchar();
-    printf("Tempo de aluguel (em horas): \n");
-    scanf("%d", &aluga->tempo);
+    // printf("Tempo de aluguel (em horas): \n");
+    // scanf("%d", &aluga->tempo);
+    // getchar();
+    // printf("Valor do aluguel:\n");
+	  // scanf("%f", &aluga->valor);
+    // getchar();
+    valor=valor_aluguel();
+    scanf("%f", &aluga->valor);
     getchar();
-    printf("Valor do aluguel:\n");
-	  scanf("%f", &aluga->valor);
-    getchar();
+    printf("Valor do aluguel: %.2f", valor);
+    printf("\n");
     printf("CPF do cliente:\n");
 	  fgets(aluga->cpf,12 ,stdin);
     getchar();
@@ -158,12 +165,12 @@ void print_aluguel(Aluguel* aluga) {
   if ((aluga == NULL) || (aluga->status == 'x')) {
     printf("\nAluguel não existe!\n");
   } else {
-      printf("Código do aluguel: %s\n", aluga->cod_aluguel);
-      printf("Código da bike: %s\n", aluga->cod_bike);
-      printf("Tempo de aluguel: %d\n", aluga->tempo);
-      printf("CPF do cliente: %s\n", aluga->cpf);
+      printf("Código do aluguel: %c\n", aluga->cod_aluguel);
+      printf("Código da bike: %c\n", aluga->cod_bike);
+      //printf("Tempo de aluguel: %d\n", aluga->tempo);
+      printf("CPF do cliente: %c\n", aluga->cpf);
       printf("Valor: %f\n", aluga->valor);
-      printf("Status: %s\n", aluga->status);
+      printf("Status: %c\n", aluga->status);
   } 
 }
 
@@ -230,5 +237,31 @@ void excluir_aluguel(void) {
   fclose(fp);
   free(ex);
 }
-    
+
+float valor_aluguel (void){
+
+  char bike;
+  int tempo;
+  float valor;
   
+  printf("\n");
+  printf("O aluguel será por quantas horas?\n");
+  scanf("%d", &tempo);
+  getchar();
+  printf("\n");
+  bike=tipo_bike();
+
+  if (bike=='1'){
+    valor= 20*tempo;   
+  }
+  if (bike=='2'){
+    valor = 25*tempo;
+  }
+  if (bike=='3'){
+    valor = 30*tempo;
+  }
+  if (bike=='4'){
+    valor= 35*tempo;
+  }
+  return valor;
+}

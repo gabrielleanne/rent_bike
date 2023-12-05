@@ -4,7 +4,6 @@
 #include<locale.h>
 #include"cliente.h"
 #include"bike.h"
-#include"promo.h"
 #include"aluguel.h"
 #include"sobre.h"
 #include"valid.h"
@@ -33,11 +32,9 @@ int main(void) {
                     break;
           case '3': modulo_aluguel();
                     break;
-          case '4': modulo_promo();
+          case '4': modulo_sobre();
                     break;
-          case '5': modulo_sobre();
-                    break;
-          case '6': modulo_relatorio();
+          case '5': modulo_relatorio();
         } 	
     } while (opcao != '0');
     return 0;
@@ -59,9 +56,8 @@ char menu_principal(void) {
     printf(" 1. BIKES--------------------------------DIGITE 1\n");
     printf(" 2. CLIENTES-----------------------------DIGITE 2\n");
     printf(" 3. ALUGUEL------------------------------DIGITE 3\n");
-    printf(" 4. PROMOÇÕOES---------------------------DIGITE 4\n");
-    printf(" 5. SOBRE NÓS----------------------------DIGITE 5\n");
-    printf(" 6. RELATÓRIOS---------------------------DIGITE 6\n");
+    printf(" 4. SOBRE NÓS----------------------------DIGITE 5\n");
+    printf(" 5. RELATÓRIOS---------------------------DIGITE 6\n");
     printf(" 0. SAIR---------------------------------DIGITE 0\n");
     printf("\n");
     printf("Escolha sua opção: ");

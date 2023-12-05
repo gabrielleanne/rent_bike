@@ -187,3 +187,24 @@ int valida_email (char* email){
   }
 }
 
+
+// Função baseada no código https://github.com/Gabrielygor/Clinica-dentaria-UFRN
+
+// int valida_data (int dd, int mm, int aa) {
+//   int maiorDia;
+//   if (aa < 0 || mm < 1 || mm > 12)
+//     return false;
+//   if (mm == 2) {
+//     if (ehBissexto(aa)) 
+//       maiorDia = 29;
+//     else
+//       maiorDia = 28;
+//   } else if (mm == 4 || mm == 6 || mm == 9 || mm == 11) {
+//     maiorDia = 30;
+//   } else
+//     maiorDia = 31;
+//   if (dd < 1 || dd > maiorDia)
+//     return false;
+//   return true;
+// }
+

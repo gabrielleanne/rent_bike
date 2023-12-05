@@ -53,7 +53,7 @@ char bikes(void) {
     printf(" 4. EXCLUIR BIKE-------------------------DIGITE 4\n");
     printf(" 0. VOLTAR-------------------------------DIGITE 0\n");
     printf("\n");
-    printf("Escolha sua op??o: ");
+    printf("Escolha sua opção: ");
     scanf("%c", &esc);
     getchar();
     printf("\n");
@@ -82,12 +82,12 @@ Bike* cadastrar_bike(void) {
     printf("\n");
     printf("Tipo: \n");
     bike->tipo = tipo_bike();
-    getchar();
+    //getchar();
     printf("Aro: \n");
     fgets(bike->aro,5,stdin);
     getchar();
     printf("Valor do aluguel:\n");
-	scanf("%.2f", &bike->valor_aluguel);
+	scanf("%f", &bike->valor_aluguel);
     getchar();
     printf("Marca da bike:\n");
 	fgets(bike->marca,20 ,stdin);
@@ -191,7 +191,9 @@ char editar_bike(void) {
 
 /// FUN??O SOLICITA C?DIGO DA BIKE PARA BUSCA
 
-void ler_cod_bike(char* cod) {
+char* ler_cod_bike(void){
+    char* cod;
+    cod = (char*) malloc(6*sizeof(char));
 	printf("\n");
 	system("clear||cls");
     printf("\n");
@@ -205,13 +207,14 @@ void ler_cod_bike(char* cod) {
 	printf("Digite o c?digo: \n");
 	fgets(cod,6,stdin);
     getchar();
+    return cod;
 }
 
 
 //FUN??O PARA ALTERAR TIPO DE BIKE CADASTRADA
 
 void altera_tipo(void) {
-    char cod[6];
+    char* cod;
     Bike* new = (Bike*) malloc(sizeof(Bike));
     FILE* fp;
     int busca = 0;
@@ -223,7 +226,7 @@ void altera_tipo(void) {
     printf("-------------------------------------------------\n");
     printf("-------------------MENU BIKES--------------------\n");
     printf("-------------------------------------------------\n");
-    ler_cod_bike(cod);
+    cod=ler_cod_bike();
     fp= fopen("bikes.dat", "r+b");
     if (fp==NULL) {
       printf("N?o foi poss?vel abrir o arquivo!");
@@ -259,7 +262,7 @@ void altera_tipo(void) {
 //FUN??O PARA ALTERAR ARO DE BIKE CADASTRADA
 
 void altera_aro(void) {
-    char cod[6];
+    char* cod;
     Bike* new = (Bike*) malloc(sizeof(Bike));
     FILE* fp;
     int busca = 0;
@@ -270,7 +273,7 @@ void altera_aro(void) {
     printf("-------------------------------------------------\n");
     printf("-------------------MENU BIKES--------------------\n");
     printf("-------------------------------------------------\n");
-    ler_cod_bike(cod);
+    cod= ler_cod_bike();
     fp= fopen("bikes.dat", "r+b");
     if (fp==NULL) {
       printf("N?o foi poss?vel abrir o arquivo!");
@@ -309,7 +312,7 @@ void altera_aro(void) {
 
 
 void altera_valor(void) {
-    char cod[6];
+    char* cod;
     Bike* new = (Bike*) malloc(sizeof(Bike));
     FILE* fp;
     int busca = 0;
@@ -320,7 +323,7 @@ void altera_valor(void) {
     printf("-------------------------------------------------\n");
     printf("-------------------MENU BIKES--------------------\n");
     printf("-------------------------------------------------\n");
-    ler_cod_bike(cod);
+    cod=ler_cod_bike();
     fp= fopen("bikes.dat", "r+b");
     if (fp==NULL) {
       printf("N?o foi poss?vel abrir o arquivo!");
@@ -357,7 +360,7 @@ void altera_valor(void) {
 
 
 void altera_marca(void) {
-    char cod[6];
+    char* cod;
     Bike* new = (Bike*) malloc(sizeof(Bike));
     FILE* fp;
     int busca = 0;
@@ -368,7 +371,7 @@ void altera_marca(void) {
     printf("-------------------------------------------------\n");
     printf("-------------------MENU BIKES--------------------\n");
     printf("-------------------------------------------------\n");
-    ler_cod_bike(cod);
+    cod=ler_cod_bike();
     fp= fopen("bikes.dat", "r+b");
     if (fp==NULL) {
       printf("N?o foi poss?vel abrir o arquivo!");
@@ -405,8 +408,8 @@ void altera_marca(void) {
 
 Bike* buscar_bike(void) {
     Bike* bike;
-	char cod[6];
-    ler_cod_bike(cod);
+	char* cod;
+    cod=ler_cod_bike();
 	FILE* fp;
 	bike = (Bike*) malloc(sizeof(Bike));
 	fp = fopen("bikes.dat", "rb");
@@ -433,7 +436,7 @@ void print_bike(Bike* bike) {
   } else {
     printf("Tipo: %c\n", bike->tipo);
     printf("Aro: %c\n", bike->aro);
-    printf("Valor do aluguel: %f\n", bike->valor_aluguel);
+    printf("Valor do aluguel: %.2f\n", bike->valor_aluguel);
     printf("Marca: %c\n", bike->marca);
     printf("C?digo: %c\n", bike->cod);   
   } 
@@ -443,12 +446,12 @@ void print_bike(Bike* bike) {
 
   
 void excluir_bike(void) {
-    char cod[6];
+    char* cod;
     Bike* ex = (Bike*) malloc(sizeof(Bike));
     FILE* fp;
     int busca = 0;
 
-    ler_cod_bike(cod);
+    cod=ler_cod_bike();
     fp= fopen("bikes.dat", "r+b");
     if (fp==NULL) {
         printf("N?o foi poss?vel abrir o arquivo!");
