@@ -6,6 +6,8 @@
 
 
 
+//FUNÇÃO PARA VALIDAR NOME DO CLIENTE
+//BASEADO EM CÓDIGO DO PROF. FLAVIUS
 
 int valida_nome(char* nome) {
   int tam;
@@ -18,6 +20,10 @@ int valida_nome(char* nome) {
   }
   return 1;  
 }
+
+
+//FUNÇÃO PARA VALIDAR TELEFONE
+//BASEADO EM CÓDIGO DO PROF. FLAVIUS
 
 int valida_telefone(char* tel) {
   int tam;
@@ -34,17 +40,9 @@ int valida_telefone(char* tel) {
 }
 
 
-int valida_logradouro(char* log) {
-  int tam;
-  
-  tam = strlen(log);
-  for (int i = 0; i < tam-1; i++) {
-    if (!so_letra(log[i])) {
-      return 0;
-    }
-  }
-  return 1;  
-}
+
+// FUNÇÃO PARA VALIDAR NÚMERO DO ENDEREÇO DO CLIENTE
+//BASEADO EM CÓDIGO DO PROF. FLAVIUS 
 
 int valida_numero(char* num) {
   int tam;
@@ -61,18 +59,12 @@ int valida_numero(char* num) {
 }
   
  
-int valida_bairro(char* bai) {
-  int tam;
-  
-  tam = strlen(bai);
-  for (int i = 0; i < tam-1; i++) {
-    if (!so_letra(bai[i])) {
-      return 0;
-    }
-  }
-  return 1;  
-}
 
+
+
+
+// FUNÇÃO QUE VERIFICA SE HÁ SOMENTE LETRAS
+// baseada em código do Prof Flavius
 
 int so_letra(char c) {
   if (c >= 'A' && c <= 'Z') {
@@ -86,6 +78,10 @@ int so_letra(char c) {
   }  
 }
 
+// FUNÇÃO QUE VERIFICA SE HÁ SOMENTE DÍGITOS
+// baseada em código do Prof Flavius
+
+
 int so_digito(char c) {
   if (c >= '0' && c <= '9') {
     return 1;
@@ -93,6 +89,10 @@ int so_digito(char c) {
     return 0;
   }
 }
+
+
+//FUNÇÃO PARA VALIDAR CPF
+//Código baseado em código do site https://pog-carlos.blogspot.com/2011/11/validacao-de-cpf-em-c-usando-vetor.html
 
 
 
@@ -190,6 +190,7 @@ int valida_email (char* email){
 
 
 //Código baseado em código do site https://pt.stackoverflow.com/questions/213423/verificar-se-uma-data-%C3%A9-v%C3%A1lida-ou-n%C3%A3o-em-c
+// FUNÇÃO PARA VALIDAR DATA
 
 int valida_data(int dd, int mm, int yy) {
 
@@ -210,14 +211,11 @@ int valida_data(int dd, int mm, int yy) {
             else if (dd == 29 && mm == 2 && (yy % 400 == 0 || (yy % 4 == 0 && yy % 100 != 0)))
               return 1;
             else
-              //printf("Dia não é válido.\n");
               return 0;
         }else{
-            //printf("Mês não é válido.\n");
           return 0;
         }
     }else{
-      //printf("Ano não é válido.\n");
       return 0;
     }
   return 1;

@@ -64,7 +64,7 @@ char aluguel(void) {
     return esc;
 }
 
-//////ESCOLHA DA OPÇÃO CASE 1 (VISUALIZA BIKES DISPONÍVEIS PARA ALUGAR)
+//////ESCOLHA DA OPÇÃO CASE 1 (CADASTRA NOVO ALUGUEL NO SISTEMA)
 
 Aluguel* novo_aluguel(void) {
 
@@ -86,12 +86,12 @@ Aluguel* novo_aluguel(void) {
     printf("CPF do cliente (somente números):\n");
 	  fgets(aluga->cpf,12 ,stdin);
     getchar();
-    // while (!valida_cpf (aluga->cpf)) {
-    //     printf("Cpf digitado não é válido!\n");
-    //     printf("Informe o cpf novamente (somente números):\n ");
-    //     fgets(aluga->cpf, 12, stdin);
-    //     getchar();
-    //}
+    while (!valida_cpf (aluga->cpf)) {
+        printf("Cpf digitado não é válido!\n");
+        printf("Informe o cpf novamente (somente números):\n ");
+        fgets(aluga->cpf, 12, stdin);
+        getchar();
+    }
     printf("Código da bike: \n");
     fgets(aluga->cod_bike,4,stdin);
     getchar();
@@ -107,7 +107,7 @@ Aluguel* novo_aluguel(void) {
     sscanf(aluga->data, "%d/%d/%d", &dd, &mm, &yy);
     getchar();
      while (!valida_data (dd, mm, yy)) {
-        printf("Data digitada não é válido!\n");
+        printf("Data digitada não é válida!\n");
         printf("Informe a data novamente:\n ");
         fgets(aluga->data, 11, stdin);
         getchar();
@@ -143,7 +143,7 @@ void gravar_aluguel(Aluguel* aluga) {
 
 
 
-///ESCOLHA DA OPÇÃO CASE 2 (BUSCAR ALUGUEL DE BIKE)
+///ESCOLHA DA OPÇÃO CASE 2 (BUSCAR ALUGUEL DE BIKE PELO CPF DO CLIENTE)
 
 Aluguel* buscar_aluguel(void) {
 
@@ -190,6 +190,7 @@ void print_aluguel(Aluguel* aluga) {
 }
 
 
+//FUNÇÃO QUE LÊ CÓDIGO DO ALUGUEL
 
 char* cod_aluguel(void) {
 
@@ -254,6 +255,9 @@ void excluir_aluguel(void) {
   free(ex);
 }
 
+
+//FUNÇÃO QUE CALCULA O VALOR DO ALUGUEL
+
 float valor_aluguel (void){
 
   char bike;
@@ -261,7 +265,7 @@ float valor_aluguel (void){
   float valor;
   
   printf("\n");
-  printf("O aluguel será por quantas horas?\n");
+  printf("O aluguel ser? por quantas horas?\n");
   scanf("%d", &tempo);
   getchar();
   printf("\n");

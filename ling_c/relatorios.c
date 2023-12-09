@@ -15,7 +15,7 @@
 
 
 
-/// OPï¿½ï¿½ES PARA MENU RELATï¿½RIOS 
+/// OPÇÕES PARA MENU RELATÓRIOS 
 
 void modulo_relatorio (void) {
 
@@ -33,7 +33,12 @@ void modulo_relatorio (void) {
                             printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
                             getchar();
                             break;
-                  } 
+                  case '2': clientes_ex();
+                            printf("\n");
+                            printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+                            getchar();
+                            break;
+                } 
               } while (opcao2 != '0');
               break;
             case '2':
@@ -45,6 +50,11 @@ void modulo_relatorio (void) {
                             printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
                             getchar();
                             break;
+                  case '2': bikes_ex();
+                            printf("\n");
+                            printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+                            getchar();
+
                 }
               } while (opcao2 != '0');
               break;
@@ -55,6 +65,11 @@ void modulo_relatorio (void) {
                 opcao2 = listar_aluguel();
                 switch (opcao2){
                   case '1': aluguel_cadastrado();
+                            printf("\n");
+                            printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+                            getchar();
+                            break;
+                  case '2': aluguel_ex();
                             printf("\n");
                             printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
                             getchar();
@@ -70,7 +85,7 @@ void modulo_relatorio (void) {
   } while (opcao1 != '0');
 }
 
-//MENU RELATï¿½RIOS
+//MENU RELATÓRIOS
 
 char relatorios(void) {
     setlocale(LC_ALL,"Portuguese_Brazil");
@@ -82,10 +97,10 @@ char relatorios(void) {
     printf("-------------------------------------------------\n");
     printf(" 1. LISTAR CLIENTES ---------------------DIGITE 1\n");
     printf(" 2. LISTAR BIKES-------------------------DIGITE 2\n");
-    printf(" 3. LISTAR ALUGUï¿½IS----------------------DIGITE 4\n");
+    printf(" 3. LISTAR ALUGUÉIS----------------------DIGITE 4\n");
     printf(" 0. VOLTAR-------------------------------DIGITE 0\n");
     printf("\n");
-    printf("Escolha sua opï¿½ï¿½o: ");
+    printf("Escolha sua opção: ");
     scanf("%c",&esc);
     getchar();
     printf("\n");
@@ -100,7 +115,7 @@ char relatorios(void) {
 
 
 
-// // ////OPï¿½ï¿½O CASE 1 (LISTA TODOS OS CLIENTES CADASTRADOS NO SISTEMA)
+// // ////OPÇÃO CASE 1 (RELATÓRIOS DO MÓDULO CLIENTES)
 
 
 char listar_clientes(void) {
@@ -112,12 +127,10 @@ char listar_clientes(void) {
     printf("*******************RENT A BIKE*******************\n");
     printf("-------------------------------------------------\n");
     printf(" 1. CLIENTES CADASTRADOS ----------------DIGITE 1\n");
-    printf(" 2. BUSCAR CLIENTE-----------------------DIGITE 2\n");
-    printf(" 3. EDITAR CADASTRO----------------------DIGITE 3\n");
-    printf(" 4. EXCLUIR CADASTRO---------------------DIGITE 4\n");
+    printf(" 2. CLIENTES EXCLUÍDOS--------------------DIGITE 2\n");
     printf(" 0. VOLTAR-------------------------------DIGITE 0\n");
     printf("\n");
-    printf("Escolha sua opï¿½ï¿½o: ");
+    printf("Escolha sua opção: ");
     scanf("%c",&esc);
     getchar();
     printf("\n");
@@ -129,7 +142,7 @@ char listar_clientes(void) {
 
 
 
-// // ////OPï¿½ï¿½O CASE 2 (LISTA TODAS AS BIKES CADASTRADOS NO SISTEMA)
+// // ////OP??O CASE 2 (RELATÓRIOS DO MÓDULO BIKES)
 
 char listar_bikes(void) {
   setlocale(LC_ALL,"Portuguese_Brazil");
@@ -140,12 +153,12 @@ char listar_bikes(void) {
     printf("*******************RENT A BIKE*******************\n");
     printf("-------------------------------------------------\n");
     printf(" 1. BIKES CADASTRADAS -------------------DIGITE 1\n");
-    // printf(" 2. BUSCAR CLIENTE-----------------------DIGITE 2\n");
+    printf(" 2. BIKES EXCLUÍDAS----------------------DIGITE 2\n");
     // printf(" 3. EDITAR CADASTRO----------------------DIGITE 3\n");
     // printf(" 4. EXCLUIR CADASTRO---------------------DIGITE 4\n");
     printf(" 0. VOLTAR-------------------------------DIGITE 0\n");
     printf("\n");
-    printf("Escolha sua opï¿½ï¿½o: ");
+    printf("Escolha sua op??o: ");
     scanf("%c",&esc);
     getchar();
     printf("\n");
@@ -159,7 +172,7 @@ char listar_bikes(void) {
 
 
 
-// // ////OPï¿½ï¿½O CASE 3 (LISTA TODAS OS ALUGUï¿½IS CADASTRADOS NO SISTEMA)
+// // ////OP??O CASE 3 (RELATÓRIOS DO MÓDULO ALUGUEL)
 
 char listar_aluguel(void) {
    setlocale(LC_ALL,"Portuguese_Brazil");
@@ -170,12 +183,12 @@ char listar_aluguel(void) {
     printf("*******************RENT A BIKE*******************\n");
     printf("-------------------------------------------------\n");
     printf(" 1. ALUGUEIS CADASTRADOS ----------------DIGITE 1\n");
-    // printf(" 2. BUSCAR CLIENTE-----------------------DIGITE 2\n");
+    printf(" 2. ALUGUEIS EXCLUIDOS-------------------DIGITE 2\n");
     // printf(" 3. EDITAR CADASTRO----------------------DIGITE 3\n");
     // printf(" 4. EXCLUIR CADASTRO---------------------DIGITE 4\n");
     printf(" 0. VOLTAR-------------------------------DIGITE 0\n");
     printf("\n");
-    printf("Escolha sua opï¿½ï¿½o: ");
+    printf("Escolha sua op??o: ");
     scanf("%c",&esc);
     getchar();
     printf("\n");
@@ -186,6 +199,8 @@ char listar_aluguel(void) {
 }
 
 
+// RELATÓRIO DE CLIENTES CADASTRADOS
+
 void clientes_cadastrados (void) {
 
   FILE* fp;
@@ -194,7 +209,7 @@ void clientes_cadastrados (void) {
   cli = (Cliente*) malloc(sizeof(Cliente));
   fp = fopen("clientes.dat", "rb");
   if (fp == NULL) {
-    printf("Nï¿½o foi possï¿½vel abrir o arquivo!\n");
+    printf("N?o foi poss?vel abrir o arquivo!\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
   }
@@ -221,6 +236,46 @@ void clientes_cadastrados (void) {
 }
 
 
+//RELATÓRIO DE CLIENTES EXCLUÍDOS
+
+void clientes_ex (void) {
+
+  FILE* fp;
+  Cliente* cli;
+  printf("\n");
+  cli = (Cliente*) malloc(sizeof(Cliente));
+  fp = fopen("clientes.dat", "rb");
+  if (fp == NULL) {
+    printf("N?o foi poss?vel abrir o arquivo!\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    getchar();
+  }
+  printf("%-20s", "NOME");
+  printf("|");
+  printf("%-20s", "CPF");
+  printf("|");
+  printf("%-20s", "TELEFONE");
+  printf("|");
+  printf("%-20s", "E-MAIL");
+  printf("|");
+  printf("\n");
+  printf("\n");
+  while (fread(cli, sizeof(Cliente), 1, fp)) { 
+    if (cli->status == 'x') {
+      printf("%-25s", cli->nome);
+      printf("%-25s", cli->cpf);
+      printf("%-15s", cli->tel);
+      printf("%-20s", cli->email);      
+    }
+  }
+  fclose(fp);
+  free(cli);
+}
+
+
+
+//RELATÓRIO DE BIKES CADASTRADAS
+
 void bikes_cadastradas (void){
 
  FILE* fp;
@@ -229,7 +284,7 @@ void bikes_cadastradas (void){
   bike = (Bike*) malloc(sizeof(Bike));
   fp = fopen("bikes.dat", "rb");
   if (fp == NULL) {
-    printf("Nï¿½o foi possï¿½vel abrir o arquivo!\n");
+    printf("N?o foi poss?vel abrir o arquivo!\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
   }
@@ -241,7 +296,7 @@ void bikes_cadastradas (void){
   printf("|");
   printf("%-20s", "MARCA");
   printf("|");
-  printf("%-10s", "Cï¿½DIGO");
+  printf("%-10s", "C?DIGO");
   printf("|");
   printf("\n");
   printf("\n");
@@ -260,6 +315,49 @@ void bikes_cadastradas (void){
 }
 
 
+//RELATÓRIO DE BIKES EXCLUÍDAS
+
+void bikes_ex (void){
+
+ FILE* fp;
+  Bike* bike;
+  printf("\n");
+  bike = (Bike*) malloc(sizeof(Bike));
+  fp = fopen("bikes.dat", "rb");
+  if (fp == NULL) {
+    printf("N?o foi poss?vel abrir o arquivo!\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    getchar();
+  }
+  printf("%-10s", "TIPO");
+  printf("|");
+  printf("%-10s", "ARO");
+  printf("|");
+  printf("%-15s", "VALOR");
+  printf("|");
+  printf("%-20s", "MARCA");
+  printf("|");
+  printf("%-10s", "C?DIGO");
+  printf("|");
+  printf("\n");
+  printf("\n");
+  while (fread(bike, sizeof(Bike), 1, fp)) { 
+    if (bike->status == 'x') {
+      printf("%-10d", bike->tipo);
+      printf("%-10s", bike->aro);
+      printf("%20.2f", bike->valor_aluguel);
+      printf("%17s", bike->marca);
+      printf("%64s", bike->cod);
+      printf("\n");
+    }
+  }
+  fclose(fp);
+  free(bike);
+}
+
+
+
+//RELATÓRIO DE ALUGUÉIS CADASTRADOS
 
 void aluguel_cadastrado (void){
 
@@ -269,13 +367,13 @@ FILE* fp;
   aluga = (Aluguel*) malloc(sizeof(Aluguel));
   fp = fopen("aluguel.dat", "rb");
   if (fp == NULL) {
-    printf("Nï¿½o foi possï¿½vel abrir o arquivo!\n");
+    printf("N?o foi poss?vel abrir o arquivo!\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
   }
-  printf("%-40s", "Cï¿½DIGO DO ALUGUEL");
+  printf("%-40s", "C?DIGO DO ALUGUEL");
   printf("|");
-  printf("%-5s", "Cï¿½DIGO DA BIKE");
+  printf("%-5s", "C?DIGO DA BIKE");
   printf("|");
   printf("%-5s", "VALOR");
   printf("|");
@@ -285,6 +383,50 @@ FILE* fp;
   printf("\n");
   while (fread(aluga, sizeof(Aluguel), 1, fp)) { 
     if (aluga->status != 'x') {
+      printf("%-30s", aluga->cod_aluguel);
+      printf("|");
+      printf("%-30s", aluga->cod_bike);
+      printf("|");
+     // printf("%-30d", aluga->tempo);
+      printf("|");
+      printf("%-30s", aluga->cpf);
+      printf("|");
+      printf("%-30f", aluga->valor);
+      printf("|");
+      printf("\n");
+    }
+  }
+  fclose(fp);
+  free(aluga);
+}
+
+
+//RELATÓRIO DE ALUGUÉIS EXCLUÍDOS
+
+void aluguel_ex (void){
+
+FILE* fp;
+  Aluguel* aluga;
+  printf("\n");
+  aluga = (Aluguel*) malloc(sizeof(Aluguel));
+  fp = fopen("aluguel.dat", "rb");
+  if (fp == NULL) {
+    printf("N?o foi poss?vel abrir o arquivo!\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    getchar();
+  }
+  printf("%-40s", "C?DIGO DO ALUGUEL");
+  printf("|");
+  printf("%-5s", "C?DIGO DA BIKE");
+  printf("|");
+  printf("%-5s", "VALOR");
+  printf("|");
+  printf("\n");
+  printf("%8s", "|");
+  printf("%31s", "|");
+  printf("\n");
+  while (fread(aluga, sizeof(Aluguel), 1, fp)) { 
+    if (aluga->status == 'x') {
       printf("%-30s", aluga->cod_aluguel);
       printf("|");
       printf("%-30s", aluga->cod_bike);
