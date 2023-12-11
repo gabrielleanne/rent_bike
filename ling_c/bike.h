@@ -9,6 +9,7 @@ struct bike {
     char marca[20];
     char cod[6];
     char status;
+    char dispon;
 };
 
 

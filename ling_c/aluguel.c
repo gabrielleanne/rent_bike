@@ -34,6 +34,8 @@ void modulo_aluguel (void) {
                         break;
             case '3': 	excluir_aluguel();
                         break;
+            case '4': 	baixa_aluguel();
+                        break;
             
         } 		
     } while (opcao != '0');
@@ -53,6 +55,7 @@ char aluguel(void) {
     printf(" 1. NOVO ALUGUEL-------------------------DIGITE 1\n");
     printf(" 2. BUSCAR ALUGUEL-----------------------DIGITE 2\n");
     printf(" 3. EXCLUIR ALUGUEL----------------------DIGITE 3\n");
+    printf(" 4. BAIXA EM ALUGUEL---------------------DIGITE 4\n");
     printf(" 0. VOLTAR-------------------------------DIGITE 0\n");
     printf("\n");
     printf("Escolha sua opção: ");
@@ -99,7 +102,7 @@ Aluguel* novo_aluguel(void) {
     fgets(aluga->cod_aluguel,4,stdin);
     getchar();
     printf("Tempo de aluguel (em horas): \n");
-    scanf("%d", &aluga->tempo);
+    scanf("%d",&aluga->tempo);
     getchar();
     printf("Digite a data do aluguel (dd/mm/yyyy): \n");
     fgets(aluga->data,11,stdin);
@@ -114,6 +117,7 @@ Aluguel* novo_aluguel(void) {
     }
     aluga->valor=valor_aluguel();
     aluga->status= 'c';
+    aluga->vigencia= 's';
     printf("\n");
     printf("\n");
     printf("Cadastro realizado com sucesso!\n");
@@ -184,8 +188,9 @@ void print_aluguel(Aluguel* aluga) {
       printf("Data do aluguel: %s\n", aluga->data);
       printf("Tempo de aluguel: %d\n", aluga->tempo);
       printf("CPF do cliente: %s\n", aluga->cpf);
-      printf("Valor: %f\n", aluga->valor);
+      printf("Valor: %.2f\n", aluga->valor);
       printf("Status: %c\n", aluga->status);
+      printf("Aluguel vigente?: %c\n", aluga->vigencia);
   } 
 }
 
@@ -239,6 +244,7 @@ void excluir_aluguel(void) {
       if (strcmp(ex->cod_aluguel, cod)==0) {
         busca=1;
         ex->status='x'; 
+        ex->vigencia='n';
         fseek(fp, (-1L)*sizeof(Aluguel), SEEK_CUR);
         fwrite(ex, sizeof(Aluguel), 1, fp);  
         printf("Aluguel excluído com sucesso!\n");
@@ -255,35 +261,72 @@ void excluir_aluguel(void) {
   free(ex);
 }
 
+       
+void baixa_aluguel(void) {
+
+  char* cod;
+  Aluguel* ex = (Aluguel*) malloc(sizeof(Aluguel));
+  FILE* fp;
+  int busca = 0;
+
+  cod = cod_aluguel();
+  fp= fopen("aluguel.dat", "r+b");
+  if (fp==NULL) {
+    printf("Não foi possível abrir o arquivo!\n");
+    printf("\n\nTecle ENTER para continuar!\n\n");
+	  getchar();
+  }
+  else{  
+    while (fread(ex, sizeof(Aluguel), 1, fp)) {
+      if (strcmp(ex->cod_aluguel, cod)==0) {
+        busca=1; 
+        ex->vigencia='n';
+        fseek(fp, (-1L)*sizeof(Aluguel), SEEK_CUR);
+        fwrite(ex, sizeof(Aluguel), 1, fp);  
+        printf("Baixa em aluguel com sucesso!\n");
+        break;
+      }
+    }
+  } 
+  if (!busca) {
+    printf("Código de aluguel não encontrado!\n");  
+  }
+  printf("\n\nTecle ENTER para continuar!\n\n");
+  getchar();
+  fclose(fp);
+  free(ex);
+}
+
+
+
+
 
 //FUNÇÃO QUE CALCULA O VALOR DO ALUGUEL
 
 float valor_aluguel (void){
 
   char bike;
-  int tempo;
+  int temp;
   float valor;
-  
   printf("\n");
-  printf("O aluguel ser? por quantas horas?\n");
-  scanf("%d", &tempo);
+  printf("O aluguel será por quantas horas?\n");
+  scanf("%d", &temp);
   getchar();
   printf("\n");
   bike=tipo_bike();
   if (bike=='1'){
-    valor= 20*tempo;   
+    valor= 20*temp;   
   }
   if (bike=='2'){
-    valor = 25*tempo;
+    valor = 25*temp;
   }
   if (bike=='3'){
-    valor = 30*tempo;
+    valor = 30*temp;
   }
   if (bike=='4'){
-    valor= 35*tempo;
+    valor= 35*temp;
   }
-  printf("Valor do aluguel: %.2f", valor);
   printf("\n");
+  printf("O valor do aluguel será de : %.2f\n", valor);
   return valor;
 }
-

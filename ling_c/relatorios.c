@@ -11,8 +11,6 @@
 #include "cliente.h"
 
 
-
-
 void aluguel_cpf(Aluguel*);
 
 /// OPÇÕES PARA MENU RELATÓRIOS 
@@ -22,6 +20,7 @@ void modulo_relatorio (void) {
   char opcao1;
   char opcao2;
   Aluguel* aluga;
+
   do {
       opcao1 = relatorios();
       switch(opcao1) {
@@ -68,9 +67,9 @@ void modulo_relatorio (void) {
           
             case '3': 
               do {
-                opcao2 = listar_aluguel();
+                opcao2 = listar_aluguel(); 
                 switch (opcao2){
-                  case '1': aluguel_cadastrado();
+                  case '1': aluguel_vigente();
                             printf("\n");
                             printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
                             getchar();
@@ -80,16 +79,18 @@ void modulo_relatorio (void) {
                             printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
                             getchar();
                             break;
-
                   case '3': aluguel_cpf(aluga);
+                            printf("\n");
+                            printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+                            getchar();
+                            break;
+                  case '4': aluguel_term();
                             printf("\n");
                             printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
                             getchar();
                             break;
 
                 }
-                      
-    
               }while (opcao2 !='0');
               break;
 
@@ -189,9 +190,10 @@ char listar_aluguel(void) {
     printf("-------------------------------------------------\n");
     printf("*******************RENT A BIKE*******************\n");
     printf("-------------------------------------------------\n");
-    printf(" 1. ALUGUEIS CADASTRADOS ----------------DIGITE 1\n");
+    printf(" 1. ALUGUEIS VIGENTES--------------------DIGITE 1\n");
     printf(" 2. ALUGUEIS EXCLUIDOS-------------------DIGITE 2\n");
     printf(" 3. ALUGUEIS POR CPF---------------------DIGITE 3\n");
+    printf(" 4. ALUGUEIS TERMINADOS------------------DIGITE 1\n");
     printf(" 0. VOLTAR-------------------------------DIGITE 0\n");
     printf("\n");
     printf("Escolha sua opção: ");
@@ -269,29 +271,43 @@ void clientes_ex (void) {
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
   }
-  printf("%-20s", "NOME");
-  printf("|");
-  printf("%-20s", "CPF");
-  printf("|");
-  printf("%-20s", "TELEFONE");
-  printf("|");
-  printf("%-20s", "E-MAIL");
-  printf("|");
-  printf("\n");
-  printf("\n");
+  // printf("%-20s", "NOME");
+  // printf("|");
+  // printf("%-20s", "CPF");
+  // printf("|");
+  // printf("%-20s", "TELEFONE");
+  // printf("|");
+  // printf("%-20s", "E-MAIL");
+  // printf("|");
+  // printf("\n");
+  // printf("\n");
+  // while (fread(cli, sizeof(Cliente), 1, fp)) { 
+  //   if (cli->status == 'x') {
+  //     printf("%-25s", cli->nome);
+  //     printf("%-25s", cli->cpf);
+  //     printf("%-15s", cli->tel);
+  //     printf("%-20s", cli->email);      
+  //   }
+  //}
+   
   while (fread(cli, sizeof(Cliente), 1, fp)) { 
     if (cli->status == 'x') {
-      printf("%-25s", cli->nome);
-      printf("%-25s", cli->cpf);
-      printf("%-15s", cli->tel);
-      printf("%-20s", cli->email);      
+      printf("Nome: %s\n", cli->nome);
+      printf("CPF: %s\n", cli->cpf);
+      printf("Email: %s\n", cli->email);
+      printf("Logradouro: %s\n", cli->log);
+      printf("Número: %s\n", cli->num);
+      printf("Bairro: %s\n", cli->bai);
+      printf("Email: %s\n", cli->email);
+      printf("Status: %c\n", cli->status);
     }
-  }
+  }  
   fclose(fp);
   free(cli);
+
 }
 
-
+// RELATÓRIO DE CLIENTES EM ORDEM ALFABÉTICA
 
 void clientes_ord(void) {
   system("clear||cls");
@@ -304,16 +320,6 @@ void clientes_ord(void) {
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
   }
-
-  // printf("%-15s", "CNPJ");
-  // printf("|");
-  // printf("%-30s", "Nome do Estabelecimento");
-  // printf("|");
-  // printf("%-30s", "Nome do Proprietário");
-  // printf("\n");
-  // printf("%16s", "|");
-  // printf("%31s", "|");
-  // printf("\n");
   lista = NULL;
   prox_cli = (Cliente*)malloc(sizeof(Cliente));
 
@@ -365,9 +371,6 @@ void clientes_ord(void) {
     free(prox_cli);
     prox_cli = lista;
   }
-  printf("\n");
-  printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-  getchar();
 }
 
 
@@ -386,28 +389,39 @@ void bikes_cadastradas (void){
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
   }
-  printf("%-10s", "TIPO");
-  printf("|");
-  printf("%-10s", "ARO");
-  printf("|");
-  printf("%-15s", "VALOR");
-  printf("|");
-  printf("%-20s", "MARCA");
-  printf("|");
-  printf("%-10s", "CÓDIGO");
-  printf("|");
-  printf("\n");
-  printf("\n");
+  // printf("%-10s", "TIPO");
+  // printf("|");
+  // printf("%-10s", "ARO");
+  // printf("|");
+  // printf("%-15s", "VALOR");
+  // printf("|");
+  // printf("%-20s", "MARCA");
+  // printf("|");
+  // printf("%-10s", "CÓDIGO");
+  // printf("|");
+  // printf("\n");
+  // printf("\n");
+  // while (fread(bike, sizeof(Bike), 1, fp)) { 
+  //   if (bike->status != 'x') {
+  //     printf("%-10d", bike->tipo);
+  //     printf("%-10s", bike->aro);
+  //     printf("%20.2f", bike->valor_aluguel);
+  //     printf("%17s", bike->marca);
+  //     printf("%64s", bike->cod);
+  //     printf("\n");
+  //   }
+  // }
   while (fread(bike, sizeof(Bike), 1, fp)) { 
     if (bike->status != 'x') {
-      printf("%-10d", bike->tipo);
-      printf("%-10s", bike->aro);
-      printf("%20.2f", bike->valor_aluguel);
-      printf("%17s", bike->marca);
-      printf("%64s", bike->cod);
-      printf("\n");
+    printf("Tipo: %c\n", bike->tipo);
+    printf("Aro: %s\n", bike->aro);
+    printf("Valor do aluguel: %.2f\n", bike->valor_aluguel);
+    printf("Marca: %s\n", bike->marca);
+    printf("Código: %s\n", bike->cod);  
+    printf("Disponível? %c\n", bike->dispon);
     }
-  }
+  }  
+
   fclose(fp);
   free(bike);
 }
@@ -427,28 +441,39 @@ void bikes_ex (void){
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
   }
-  printf("%-10s", "TIPO");
-  printf("|");
-  printf("%-10s", "ARO");
-  printf("|");
-  printf("%-15s", "VALOR");
-  printf("|");
-  printf("%-20s", "MARCA");
-  printf("|");
-  printf("%-10s", "CÓDIGO");
-  printf("|");
-  printf("\n");
-  printf("\n");
+  // printf("%-10s", "TIPO");
+  // printf("|");
+  // printf("%-10s", "ARO");
+  // printf("|");
+  // printf("%-15s", "VALOR");
+  // printf("|");
+  // printf("%-20s", "MARCA");
+  // printf("|");
+  // printf("%-10s", "CÓDIGO");
+  // printf("|");
+  // printf("\n");
+  // printf("\n");
+  // while (fread(bike, sizeof(Bike), 1, fp)) { 
+  //   if (bike->status == 'x') {
+  //     printf("%-10d", bike->tipo);
+  //     printf("%-10s", bike->aro);
+  //     printf("%20.2f", bike->valor_aluguel);
+  //     printf("%17s", bike->marca);
+  //     printf("%64s", bike->cod);
+  //     printf("\n");
+  //   }
+  // }
   while (fread(bike, sizeof(Bike), 1, fp)) { 
     if (bike->status == 'x') {
-      printf("%-10d", bike->tipo);
-      printf("%-10s", bike->aro);
-      printf("%20.2f", bike->valor_aluguel);
-      printf("%17s", bike->marca);
-      printf("%64s", bike->cod);
-      printf("\n");
+    printf("Tipo: %c\n", bike->tipo);
+    printf("Aro: %s\n", bike->aro);
+    printf("Valor do aluguel: %.2f\n", bike->valor_aluguel);
+    printf("Marca: %s\n", bike->marca);
+    printf("Código: %s\n", bike->cod);  
+    printf("Disponível? %c\n", bike->dispon);
     }
-  }
+  } 
+
   fclose(fp);
   free(bike);
 }
@@ -457,7 +482,7 @@ void bikes_ex (void){
 
 //RELATÓRIO DE ALUGUÉIS CADASTRADOS
 
-void aluguel_cadastrado (void){
+void aluguel_vigente (void){
 
 FILE* fp;
   Aluguel* aluga;
@@ -469,24 +494,12 @@ FILE* fp;
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
   }
-  // printf("%-15s", "CÓDIGO ALUGUEL");
-  // printf("|");
-  // printf("%-15s", "CÓDIGO BIKE");
-  // printf("|");
-  // printf("%-15s", "VALOR ALUGUEL");
-  // printf("|");
-  // printf("%-15s", "TEMPO ALUGUEL");
-  // printf("|");
-  // printf("%-15s", "CPF");
-  // printf("|");
-  // printf("\n");
-  // printf("\n");
   while (fread(aluga, sizeof(Aluguel), 1, fp)) { 
-    if (aluga->status != 'x') {
+    if ((aluga->status != 'x')&&(aluga->vigencia=='s')) {
       printf("Código da bike: %s\n", aluga->cod_bike);
       printf("Código do aluguel: %s\n", aluga->cod_aluguel);
       printf("Cpf do cliente: %s\n", aluga->cpf);
-      printf("Valor do lauguel: %.2f\n", aluga->valor);
+      //printf("Valor do lauguel: %.2f\n", aluga->valor);
       printf("Data: %s\n", aluga->data);
       printf("Status: %c\n", aluga->status);
 
@@ -507,6 +520,37 @@ FILE* fp;
 }
 
 
+//RELATÓRIO DE ALUGUEIS TERMINADOS
+
+void aluguel_term (void){
+
+FILE* fp;
+  Aluguel* aluga;
+  printf("\n");
+  aluga = (Aluguel*) malloc(sizeof(Aluguel));
+  fp = fopen("aluguel.dat", "rb");
+  if (fp == NULL) {
+    printf("Não foi possível abrir o arquivo!\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    getchar();
+  }
+  while (fread(aluga, sizeof(Aluguel), 1, fp)) { 
+    if ((aluga->status != 'x')&&(aluga->vigencia=='n')) {
+      printf("Código da bike: %s\n", aluga->cod_bike);
+      printf("Código do aluguel: %s\n", aluga->cod_aluguel);
+      printf("Cpf do cliente: %s\n", aluga->cpf);
+     // printf("Valor do lauguel: %.2f\n", aluga->valor);
+      printf("Data: %s\n", aluga->data);
+      printf("Status: %c\n", aluga->status);
+      printf("\n");
+    }
+  }
+  fclose(fp);
+  free(aluga);
+}
+
+
+
 //RELATÓRIO DE ALUGUÉIS EXCLUÍDOS
 
 void aluguel_ex (void){
@@ -521,45 +565,61 @@ void aluguel_ex (void){
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
   }
-  printf("%-40s", "CÓDIGO DO ALUGUEL");
-  printf("|");
-  printf("%-5s", "CÓDIGO DA BIKE");
-  printf("|");
-  printf("%-5s", "VALOR");
-  printf("|");
-  printf("\n");
-  printf("\n");
-  while (fread(aluga, sizeof(Aluguel), 1, fp)) { 
-    if (aluga->status == 'x') {
-      printf("%-7s", aluga->cod_aluguel);
-      printf("|");
-      printf("%-30s", aluga->cod_bike);
-      printf("|");
-      printf("%-30d", aluga->tempo);
-      printf("|");
-      printf("%-30s", aluga->cpf);
-      printf("|");
-      printf("%-30f", aluga->valor);
-      printf("|");
+  // printf("%-40s", "CÓDIGO DO ALUGUEL");
+  // printf("|");
+  // printf("%-5s", "CÓDIGO DA BIKE");
+  // printf("|");
+  // printf("%-5s", "VALOR");
+  // printf("|");
+  // printf("\n");
+  // printf("\n");
+  // while (fread(aluga, sizeof(Aluguel), 1, fp)) { 
+  //   if (aluga->status == 'x') {
+  //     printf("%-7s", aluga->cod_aluguel);
+  //     printf("|");
+  //     printf("%-30s", aluga->cod_bike);
+  //     printf("|");
+  //     printf("%-30d", aluga->tempo);
+  //     printf("|");
+  //     printf("%-30s", aluga->cpf);
+  //     printf("|");
+  //     printf("%-30f", aluga->valor);
+  //     printf("|");
+  //     printf("\n");
+  //   }
+  // }
+
+   while (fread(aluga, sizeof(Aluguel), 1, fp)) { 
+    if ((aluga->status != 'x')&&(aluga->vigencia=='n')) {
+      printf("Código da bike: %s\n", aluga->cod_bike);
+      printf("Código do aluguel: %s\n", aluga->cod_aluguel);
+      printf("Cpf do cliente: %s\n", aluga->cpf);
+      //printf("Valor do lauguel: %.2f\n", aluga->valor);
+      printf("Data: %s\n", aluga->data);
+      printf("Status: %c\n", aluga->status);
       printf("\n");
     }
   }
+
   fclose(fp);
   free(aluga);
 }
 
 
+//RELATÓRIO DE ALUGUEIS POR CPF
+
 void aluguel_cpf(Aluguel* aluga) {
+
   char *nome_cli;
   //char *qual_bike;
   char* cpf;
-  system("clear||cls");
   FILE* fp;
+  system("clear||cls");
   cpf=ler_cpf();
   fgets (cpf, 12, stdin);
   getchar();
-  printf("\n");
   aluga = (Aluguel*) malloc(sizeof(Aluguel));
+  printf("\n");
   fp = fopen("aluguel.dat", "rb");
   if (fp == NULL) {
     printf("\t\t\t>>> Houve um erro ao abrir o arquivo!\n");
@@ -582,6 +642,9 @@ void aluguel_cpf(Aluguel* aluga) {
   fclose(fp);
   free(aluga);
 }
+
+
+//FUNÇÃO QUE PEGA NOME DO CLIENTE
 
 char *nome_pull(const char *cpf) {
   Cliente cli;

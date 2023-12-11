@@ -95,6 +95,7 @@ Bike* cadastrar_bike(void) {
 	fgets(bike->cod,6 ,stdin);
     getchar();
     bike->status= 'c';
+    bike->dispon= 's';
     printf("\n");
     printf("\n");
     printf("Cadastro realizado com sucesso!\n");
@@ -135,6 +136,18 @@ char tipo_bike(void) {
     scanf("%c", &esc);
     getchar();
     printf("\n");
+    if (esc ==1){
+        printf("Mountain BIke");
+    if (esc ==2){
+        printf("Bike elétrica");
+    if (esc==3){
+        printf("Bike speed");
+    if (esc==4){
+        printf("Bike urbana");
+    }
+    }
+    }
+    }
     return esc;
 }
 
@@ -440,7 +453,8 @@ void print_bike(Bike* bike) {
     printf("Aro: %s\n", bike->aro);
     printf("Valor do aluguel: %.2f\n", bike->valor_aluguel);
     printf("Marca: %s\n", bike->marca);
-    printf("Código: %s\n", bike->cod);   
+    printf("Código: %s\n", bike->cod); 
+    printf("Disponível? %c\n", bike->dispon);  
   } 
 }
 

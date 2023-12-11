@@ -13,6 +13,7 @@ struct aluguel {
     char status;
     char cod_aluguel[4];
     char data[12];
+    char vigencia;
 };
 
 
@@ -28,7 +29,8 @@ Aluguel* buscar_aluguel(void);
 void print_aluguel(Aluguel* aluga);
 void excluir_aluguel(void);
 float valor_aluguel (void);
-char data_aluguel (void);
+void baixa_aluguel(void);
+ 
 
 
 
