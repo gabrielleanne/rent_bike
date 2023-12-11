@@ -12,6 +12,7 @@ struct cliente {
     char bai[15];
     char email[40];
     char status;
+    Cliente* prox;
 };
 
 

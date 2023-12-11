@@ -13,7 +13,7 @@
 
 
 
-
+void aluguel_cpf(Aluguel*);
 
 /// OPÇÕES PARA MENU RELATÓRIOS 
 
@@ -21,6 +21,7 @@ void modulo_relatorio (void) {
 
   char opcao1;
   char opcao2;
+  Aluguel* aluga;
   do {
       opcao1 = relatorios();
       switch(opcao1) {
@@ -34,6 +35,11 @@ void modulo_relatorio (void) {
                             getchar();
                             break;
                   case '2': clientes_ex();
+                            printf("\n");
+                            printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+                            getchar();
+                            break;
+                  case '3': clientes_ord();
                             printf("\n");
                             printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
                             getchar();
@@ -75,6 +81,12 @@ void modulo_relatorio (void) {
                             getchar();
                             break;
 
+                  case '3': aluguel_cpf(aluga);
+                            printf("\n");
+                            printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+                            getchar();
+                            break;
+
                 }
                       
     
@@ -111,10 +123,6 @@ char relatorios(void) {
 
 
 
-
-
-
-
 // // ////OPÇÃO CASE 1 (RELATÓRIOS DO MÓDULO CLIENTES)
 
 
@@ -127,7 +135,8 @@ char listar_clientes(void) {
     printf("*******************RENT A BIKE*******************\n");
     printf("-------------------------------------------------\n");
     printf(" 1. CLIENTES CADASTRADOS ----------------DIGITE 1\n");
-    printf(" 2. CLIENTES EXCLUÍDOS--------------------DIGITE 2\n");
+    printf(" 2. CLIENTES EXCLUÍDOS-------------------DIGITE 2\n");
+    printf(" 3. CLIENTES EM ORDEM--------------------DIGITE 2\n");
     printf(" 0. VOLTAR-------------------------------DIGITE 0\n");
     printf("\n");
     printf("Escolha sua opção: ");
@@ -142,7 +151,7 @@ char listar_clientes(void) {
 
 
 
-// // ////OP??O CASE 2 (RELATÓRIOS DO MÓDULO BIKES)
+// // ////OPÇÃO CASE 2 (RELATÓRIOS DO MÓDULO BIKES)
 
 char listar_bikes(void) {
   setlocale(LC_ALL,"Portuguese_Brazil");
@@ -154,11 +163,9 @@ char listar_bikes(void) {
     printf("-------------------------------------------------\n");
     printf(" 1. BIKES CADASTRADAS -------------------DIGITE 1\n");
     printf(" 2. BIKES EXCLUÍDAS----------------------DIGITE 2\n");
-    // printf(" 3. EDITAR CADASTRO----------------------DIGITE 3\n");
-    // printf(" 4. EXCLUIR CADASTRO---------------------DIGITE 4\n");
     printf(" 0. VOLTAR-------------------------------DIGITE 0\n");
     printf("\n");
-    printf("Escolha sua op??o: ");
+    printf("Escolha sua opção: ");
     scanf("%c",&esc);
     getchar();
     printf("\n");
@@ -172,7 +179,7 @@ char listar_bikes(void) {
 
 
 
-// // ////OP??O CASE 3 (RELATÓRIOS DO MÓDULO ALUGUEL)
+// // ////OPÇÃO CASE 3 (RELATÓRIOS DO MÓDULO ALUGUEL)
 
 char listar_aluguel(void) {
    setlocale(LC_ALL,"Portuguese_Brazil");
@@ -184,11 +191,10 @@ char listar_aluguel(void) {
     printf("-------------------------------------------------\n");
     printf(" 1. ALUGUEIS CADASTRADOS ----------------DIGITE 1\n");
     printf(" 2. ALUGUEIS EXCLUIDOS-------------------DIGITE 2\n");
-    // printf(" 3. EDITAR CADASTRO----------------------DIGITE 3\n");
-    // printf(" 4. EXCLUIR CADASTRO---------------------DIGITE 4\n");
+    printf(" 3. ALUGUEIS POR CPF---------------------DIGITE 3\n");
     printf(" 0. VOLTAR-------------------------------DIGITE 0\n");
     printf("\n");
-    printf("Escolha sua op??o: ");
+    printf("Escolha sua opção: ");
     scanf("%c",&esc);
     getchar();
     printf("\n");
@@ -209,26 +215,39 @@ void clientes_cadastrados (void) {
   cli = (Cliente*) malloc(sizeof(Cliente));
   fp = fopen("clientes.dat", "rb");
   if (fp == NULL) {
-    printf("N?o foi poss?vel abrir o arquivo!\n");
+    printf("Não foi possível abrir o arquivo!\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
   }
-  printf("%-20s", "NOME");
-  printf("|");
-  printf("%-20s", "CPF");
-  printf("|");
-  printf("%-20s", "TELEFONE");
-  printf("|");
-  printf("%-20s", "E-MAIL");
-  printf("|");
-  printf("\n");
-  printf("\n");
+  // // printf("%-20s", "NOME");
+  // // printf("|");
+  // // printf("%-20s", "CPF");
+  // // printf("|");
+  // // printf("%-20s", "TELEFONE");
+  // // printf("|");
+  // // printf("%-20s", "E-MAIL");
+  // // printf("|");
+  // // printf("\n");
+  // // printf("\n");
+  //while (fread(cli, sizeof(Cliente), 1, fp)) { 
+  // //   if (cli->status != 'x') {
+  // //     printf("%-25s", cli->nome);
+  // //     printf("%-25s", cli->cpf);
+  // //     printf("%-15s", cli->tel);
+  // //     printf("%-20s", cli->email);      
+  //   }
+  
   while (fread(cli, sizeof(Cliente), 1, fp)) { 
     if (cli->status != 'x') {
-      printf("%-25s", cli->nome);
-      printf("%-25s", cli->cpf);
-      printf("%-15s", cli->tel);
-      printf("%-20s", cli->email);      
+      printf("Nome: %s\n", cli->nome);
+      printf("CPF: %s\n", cli->cpf);
+      printf("Email: %s\n", cli->email);
+      printf("Logradouro: %s\n", cli->log);
+      printf("Número: %s\n", cli->num);
+      printf("Bairro: %s\n", cli->bai);
+      printf("Email: %s\n", cli->email);
+      printf("Status: %c\n", cli->status);
+
     }
   }
   fclose(fp);
@@ -246,7 +265,7 @@ void clientes_ex (void) {
   cli = (Cliente*) malloc(sizeof(Cliente));
   fp = fopen("clientes.dat", "rb");
   if (fp == NULL) {
-    printf("N?o foi poss?vel abrir o arquivo!\n");
+    printf("Não foi possível abrir o arquivo!\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
   }
@@ -274,6 +293,85 @@ void clientes_ex (void) {
 
 
 
+void clientes_ord(void) {
+  system("clear||cls");
+  FILE* fp = fopen("clientes.dat", "rb");
+  Cliente* prox_cli;
+  Cliente* lista;
+
+  if (fp == NULL) {
+    printf("\t\t\t>>> Houve um erro ao abrir o arquivo!\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    getchar();
+  }
+
+  // printf("%-15s", "CNPJ");
+  // printf("|");
+  // printf("%-30s", "Nome do Estabelecimento");
+  // printf("|");
+  // printf("%-30s", "Nome do Proprietário");
+  // printf("\n");
+  // printf("%16s", "|");
+  // printf("%31s", "|");
+  // printf("\n");
+  lista = NULL;
+  prox_cli = (Cliente*)malloc(sizeof(Cliente));
+
+  if (prox_cli == NULL) {
+    printf("\t\t\t>>> Houve um erro ao alocar a memória!\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    getchar();
+  }
+
+  while(fread(prox_cli, sizeof(Cliente), 1, fp) == 1) {
+    prox_cli->prox = NULL;
+
+    if ((lista == NULL) || (strcmp(prox_cli->nome, lista->nome) < 0)) {
+      prox_cli->prox = lista;
+      lista = prox_cli;
+    } else {
+      Cliente* antigo = lista;
+      Cliente* atual = lista->prox;
+      while ((atual != NULL) && strcmp(atual->nome, prox_cli->nome) < 0) {
+        antigo = atual;
+        atual = atual->prox;
+      }
+      antigo->prox = prox_cli;
+      prox_cli->prox = atual;
+    }
+    prox_cli = (Cliente*)malloc(sizeof(Cliente));
+    if(prox_cli == NULL) {
+      printf("\t\t\t>>> Houve um erro ao alocar a memória!\n");
+      printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+      getchar();
+    }
+  }
+  fclose(fp);
+  prox_cli = lista;
+  while(prox_cli != NULL) {
+    printf("Nome: %s\n", prox_cli->nome);
+    printf("CPF: %s\n", prox_cli->cpf);
+    printf("Email: %s\n", prox_cli->email);
+    printf("Logradouro: %s\n", prox_cli->log);
+    printf("Número: %s\n", prox_cli->num);
+    printf("Bairro: %s\n", prox_cli->bai);
+    printf("Email: %s\n", prox_cli->email);
+    printf("Status: %c\n", prox_cli->status);
+    prox_cli = prox_cli->prox;
+  }
+  prox_cli = lista;
+  while (lista != NULL) {
+    lista = lista->prox;
+    free(prox_cli);
+    prox_cli = lista;
+  }
+  printf("\n");
+  printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+  getchar();
+}
+
+
+
 //RELATÓRIO DE BIKES CADASTRADAS
 
 void bikes_cadastradas (void){
@@ -284,7 +382,7 @@ void bikes_cadastradas (void){
   bike = (Bike*) malloc(sizeof(Bike));
   fp = fopen("bikes.dat", "rb");
   if (fp == NULL) {
-    printf("N?o foi poss?vel abrir o arquivo!\n");
+    printf("Não foi possível abrir o arquivo!\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
   }
@@ -296,7 +394,7 @@ void bikes_cadastradas (void){
   printf("|");
   printf("%-20s", "MARCA");
   printf("|");
-  printf("%-10s", "C?DIGO");
+  printf("%-10s", "CÓDIGO");
   printf("|");
   printf("\n");
   printf("\n");
@@ -325,7 +423,7 @@ void bikes_ex (void){
   bike = (Bike*) malloc(sizeof(Bike));
   fp = fopen("bikes.dat", "rb");
   if (fp == NULL) {
-    printf("N?o foi poss?vel abrir o arquivo!\n");
+    printf("Não foi possível abrir o arquivo!\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
   }
@@ -337,7 +435,7 @@ void bikes_ex (void){
   printf("|");
   printf("%-20s", "MARCA");
   printf("|");
-  printf("%-10s", "C?DIGO");
+  printf("%-10s", "CÓDIGO");
   printf("|");
   printf("\n");
   printf("\n");
@@ -367,32 +465,40 @@ FILE* fp;
   aluga = (Aluguel*) malloc(sizeof(Aluguel));
   fp = fopen("aluguel.dat", "rb");
   if (fp == NULL) {
-    printf("N?o foi poss?vel abrir o arquivo!\n");
+    printf("Não foi possível abrir o arquivo!\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
   }
-  printf("%-40s", "C?DIGO DO ALUGUEL");
-  printf("|");
-  printf("%-5s", "C?DIGO DA BIKE");
-  printf("|");
-  printf("%-5s", "VALOR");
-  printf("|");
-  printf("\n");
-  printf("%8s", "|");
-  printf("%31s", "|");
-  printf("\n");
+  // printf("%-15s", "CÓDIGO ALUGUEL");
+  // printf("|");
+  // printf("%-15s", "CÓDIGO BIKE");
+  // printf("|");
+  // printf("%-15s", "VALOR ALUGUEL");
+  // printf("|");
+  // printf("%-15s", "TEMPO ALUGUEL");
+  // printf("|");
+  // printf("%-15s", "CPF");
+  // printf("|");
+  // printf("\n");
+  // printf("\n");
   while (fread(aluga, sizeof(Aluguel), 1, fp)) { 
     if (aluga->status != 'x') {
-      printf("%-30s", aluga->cod_aluguel);
-      printf("|");
-      printf("%-30s", aluga->cod_bike);
-      printf("|");
-     // printf("%-30d", aluga->tempo);
-      printf("|");
-      printf("%-30s", aluga->cpf);
-      printf("|");
-      printf("%-30f", aluga->valor);
-      printf("|");
+      printf("Código da bike: %s\n", aluga->cod_bike);
+      printf("Código do aluguel: %s\n", aluga->cod_aluguel);
+      printf("Cpf do cliente: %s\n", aluga->cpf);
+      printf("Valor do lauguel: %.2f\n", aluga->valor);
+      printf("Data: %s\n", aluga->data);
+      printf("Status: %c\n", aluga->status);
+
+      // printf("%-10s", aluga->cod_aluguel);
+      // printf("%15s", aluga->cod_bike);
+      // printf("%20.2f", aluga->valor);
+      // printf("%30d", aluga->tempo);
+      // printf("|");
+      // printf("%-13s", aluga->cpf);
+      // printf("|");
+      
+      // printf("|");
       printf("\n");
     }
   }
@@ -405,33 +511,31 @@ FILE* fp;
 
 void aluguel_ex (void){
 
-FILE* fp;
+  FILE* fp;
   Aluguel* aluga;
   printf("\n");
   aluga = (Aluguel*) malloc(sizeof(Aluguel));
   fp = fopen("aluguel.dat", "rb");
   if (fp == NULL) {
-    printf("N?o foi poss?vel abrir o arquivo!\n");
+    printf("Não foi possível abrir o arquivo!\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
   }
-  printf("%-40s", "C?DIGO DO ALUGUEL");
+  printf("%-40s", "CÓDIGO DO ALUGUEL");
   printf("|");
-  printf("%-5s", "C?DIGO DA BIKE");
+  printf("%-5s", "CÓDIGO DA BIKE");
   printf("|");
   printf("%-5s", "VALOR");
   printf("|");
   printf("\n");
-  printf("%8s", "|");
-  printf("%31s", "|");
   printf("\n");
   while (fread(aluga, sizeof(Aluguel), 1, fp)) { 
     if (aluga->status == 'x') {
-      printf("%-30s", aluga->cod_aluguel);
+      printf("%-7s", aluga->cod_aluguel);
       printf("|");
       printf("%-30s", aluga->cod_bike);
       printf("|");
-     // printf("%-30d", aluga->tempo);
+      printf("%-30d", aluga->tempo);
       printf("|");
       printf("%-30s", aluga->cpf);
       printf("|");
@@ -443,3 +547,94 @@ FILE* fp;
   fclose(fp);
   free(aluga);
 }
+
+
+void aluguel_cpf(Aluguel* aluga) {
+  char *nome_cli;
+  //char *qual_bike;
+  char* cpf;
+  system("clear||cls");
+  FILE* fp;
+  cpf=ler_cpf();
+  fgets (cpf, 12, stdin);
+  getchar();
+  printf("\n");
+  aluga = (Aluguel*) malloc(sizeof(Aluguel));
+  fp = fopen("aluguel.dat", "rb");
+  if (fp == NULL) {
+    printf("\t\t\t>>> Houve um erro ao abrir o arquivo!\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    getchar();
+  }
+  while(fread(aluga, sizeof(Aluguel), 1, fp) == 1) {
+    if (strcmp(aluga->cpf, cpf) == 0) {
+      nome_cli = nome_pull(cpf);
+      //qual_bike = bike_pull();
+      printf("Nome: %s\n",nome_cli);
+      printf("CPF: %s\n",aluga->cpf);
+     // printf("Tipo da bike: \n", qual_bike);
+      printf("data: %s\n",aluga->data);
+      printf("Valor: %.2f\n", aluga->valor);
+      printf("tempo: %d\n",aluga->tempo);
+
+    }
+  }
+  fclose(fp);
+  free(aluga);
+}
+
+char *nome_pull(const char *cpf) {
+  Cliente cli;
+  FILE* fp = fopen("clientes.dat", "rb");
+
+  if (fp == NULL) {
+    printf("\t\t\t>>> Houve um erro ao abrir o arquivo!\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    getchar();
+  }
+  while (fread(&cli, sizeof(cli), 1, fp) == 1) {
+    if(strcmp(cli.cpf, cpf) == 0) {
+      char *x = (char *)malloc(strlen(cli.nome) + 1);
+      if (x == NULL) {
+        printf("Ocorreu um erro.\n");
+        fclose(fp);
+        return NULL;
+      }
+      strcpy(x, cli.nome);
+      fclose(fp);
+      return x;
+    }
+  }
+  fclose(fp);
+  return NULL;
+}
+
+
+// char *bike_pull(void) {
+//   Bike bike;
+//   FILE* fp = fopen("bikes.dat", "rb");
+//   char* tipo;
+//   tipo=tipo_bike();
+
+//   if (fp == NULL) {
+//     printf("\t\t\t>>> Houve um erro ao abrir o arquivo!\n");
+//     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+//     getchar();
+//   }
+//   while (fread(&bike, sizeof(bike), 1, fp) == 1) {
+//     if(strcmp(bike.tipo,tipo) == 0) {
+//       char* x = (char*)malloc(strlen(bike.tipo) + 1);
+//       if (x == NULL) {
+//         printf("Ocorreu um erro.\n");
+//         fclose(fp);
+//         return NULL;
+//       }
+//       strcpy(x, bike.tipo);
+//       fclose(fp);
+//       return x;
+      
+//     }
+//   }
+//   fclose(fp);
+//   return NULL;
+// }

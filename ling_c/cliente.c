@@ -457,13 +457,7 @@ void altera_logradouro(void) {
       while (fread(new, sizeof(Cliente), 1, fp)==1) {
         if (strcmp(new->cpf, cpf)==0) {
           printf("Logradouro: ");
-	        fgets(new->log, 20, stdin);
-          while (!valida_logradouro (new->log)) {
-            printf("Nome digitado não é válido!\n");
-            printf("Informe o nome novamente: \n");
-            fgets(new->log, 20, stdin);
-            getchar();
-          }       
+	        fgets(new->log, 20, stdin);     
           fseek(fp, (-1L)*-sizeof(Cliente), SEEK_CUR);
           fwrite(new, sizeof(Cliente), 1, fp);
           busca=1;

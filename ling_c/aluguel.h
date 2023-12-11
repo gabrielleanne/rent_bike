@@ -3,7 +3,6 @@
 
 
 
-
 typedef struct aluguel Aluguel;
 
 struct aluguel {
@@ -30,5 +29,9 @@ void print_aluguel(Aluguel* aluga);
 void excluir_aluguel(void);
 float valor_aluguel (void);
 char data_aluguel (void);
+
+
+
+
 
 
