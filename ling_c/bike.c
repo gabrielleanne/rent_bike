@@ -6,6 +6,7 @@
 #include<string.h>
 #include"bike.h"
 #include"valid.h"
+#include"aluguel.h"
 
 
 ////OPÇÕES PARA MENU BIKES
@@ -95,7 +96,7 @@ Bike* cadastrar_bike(void) {
 	fgets(bike->cod,6 ,stdin);
     getchar();
     bike->status= 'c';
-    bike->dispon= 's';
+    bike->dispon= disponibilidade(bike->cod);
     printf("\n");
     printf("\n");
     printf("Cadastro realizado com sucesso!\n");
@@ -494,4 +495,35 @@ void excluir_bike(void) {
   getchar();
   fclose(fp);
   free(ex);
+}
+
+
+char disponibilidade (char cod) {
+  Aluguel* aluga;
+  char disp;
+  FILE* fp = fopen("aluguel.dat", "rb");
+
+  if (fp == NULL) {
+    printf("\t\t\t>>> Houve um erro ao abrir o arquivo!\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    getchar();
+  }
+  aluga = (Aluguel*) malloc(sizeof(Aluguel));
+  while (fread(aluga, sizeof(Aluguel), 1, fp) == 1) {
+    if (strcmp(aluga->cod_bike, cod)==0){
+      disp = 'n';
+      fclose(fp);
+      free(aluga);
+      return disp;
+    }
+    else{
+      disp='s';
+      fclose(fp);
+      free(aluga);
+      return disp;
+    }
+  }
+  fclose(fp);
+  free(aluga);
+  return 0;
 }

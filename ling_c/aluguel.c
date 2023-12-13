@@ -12,6 +12,7 @@
 
 
 
+
 ////OPÇÕES PARA MENU ALUGUEL
 
 
@@ -330,3 +331,5 @@ float valor_aluguel (void){
   printf("O valor do aluguel será de : %.2f\n", valor);
   return valor;
 }
+
+

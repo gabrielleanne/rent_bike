@@ -6,7 +6,7 @@
 typedef struct aluguel Aluguel;
 
 struct aluguel {
-    char cod_bike[4];
+    char cod_bike[6];
     int tempo;
     char cpf[12];
     float valor;

@@ -59,6 +59,14 @@ void modulo_relatorio (void) {
                             printf("\n");
                             printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
                             getchar();
+                  case '3': bikes_dispon();
+                            printf("\n");
+                            printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+                            getchar();
+                  case '4': bikes_alug();
+                            printf("\n");
+                            printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+                            getchar();
 
                 }
               } while (opcao2 != '0');
@@ -110,7 +118,7 @@ char relatorios(void) {
     printf("-------------------------------------------------\n");
     printf(" 1. LISTAR CLIENTES ---------------------DIGITE 1\n");
     printf(" 2. LISTAR BIKES-------------------------DIGITE 2\n");
-    printf(" 3. LISTAR ALUGUÉIS----------------------DIGITE 4\n");
+    printf(" 3. LISTAR ALUGUÉIS----------------------DIGITE 3\n");
     printf(" 0. VOLTAR-------------------------------DIGITE 0\n");
     printf("\n");
     printf("Escolha sua opção: ");
@@ -164,6 +172,8 @@ char listar_bikes(void) {
     printf("-------------------------------------------------\n");
     printf(" 1. BIKES CADASTRADAS -------------------DIGITE 1\n");
     printf(" 2. BIKES EXCLUÍDAS----------------------DIGITE 2\n");
+    printf(" 3. BIKES DISPONIVEIS -------------------DIGITE 3\n");
+    printf(" 4. BIKES ALUGADAS ----------------------DIGITE 4\n");
     printf(" 0. VOLTAR-------------------------------DIGITE 0\n");
     printf("\n");
     printf("Escolha sua opção: ");
@@ -221,23 +231,6 @@ void clientes_cadastrados (void) {
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
   }
-  // // printf("%-20s", "NOME");
-  // // printf("|");
-  // // printf("%-20s", "CPF");
-  // // printf("|");
-  // // printf("%-20s", "TELEFONE");
-  // // printf("|");
-  // // printf("%-20s", "E-MAIL");
-  // // printf("|");
-  // // printf("\n");
-  // // printf("\n");
-  //while (fread(cli, sizeof(Cliente), 1, fp)) { 
-  // //   if (cli->status != 'x') {
-  // //     printf("%-25s", cli->nome);
-  // //     printf("%-25s", cli->cpf);
-  // //     printf("%-15s", cli->tel);
-  // //     printf("%-20s", cli->email);      
-  //   }
   
   while (fread(cli, sizeof(Cliente), 1, fp)) { 
     if (cli->status != 'x') {
@@ -271,25 +264,6 @@ void clientes_ex (void) {
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
   }
-  // printf("%-20s", "NOME");
-  // printf("|");
-  // printf("%-20s", "CPF");
-  // printf("|");
-  // printf("%-20s", "TELEFONE");
-  // printf("|");
-  // printf("%-20s", "E-MAIL");
-  // printf("|");
-  // printf("\n");
-  // printf("\n");
-  // while (fread(cli, sizeof(Cliente), 1, fp)) { 
-  //   if (cli->status == 'x') {
-  //     printf("%-25s", cli->nome);
-  //     printf("%-25s", cli->cpf);
-  //     printf("%-15s", cli->tel);
-  //     printf("%-20s", cli->email);      
-  //   }
-  //}
-   
   while (fread(cli, sizeof(Cliente), 1, fp)) { 
     if (cli->status == 'x') {
       printf("Nome: %s\n", cli->nome);
@@ -389,28 +363,7 @@ void bikes_cadastradas (void){
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
   }
-  // printf("%-10s", "TIPO");
-  // printf("|");
-  // printf("%-10s", "ARO");
-  // printf("|");
-  // printf("%-15s", "VALOR");
-  // printf("|");
-  // printf("%-20s", "MARCA");
-  // printf("|");
-  // printf("%-10s", "CÓDIGO");
-  // printf("|");
-  // printf("\n");
-  // printf("\n");
-  // while (fread(bike, sizeof(Bike), 1, fp)) { 
-  //   if (bike->status != 'x') {
-  //     printf("%-10d", bike->tipo);
-  //     printf("%-10s", bike->aro);
-  //     printf("%20.2f", bike->valor_aluguel);
-  //     printf("%17s", bike->marca);
-  //     printf("%64s", bike->cod);
-  //     printf("\n");
-  //   }
-  // }
+ 
   while (fread(bike, sizeof(Bike), 1, fp)) { 
     if (bike->status != 'x') {
     printf("Tipo: %c\n", bike->tipo);
@@ -441,28 +394,6 @@ void bikes_ex (void){
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
   }
-  // printf("%-10s", "TIPO");
-  // printf("|");
-  // printf("%-10s", "ARO");
-  // printf("|");
-  // printf("%-15s", "VALOR");
-  // printf("|");
-  // printf("%-20s", "MARCA");
-  // printf("|");
-  // printf("%-10s", "CÓDIGO");
-  // printf("|");
-  // printf("\n");
-  // printf("\n");
-  // while (fread(bike, sizeof(Bike), 1, fp)) { 
-  //   if (bike->status == 'x') {
-  //     printf("%-10d", bike->tipo);
-  //     printf("%-10s", bike->aro);
-  //     printf("%20.2f", bike->valor_aluguel);
-  //     printf("%17s", bike->marca);
-  //     printf("%64s", bike->cod);
-  //     printf("\n");
-  //   }
-  // }
   while (fread(bike, sizeof(Bike), 1, fp)) { 
     if (bike->status == 'x') {
     printf("Tipo: %c\n", bike->tipo);
@@ -478,6 +409,62 @@ void bikes_ex (void){
   free(bike);
 }
 
+
+void bikes_dispon (void){
+
+  FILE* fp;
+  Bike* bike;
+  printf("\n");
+  bike = (Bike*) malloc(sizeof(Bike));
+  fp = fopen("bikes.dat", "rb");
+  if (fp == NULL) {
+    printf("Não foi possível abrir o arquivo!\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    getchar();
+  }
+  while (fread(bike, sizeof(Bike), 1, fp)) { 
+    if (bike->dispon == 's') {
+    printf("Tipo: %c\n", bike->tipo);
+    printf("Aro: %s\n", bike->aro);
+    printf("Valor do aluguel: %.2f\n", bike->valor_aluguel);
+    printf("Marca: %s\n", bike->marca);
+    printf("Código: %s\n", bike->cod);  
+    printf("Disponível? %c\n", bike->dispon);
+    }
+  } 
+
+  fclose(fp);
+  free(bike);
+}
+
+
+
+void bikes_alug (void){
+
+  FILE* fp;
+  Bike* bike;
+  printf("\n");
+  bike = (Bike*) malloc(sizeof(Bike));
+  fp = fopen("bikes.dat", "rb");
+  if (fp == NULL) {
+    printf("Não foi possível abrir o arquivo!\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    getchar();
+  }
+  while (fread(bike, sizeof(Bike), 1, fp)) { 
+    if (bike->dispon == 'n') {
+    printf("Tipo: %c\n", bike->tipo);
+    printf("Aro: %s\n", bike->aro);
+    printf("Valor do aluguel: %.2f\n", bike->valor_aluguel);
+    printf("Marca: %s\n", bike->marca);
+    printf("Código: %s\n", bike->cod);  
+    printf("Disponível? %c\n", bike->dispon);
+    }
+  } 
+
+  fclose(fp);
+  free(bike);
+}
 
 
 //RELATÓRIO DE ALUGUÉIS CADASTRADOS
@@ -502,16 +489,6 @@ FILE* fp;
       //printf("Valor do lauguel: %.2f\n", aluga->valor);
       printf("Data: %s\n", aluga->data);
       printf("Status: %c\n", aluga->status);
-
-      // printf("%-10s", aluga->cod_aluguel);
-      // printf("%15s", aluga->cod_bike);
-      // printf("%20.2f", aluga->valor);
-      // printf("%30d", aluga->tempo);
-      // printf("|");
-      // printf("%-13s", aluga->cpf);
-      // printf("|");
-      
-      // printf("|");
       printf("\n");
     }
   }
@@ -539,7 +516,7 @@ FILE* fp;
       printf("Código da bike: %s\n", aluga->cod_bike);
       printf("Código do aluguel: %s\n", aluga->cod_aluguel);
       printf("Cpf do cliente: %s\n", aluga->cpf);
-     // printf("Valor do lauguel: %.2f\n", aluga->valor);
+      printf("Valor do aluguel: %.2f\n", aluga->valor);
       printf("Data: %s\n", aluga->data);
       printf("Status: %c\n", aluga->status);
       printf("\n");
@@ -565,30 +542,6 @@ void aluguel_ex (void){
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
   }
-  // printf("%-40s", "CÓDIGO DO ALUGUEL");
-  // printf("|");
-  // printf("%-5s", "CÓDIGO DA BIKE");
-  // printf("|");
-  // printf("%-5s", "VALOR");
-  // printf("|");
-  // printf("\n");
-  // printf("\n");
-  // while (fread(aluga, sizeof(Aluguel), 1, fp)) { 
-  //   if (aluga->status == 'x') {
-  //     printf("%-7s", aluga->cod_aluguel);
-  //     printf("|");
-  //     printf("%-30s", aluga->cod_bike);
-  //     printf("|");
-  //     printf("%-30d", aluga->tempo);
-  //     printf("|");
-  //     printf("%-30s", aluga->cpf);
-  //     printf("|");
-  //     printf("%-30f", aluga->valor);
-  //     printf("|");
-  //     printf("\n");
-  //   }
-  // }
-
    while (fread(aluga, sizeof(Aluguel), 1, fp)) { 
     if ((aluga->status != 'x')&&(aluga->vigencia=='n')) {
       printf("Código da bike: %s\n", aluga->cod_bike);
@@ -611,7 +564,7 @@ void aluguel_ex (void){
 void aluguel_cpf(Aluguel* aluga) {
 
   char *nome_cli;
-  //char *qual_bike;
+  char qual_bike;
   char* cpf;
   FILE* fp;
   system("clear||cls");
@@ -629,13 +582,13 @@ void aluguel_cpf(Aluguel* aluga) {
   while(fread(aluga, sizeof(Aluguel), 1, fp) == 1) {
     if (strcmp(aluga->cpf, cpf) == 0) {
       nome_cli = nome_pull(cpf);
-      //qual_bike = bike_pull();
-      printf("Nome: %s\n",nome_cli);
+      qual_bike = bike_pull();
+      printf("Nome do cliente: %s\n",nome_cli);
       printf("CPF: %s\n",aluga->cpf);
-     // printf("Tipo da bike: \n", qual_bike);
-      printf("data: %s\n",aluga->data);
-      printf("Valor: %.2f\n", aluga->valor);
-      printf("tempo: %d\n",aluga->tempo);
+      printf("Tipo da bike: \n", qual_bike);
+      printf("Data do aluguel: %s\n",aluga->data);
+      printf("Valor do aluguel: %.2f\n", aluga->valor);
+      printf("Tempo de locação: %d\n",aluga->tempo);
 
     }
   }
@@ -644,7 +597,8 @@ void aluguel_cpf(Aluguel* aluga) {
 }
 
 
-//FUNÇÃO QUE PEGA NOME DO CLIENTE
+
+//FUNÇÃO QUE CAPTURA NOME DO CLIENTE
 
 char *nome_pull(const char *cpf) {
   Cliente cli;
@@ -673,31 +627,28 @@ char *nome_pull(const char *cpf) {
 }
 
 
-// char *bike_pull(void) {
-//   Bike bike;
-//   FILE* fp = fopen("bikes.dat", "rb");
-//   char* tipo;
-//   tipo=tipo_bike();
+//FUNÇÃO QUE CAPTURA TIPO DE BIKE
 
-//   if (fp == NULL) {
-//     printf("\t\t\t>>> Houve um erro ao abrir o arquivo!\n");
-//     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-//     getchar();
-//   }
-//   while (fread(&bike, sizeof(bike), 1, fp) == 1) {
-//     if(strcmp(bike.tipo,tipo) == 0) {
-//       char* x = (char*)malloc(strlen(bike.tipo) + 1);
-//       if (x == NULL) {
-//         printf("Ocorreu um erro.\n");
-//         fclose(fp);
-//         return NULL;
-//       }
-//       strcpy(x, bike.tipo);
-//       fclose(fp);
-//       return x;
-      
-//     }
-//   }
-//   fclose(fp);
-//   return NULL;
-// }
+char bike_pull(void) {
+  Bike* bike;
+  char tipo;
+  FILE* fp = fopen("bikes.dat", "rb");
+
+  if (fp == NULL) {
+    printf("\t\t\t>>> Houve um erro ao abrir o arquivo!\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    getchar();
+  }
+  bike = (Bike*) malloc(sizeof(Bike));
+  while (fread(bike, sizeof(Bike), 1, fp) == 1) {
+    if (bike->tipo == tipo) {
+      tipo = bike->tipo;
+      fclose(fp);
+      free(bike);
+      return tipo;
+    }
+  }
+  fclose(fp);
+  free(bike);
+  return 0;
+}
