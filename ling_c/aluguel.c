@@ -3,10 +3,12 @@
 #include<stdlib.h>
 #include <unistd.h>
 #include<locale.h>
+#include<string.h>
 #include"aluguel.h"
 #include"bike.h"
 #include"cliente.h"
 #include<time.h>
+#include"valid.h"
 
 
 

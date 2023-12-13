@@ -19,7 +19,7 @@ struct bike {
 void modulo_bike(void);
 char bikes(void);
 Bike* cadastrar_bike(void);
-void gravar_bike(Bike* bike);
+void gravar_bike(Bike*);
 char editar_bike(void);
 Bike* buscar_bike(void);
 void excluir_bike(void);
@@ -30,7 +30,7 @@ void altera_marca (void);
 void altera_valor (void);
 char tipo_bike (void);
 char* ler_cod_bike (void); 
-void print_bike(Bike* bike);
-char disponibilidade (char cod);
+void print_bike(Bike*);
+char disponibilidade (char*);
 
 

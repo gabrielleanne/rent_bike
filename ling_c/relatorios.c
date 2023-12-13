@@ -11,7 +11,7 @@
 #include "cliente.h"
 
 
-void aluguel_cpf(Aluguel*);
+
 
 /// OPÇÕES PARA MENU RELATÓRIOS 
 
@@ -19,7 +19,7 @@ void modulo_relatorio (void) {
 
   char opcao1;
   char opcao2;
-  Aluguel* aluga;
+ 
 
   do {
       opcao1 = relatorios();
@@ -87,7 +87,7 @@ void modulo_relatorio (void) {
                             printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
                             getchar();
                             break;
-                  case '3': aluguel_cpf(aluga);
+                  case '3': aluguel_cpf();
                             printf("\n");
                             printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
                             getchar();
@@ -561,8 +561,8 @@ void aluguel_ex (void){
 
 //RELATÓRIO DE ALUGUEIS POR CPF
 
-void aluguel_cpf(Aluguel* aluga) {
-
+void aluguel_cpf(void) {
+  Aluguel* aluga;
   char *nome_cli;
   char qual_bike;
   char* cpf;
@@ -582,10 +582,10 @@ void aluguel_cpf(Aluguel* aluga) {
   while(fread(aluga, sizeof(Aluguel), 1, fp) == 1) {
     if (strcmp(aluga->cpf, cpf) == 0) {
       nome_cli = nome_pull(cpf);
-      qual_bike = bike_pull();
+      qual_bike = bike_pull(aluga->cod_bike);
       printf("Nome do cliente: %s\n",nome_cli);
       printf("CPF: %s\n",aluga->cpf);
-      printf("Tipo da bike: \n", qual_bike);
+      printf("Tipo da bike: %c\n", qual_bike);
       printf("Data do aluguel: %s\n",aluga->data);
       printf("Valor do aluguel: %.2f\n", aluga->valor);
       printf("Tempo de locação: %d\n",aluga->tempo);
@@ -629,7 +629,7 @@ char *nome_pull(const char *cpf) {
 
 //FUNÇÃO QUE CAPTURA TIPO DE BIKE
 
-char bike_pull(void) {
+char bike_pull(char* cod_bike) {
   Bike* bike;
   char tipo;
   FILE* fp = fopen("bikes.dat", "rb");
@@ -641,7 +641,7 @@ char bike_pull(void) {
   }
   bike = (Bike*) malloc(sizeof(Bike));
   while (fread(bike, sizeof(Bike), 1, fp) == 1) {
-    if (bike->tipo == tipo) {
+    if (bike->cod == cod_bike) {
       tipo = bike->tipo;
       fclose(fp);
       free(bike);
@@ -650,5 +650,5 @@ char bike_pull(void) {
   }
   fclose(fp);
   free(bike);
-  return 0;
+  return '0';
 }

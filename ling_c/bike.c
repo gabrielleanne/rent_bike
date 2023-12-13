@@ -96,7 +96,7 @@ Bike* cadastrar_bike(void) {
 	fgets(bike->cod,6 ,stdin);
     getchar();
     bike->status= 'c';
-    bike->dispon= disponibilidade(bike->cod);
+    bike->dispon= 's';
     printf("\n");
     printf("\n");
     printf("Cadastro realizado com sucesso!\n");
@@ -498,7 +498,7 @@ void excluir_bike(void) {
 }
 
 
-char disponibilidade (char cod) {
+char disponibilidade (char* cod) {
   Aluguel* aluga;
   char disp;
   FILE* fp = fopen("aluguel.dat", "rb");
@@ -525,5 +525,5 @@ char disponibilidade (char cod) {
   }
   fclose(fp);
   free(aluga);
-  return 0;
+  return 'n';
 }
