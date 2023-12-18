@@ -425,7 +425,7 @@ void bikes_dispon (void){
   }
   inicio_bike ();
   while (fread(bike, sizeof(Bike), 1, fp)) { 
-    if ((bike->dispon != 'n') && (bike->status !='x')) {
+    if ((bike->dispon == 's') && (bike->status !='x')) {
       printf("%-22c", bike->tipo);
       printf("|");
       printf("%-21s", bike->cod);
@@ -455,7 +455,7 @@ void bikes_alug (void){
   }
   inicio_bike ();
   while (fread(bike, sizeof(Bike), 1, fp)) { 
-    if ((bike->dispon != 's') && (bike->status !='x')) {
+    if ((bike->dispon == 'n')) {
       printf("%-22c", bike->tipo);
       printf("|");
       printf("%-21s", bike->cod);
@@ -566,39 +566,49 @@ void aluguel_ex (void){
 //RELATÓRIO DE ALUGUEIS POR CPF
 
 void aluguel_cpf(void) {
-  Aluguel* aluga;
-  char *nome_cli;
-  char qual_bike;
-  char* cpf;
-  FILE* fp;
-  system("clear||cls");
-  cpf=ler_cpf();
-  fgets (cpf, 12, stdin);
-  getchar();
-  aluga = (Aluguel*) malloc(sizeof(Aluguel));
-  printf("\n");
-  fp = fopen("aluguel.dat", "rb");
-  if (fp == NULL) {
-    printf("\t\t\t>>> Houve um erro ao abrir o arquivo!\n");
-    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-    getchar();
-  }
-  while(fread(aluga, sizeof(Aluguel), 1, fp) == 1) {
-    if (strcmp(aluga->cpf, cpf) == 0) {
-      nome_cli = nome_pull(cpf);
-      qual_bike = bike_pull(aluga->cod_bike);
-      printf("Nome do cliente: %s\n",nome_cli);
-      printf("CPF: %s\n",aluga->cpf);
-      printf("Tipo da bike: %c\n", qual_bike);
-      printf("Data do aluguel: %s\n",aluga->data);
-      printf("Valor do aluguel: %.2f\n", aluga->valor);
-      printf("Tempo de locação: %d\n",aluga->tempo);
 
+
+    Aluguel* aluga;
+    FILE* fp;
+    
+    char* cpf;
+    char* nome_cli;
+    
+    
+
+    aluga = (Aluguel*)malloc(sizeof(Aluguel));
+    fp = fopen("aluguel.dat", "rb");
+    cpf=ler_cpf();
+
+    if (fp == NULL) {
+        printf("Não foi possível abrir o arquivo!\n");
+        printf("\n\nTecle ENTER para continuar!\n\n");
+        getchar();
+        free(aluga);
     }
-  }
-  fclose(fp);
-  free(aluga);
+
+    while (fread(aluga, sizeof(Aluguel), 1, fp)) {
+      if (strcmp(aluga->cpf, cpf) == 0 && aluga->status == 'c') {
+        inicio_aluguel();
+        printf("%-14s", aluga->cod_aluguel);
+        printf("|");
+        printf("%-11s", aluga->data);
+        printf("|");
+        printf("%.2f", aluga->valor);
+        printf("\n");
+        printf("\n");
+        printf("\n");
+        nome_cli = nome_pull(cpf);
+        printf("Nome do cliente: %s\n",nome_cli);
+        printf("Tempo de locação: %d\n",aluga->tempo);
+        printf("\n");
+    }
+    }
+    fclose(fp);
+
 }
+
+    
 
 
 
@@ -631,31 +641,6 @@ char *nome_pull(const char *cpf) {
 }
 
 
-//FUNÇÃO QUE CAPTURA TIPO DE BIKE
-
-char bike_pull(char* cod_bike) {
-  Bike* bike;
-  char tipo;
-  FILE* fp = fopen("bikes.dat", "rb");
-
-  if (fp == NULL) {
-    printf("\t\t\t>>> Houve um erro ao abrir o arquivo!\n");
-    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-    getchar();
-  }
-  bike = (Bike*) malloc(sizeof(Bike));
-  while (fread(bike, sizeof(Bike), 1, fp) == 1) {
-    if (bike->cod == cod_bike) {
-      tipo = bike->tipo;
-      fclose(fp);
-      free(bike);
-      return tipo;
-    }
-  }
-  fclose(fp);
-  free(bike);
-  return '0';
-}
 
 
 void inicio_cli (void){

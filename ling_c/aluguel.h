@@ -30,8 +30,9 @@ void print_aluguel(Aluguel* aluga);
 void excluir_aluguel(void);
 float valor_aluguel (int tempo);
 char* codi (void);
-char disponibilidade (Aluguel *aluga);
 Aluguel* buscar_aluguel(void);
+void disponibilidade_n(char* cod);
+void disponibilidade_s(const char* cod_bike);
  
 
 

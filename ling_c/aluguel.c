@@ -86,7 +86,7 @@ Aluguel* novo_aluguel(void) {
     char cod[9];
     int tam;
     char* x;
-    char dispon;
+    
     
     
     system("clear||cls");
@@ -107,8 +107,8 @@ Aluguel* novo_aluguel(void) {
       scanf("%s", cod);
       getchar();
       y=check_bike(cod);
-      dispon=disponibilidade(aluga);
-    } while ((y != 'c') && (dispon!='s')); 
+     
+    } while ((y != 'c')); 
     strcpy(aluga->cod_bike, cod);
     printf("CPF do cliente (somente números):\n");
 	  fgets(aluga->cpf,14 ,stdin);
@@ -147,7 +147,7 @@ Aluguel* novo_aluguel(void) {
     aluga->valor = valor_aluguel(aluga->tempo);
     aluga->status= 'c';
     aluga->vigencia= 's';
-
+    disponibilidade_n(aluga->cod_bike); // Marca a bike como indisponível
     printf("\n");
     printf("\n");
     printf("Cadastro realizado com sucesso!\n");
@@ -309,40 +309,45 @@ void excluir_aluguel(void) {
        
 void baixa_aluguel(Bike *bike) {
 
-  
-  Aluguel* aluga = (Aluguel*) malloc(sizeof(Aluguel));
-  FILE* fp;
-  char cod[9];
-  int busca=0;
-  printf("Digite o código do aluguel a ser dado baixa:\n");
-  scanf("%s",cod);
-  getchar();
-  fp= fopen("aluguel.dat", "r+b");
-  if (fp==NULL) {
-    printf("Não foi possível abrir o arquivo!\n");
-    printf("\n\nTecle ENTER para continuar!\n\n");
-	  getchar();
-  }
-  else{  
-    while (fread(aluga, sizeof(Aluguel), 1, fp)) {
-      if ((strcmp(cod, aluga->cod_aluguel)==0) && (aluga->vigencia == 's')) {
-        busca=1;
-        aluga->vigencia='n';
-        bike->dispon='s';
-        fseek(fp, (-1L)*sizeof(Aluguel), SEEK_CUR);
-        fwrite(aluga, sizeof(Aluguel), 1, fp);  
-        printf("Baixa em aluguel com sucesso!\n");
-        break;
-      }
+
+    Aluguel* aluga = (Aluguel*)malloc(sizeof(Aluguel));
+    FILE* fp;
+    char cod[9];
+    int busca = 0;
+
+    printf("Digite o código do aluguel a ser dado baixa:\n");
+    scanf("%s", cod);
+    getchar();
+
+    fp = fopen("aluguel.dat", "r+b");
+    if (fp == NULL) {
+        printf("Não foi possível abrir o arquivo!\n");
+        printf("\n\nTecle ENTER para continuar!\n\n");
+        getchar();
+        free(aluga);
+        return;
     }
-  } 
-  if (!busca) {
-    printf("Código de aluguel não encontrado!\n");  
-  }
-  printf("\n\nTecle ENTER para continuar!\n\n");
-  getchar();
-  fclose(fp);
-  free(aluga);
+
+    while (fread(aluga, sizeof(Aluguel), 1, fp)) {
+        if (strcmp(cod, aluga->cod_aluguel) == 0) {
+            busca = 1;
+            aluga->vigencia = 'n';
+            disponibilidade_s(aluga->cod_bike);
+            fseek(fp, -sizeof(Aluguel), SEEK_CUR);
+            fwrite(aluga, sizeof(Aluguel), 1, fp);
+            printf("Baixa em aluguel com sucesso!\n");
+            break;
+        }
+    }
+
+    if (!busca) {
+        printf("Código de aluguel não encontrado!\n");
+    }
+
+    printf("\n\nTecle ENTER para continuar!\n\n");
+    getchar();
+    fclose(fp);
+    free(aluga);
 }
 
 
@@ -378,54 +383,52 @@ float valor_aluguel (int tempo){
 
 
 
-
-char disponibilidade (Aluguel *aluga) {
-  
-  char check;
-  Bike* bike;
-  FILE* fp = fopen("bikes.dat", "rb");
-
-  if (fp == NULL) {
-    printf("\t\t\t>>> Houve um erro ao abrir o arquivo!\n");
-    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-    getchar();
-  }
-  bike = (Bike*) malloc(sizeof(Bike));
-  while (fread(bike, sizeof(Bike), 1, fp) == 1) {
-    if (strcmp(bike->cod, aluga->cod_bike)==0){
-      check = bike->dispon= 'n';
-      fclose(fp);
-      free(bike);
-      return check;
+void disponibilidade_n(char* cod) {
+    FILE* arquivo = fopen("bikes.dat", "r+b");
+    if (arquivo == NULL) {
+        printf("Erro ao abrir o arquivo de bicicletas!\n");
+        return;
     }
-  }
-  fclose(fp);
-  free(bike);
-  return 'n';
+
+    Bike bike;
+
+    while (fread(&bike, sizeof(Bike), 1, arquivo) == 1) {
+        if (strcmp(bike.cod, cod) == 0) {
+            bike.dispon = 'n'; // Marca a bike como indisponível
+            fseek(arquivo, -sizeof(Bike), SEEK_CUR);
+            fwrite(&bike, sizeof(Bike), 1, arquivo);
+            fclose(arquivo);
+            return;
+        }
+    }
+
+    fclose(arquivo);
+    printf("Bike não encontrada!\n");
+    
 }
 
 
-char check_bike (char* cod) {
-  
-  char check;
-  Bike* bike;
-  FILE* fp = fopen("bikes.dat", "rb");
+void disponibilidade_s(const char* cod_bike) {
+    FILE* fp;
+    Bike* bike;
 
-  if (fp == NULL) {
-    printf("\t\t\t>>> Houve um erro ao abrir o arquivo!\n");
-    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-    getchar();
-  }
-  bike = (Bike*) malloc(sizeof(Bike));
-  while (fread(bike, sizeof(Bike), 1, fp) == 1) {
-    if (strcmp(bike->cod, cod)==0){
-      check = bike->status;
-      fclose(fp);
-      free(bike);
-      return check;
+    fp = fopen("bikes.dat", "r+b");
+    if (fp == NULL) {
+        printf("Não foi possível abrir o arquivo de bikes!\n");
+        return;
     }
-  }
-  fclose(fp);
-  free(bike);
-  return 'n';
+
+    bike = (Bike*)malloc(sizeof(Bike));
+    while (fread(bike, sizeof(Bike), 1, fp) == 1) {
+        if (strcmp(bike->cod, cod_bike) == 0) {
+            // Atualiza o status da bike para disponível ('s')
+            bike->dispon = 's';
+            fseek(fp, -sizeof(Bike), SEEK_CUR);
+            fwrite(bike, sizeof(Bike), 1, fp);
+            break;
+        }
+    }
+
+    fclose(fp);
+    free(bike);
 }

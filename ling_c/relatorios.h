@@ -19,7 +19,6 @@ void clientes_ord(void);
 void bikes_ex (void);
 void aluguel_ex (void);
 char *nome_pull(const char *cpf);
-char bike_pull(char*);
 void aluguel_cpf(void);
 void inicio_cli (void);
 void inicio_bike (void);
