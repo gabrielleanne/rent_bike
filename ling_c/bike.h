@@ -4,10 +4,10 @@ typedef struct bike Bike;
 
 struct bike {
     char tipo;
-    char aro[5];
+    char aro[7];
     float valor_aluguel;
-    char marca[20];
-    char cod[6];
+    char marca[22];
+    char cod[9];
     char status;
     char dispon;
 };
@@ -19,6 +19,7 @@ struct bike {
 void modulo_bike(void);
 char bikes(void);
 Bike* cadastrar_bike(void);
+char* cod (void);
 void gravar_bike(Bike*);
 char editar_bike(void);
 Bike* buscar_bike(void);
@@ -31,6 +32,6 @@ void altera_valor (void);
 char tipo_bike (void);
 char* ler_cod_bike (void); 
 void print_bike(Bike*);
-char disponibilidade (char*);
+char check_bike (char*);
 
 

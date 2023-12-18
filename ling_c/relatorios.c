@@ -59,14 +59,17 @@ void modulo_relatorio (void) {
                             printf("\n");
                             printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
                             getchar();
+                            break;
                   case '3': bikes_dispon();
                             printf("\n");
                             printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
                             getchar();
+                            break;
                   case '4': bikes_alug();
                             printf("\n");
                             printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
                             getchar();
+                            break;
 
                 }
               } while (opcao2 != '0');
@@ -223,6 +226,7 @@ void clientes_cadastrados (void) {
 
   FILE* fp;
   Cliente* cli;
+
   printf("\n");
   cli = (Cliente*) malloc(sizeof(Cliente));
   fp = fopen("clientes.dat", "rb");
@@ -231,18 +235,15 @@ void clientes_cadastrados (void) {
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
   }
-  
+  inicio_cli();
   while (fread(cli, sizeof(Cliente), 1, fp)) { 
     if (cli->status != 'x') {
-      printf("Nome: %s\n", cli->nome);
-      printf("CPF: %s\n", cli->cpf);
-      printf("Email: %s\n", cli->email);
-      printf("Logradouro: %s\n", cli->log);
-      printf("Número: %s\n", cli->num);
-      printf("Bairro: %s\n", cli->bai);
-      printf("Email: %s\n", cli->email);
-      printf("Status: %c\n", cli->status);
-
+      printf("%-30s", cli->nome);
+      printf("|");
+      printf("%-25s", cli->cpf);
+      printf("|");
+      printf("%-20c", cli->status);
+      printf("\n");
     }
   }
   fclose(fp);
@@ -264,18 +265,18 @@ void clientes_ex (void) {
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
   }
+  inicio_cli();
   while (fread(cli, sizeof(Cliente), 1, fp)) { 
-    if (cli->status == 'x') {
-      printf("Nome: %s\n", cli->nome);
-      printf("CPF: %s\n", cli->cpf);
-      printf("Email: %s\n", cli->email);
-      printf("Logradouro: %s\n", cli->log);
-      printf("Número: %s\n", cli->num);
-      printf("Bairro: %s\n", cli->bai);
-      printf("Email: %s\n", cli->email);
-      printf("Status: %c\n", cli->status);
+    if (cli->status != 'c') {
+      printf("%-30s", cli->nome);
+      printf("|");
+      printf("%-25s", cli->cpf);
+      printf("|");
+      printf("%-20c", cli->status);
+      printf("\n");
     }
-  }  
+  }
+  
   fclose(fp);
   free(cli);
 
@@ -329,14 +330,13 @@ void clientes_ord(void) {
   fclose(fp);
   prox_cli = lista;
   while(prox_cli != NULL) {
-    printf("Nome: %s\n", prox_cli->nome);
-    printf("CPF: %s\n", prox_cli->cpf);
-    printf("Email: %s\n", prox_cli->email);
-    printf("Logradouro: %s\n", prox_cli->log);
-    printf("Número: %s\n", prox_cli->num);
-    printf("Bairro: %s\n", prox_cli->bai);
-    printf("Email: %s\n", prox_cli->email);
-    printf("Status: %c\n", prox_cli->status);
+    inicio_cli();
+    printf("%-30s", prox_cli->nome);
+    printf("|");
+    printf("%-25s", prox_cli->cpf);
+    printf("|");
+    printf("%-20c", prox_cli->status);
+    printf("\n");
     prox_cli = prox_cli->prox;
   }
   prox_cli = lista;
@@ -363,15 +363,15 @@ void bikes_cadastradas (void){
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
   }
- 
+  inicio_bike ();
   while (fread(bike, sizeof(Bike), 1, fp)) { 
     if (bike->status != 'x') {
-    printf("Tipo: %c\n", bike->tipo);
-    printf("Aro: %s\n", bike->aro);
-    printf("Valor do aluguel: %.2f\n", bike->valor_aluguel);
-    printf("Marca: %s\n", bike->marca);
-    printf("Código: %s\n", bike->cod);  
-    printf("Disponível? %c\n", bike->dispon);
+      printf("%-22c", bike->tipo);
+      printf("|");
+      printf("%-21s", bike->cod);
+      printf("|");
+      printf("%.2f", bike->valor_aluguel);
+      printf("\n");
     }
   }  
 
@@ -394,17 +394,18 @@ void bikes_ex (void){
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
   }
+  inicio_bike ();
   while (fread(bike, sizeof(Bike), 1, fp)) { 
-    if (bike->status == 'x') {
-    printf("Tipo: %c\n", bike->tipo);
-    printf("Aro: %s\n", bike->aro);
-    printf("Valor do aluguel: %.2f\n", bike->valor_aluguel);
-    printf("Marca: %s\n", bike->marca);
-    printf("Código: %s\n", bike->cod);  
-    printf("Disponível? %c\n", bike->dispon);
+    if (bike->status != 'c') {
+      printf("%-22c", bike->tipo);
+      printf("|");
+      printf("%-21s", bike->cod);
+      printf("|");
+      printf("%.2f", bike->valor_aluguel);
+      printf("\n");
     }
-  } 
-
+  }  
+ 
   fclose(fp);
   free(bike);
 }
@@ -422,16 +423,17 @@ void bikes_dispon (void){
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
   }
+  inicio_bike ();
   while (fread(bike, sizeof(Bike), 1, fp)) { 
-    if (bike->dispon == 's') {
-    printf("Tipo: %c\n", bike->tipo);
-    printf("Aro: %s\n", bike->aro);
-    printf("Valor do aluguel: %.2f\n", bike->valor_aluguel);
-    printf("Marca: %s\n", bike->marca);
-    printf("Código: %s\n", bike->cod);  
-    printf("Disponível? %c\n", bike->dispon);
+    if ((bike->dispon != 'n') && (bike->status !='x')) {
+      printf("%-22c", bike->tipo);
+      printf("|");
+      printf("%-21s", bike->cod);
+      printf("|");
+      printf("%.2f", bike->valor_aluguel);
+      printf("\n");
     }
-  } 
+  }  
 
   fclose(fp);
   free(bike);
@@ -451,17 +453,17 @@ void bikes_alug (void){
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
   }
+  inicio_bike ();
   while (fread(bike, sizeof(Bike), 1, fp)) { 
-    if (bike->dispon == 'n') {
-    printf("Tipo: %c\n", bike->tipo);
-    printf("Aro: %s\n", bike->aro);
-    printf("Valor do aluguel: %.2f\n", bike->valor_aluguel);
-    printf("Marca: %s\n", bike->marca);
-    printf("Código: %s\n", bike->cod);  
-    printf("Disponível? %c\n", bike->dispon);
+    if ((bike->dispon != 's') && (bike->status !='x')) {
+      printf("%-22c", bike->tipo);
+      printf("|");
+      printf("%-21s", bike->cod);
+      printf("|");
+      printf("%.2f", bike->valor_aluguel);
+      printf("\n");
     }
-  } 
-
+  }  
   fclose(fp);
   free(bike);
 }
@@ -481,14 +483,15 @@ FILE* fp;
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
   }
+  inicio_aluguel();
   while (fread(aluga, sizeof(Aluguel), 1, fp)) { 
-    if ((aluga->status != 'x')&&(aluga->vigencia=='s')) {
-      printf("Código da bike: %s\n", aluga->cod_bike);
-      printf("Código do aluguel: %s\n", aluga->cod_aluguel);
-      printf("Cpf do cliente: %s\n", aluga->cpf);
-      //printf("Valor do lauguel: %.2f\n", aluga->valor);
-      printf("Data: %s\n", aluga->data);
-      printf("Status: %c\n", aluga->status);
+    if ((aluga->status != 'x') && (aluga->vigencia!='n')) {
+
+      printf("%-14s", aluga->cod_aluguel);
+      printf("|");
+      printf("%-11s", aluga->data);
+      printf("|");
+      printf("%.2f", aluga->valor);
       printf("\n");
     }
   }
@@ -511,14 +514,14 @@ FILE* fp;
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
   }
+  inicio_aluguel();
   while (fread(aluga, sizeof(Aluguel), 1, fp)) { 
-    if ((aluga->status != 'x')&&(aluga->vigencia=='n')) {
-      printf("Código da bike: %s\n", aluga->cod_bike);
-      printf("Código do aluguel: %s\n", aluga->cod_aluguel);
-      printf("Cpf do cliente: %s\n", aluga->cpf);
-      printf("Valor do aluguel: %.2f\n", aluga->valor);
-      printf("Data: %s\n", aluga->data);
-      printf("Status: %c\n", aluga->status);
+    if (aluga->vigencia!='s') {
+      printf("%-14s", aluga->cod_aluguel);
+      printf("|");
+      printf("%-11s", aluga->data);
+      printf("|");
+      printf("%.2f", aluga->valor);
       printf("\n");
     }
   }
@@ -542,14 +545,15 @@ void aluguel_ex (void){
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
   }
-   while (fread(aluga, sizeof(Aluguel), 1, fp)) { 
-    if ((aluga->status != 'x')&&(aluga->vigencia=='n')) {
-      printf("Código da bike: %s\n", aluga->cod_bike);
-      printf("Código do aluguel: %s\n", aluga->cod_aluguel);
-      printf("Cpf do cliente: %s\n", aluga->cpf);
-      //printf("Valor do lauguel: %.2f\n", aluga->valor);
-      printf("Data: %s\n", aluga->data);
-      printf("Status: %c\n", aluga->status);
+  inicio_aluguel();
+  while (fread(aluga, sizeof(Aluguel), 1, fp)) { 
+    if ((aluga->status != 'c')) {
+
+      printf("%-14s", aluga->cod_aluguel);
+      printf("|");
+      printf("%-11s", aluga->data);
+      printf("|");
+      printf("%.2f", aluga->valor);
       printf("\n");
     }
   }
@@ -651,4 +655,25 @@ char bike_pull(char* cod_bike) {
   fclose(fp);
   free(bike);
   return '0';
+}
+
+
+void inicio_cli (void){
+  printf("+-----------------------------+-------------------------+--------------------+\n");
+  printf("| NOME:                       | CPF:                    | STATUS:            |\n");
+}
+
+
+
+void inicio_bike (void){
+  printf("+---------------------+---------------------+--------------------+\n");
+  printf("| TIPO:               | CÓDIGO:             | VALOR:             |\n");
+}
+
+
+
+
+void inicio_aluguel (void){
+  printf("+-------------+-----------+--------------------------+\n");
+  printf("| COD ALUG:   | DATA:     | VALOR:                   |\n");
 }

@@ -6,13 +6,13 @@
 typedef struct aluguel Aluguel;
 
 struct aluguel {
-    char cod_bike[6];
+    char cod_bike[9];
     int tempo;
-    char cpf[12];
+    char cpf[14];
     float valor;
     char status;
-    char cod_aluguel[4];
-    char data[12];
+    char cod_aluguel[9];
+    char data[13];
     char vigencia;
 };
 
@@ -25,11 +25,13 @@ void modulo_aluguel(void);
 char aluguel(void);
 Aluguel* novo_aluguel(void);
 void gravar_aluguel(Aluguel* aluga);
-Aluguel* buscar_aluguel(void);
+char* cod_aluguel(void);
 void print_aluguel(Aluguel* aluga);
 void excluir_aluguel(void);
-float valor_aluguel (void);
-void baixa_aluguel(void);
+float valor_aluguel (int tempo);
+char* codi (void);
+char disponibilidade (Aluguel *aluga);
+Aluguel* buscar_aluguel(void);
  
 
 

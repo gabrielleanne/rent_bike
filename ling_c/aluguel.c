@@ -12,6 +12,8 @@
 
 
 
+ 
+void baixa_aluguel(Bike *bike);
 
 
 
@@ -21,6 +23,7 @@
 void modulo_aluguel (void) {
 
    Aluguel* aluga;
+   Bike bike;
    char opcao;
     do {
         opcao = aluguel();
@@ -37,7 +40,7 @@ void modulo_aluguel (void) {
                         break;
             case '3': 	excluir_aluguel();
                         break;
-            case '4': 	baixa_aluguel();
+            case '4': 	baixa_aluguel(&bike);
                         break;
             
         } 		
@@ -74,9 +77,18 @@ char aluguel(void) {
 
 Aluguel* novo_aluguel(void) {
 
+
+
     Aluguel* aluga;
     aluga = (Aluguel*) malloc(sizeof(Aluguel));
     int dd, mm, yy;
+    char y;
+    char cod[9];
+    int tam;
+    char* x;
+    char dispon;
+    
+    
     system("clear||cls");
     printf("\n");
     printf("-------------------------------------------------\n");
@@ -89,38 +101,53 @@ Aluguel* novo_aluguel(void) {
     printf("Vamos cadastrar um novo aluguel no sistema!\n");
     printf("\n");
     printf("\n");
+    
+    do {
+      printf("Código da bike desejada:\n");
+      scanf("%s", cod);
+      getchar();
+      y=check_bike(cod);
+      dispon=disponibilidade(aluga);
+    } while ((y != 'c') && (dispon!='s')); 
+    strcpy(aluga->cod_bike, cod);
     printf("CPF do cliente (somente números):\n");
-	  fgets(aluga->cpf,12 ,stdin);
+	  fgets(aluga->cpf,14 ,stdin);
+    tam = strlen(aluga->cpf);
+    aluga->cpf[tam-1] = '\0';
     getchar();
     while (!valida_cpf (aluga->cpf)) {
-        printf("Cpf digitado não é válido!\n");
-        printf("Informe o cpf novamente (somente números):\n ");
-        fgets(aluga->cpf, 12, stdin);
-        getchar();
+      printf("Cpf digitado não é válido!\n");
+      printf("Informe o cpf novamente (somente números):\n ");
+      fgets(aluga->cpf, 14, stdin);
+      tam = strlen(aluga->cpf);
+      aluga->cpf[tam-1] = '\0';
+      getchar();
     }
-    printf("Código da bike: \n");
-    fgets(aluga->cod_bike,4,stdin);
-    getchar();
-    printf("Código do aluguel: \n");
-    fgets(aluga->cod_aluguel,4,stdin);
-    getchar();
+    x=codi();
+    strcpy(aluga->cod_aluguel, x);
+    printf("Código do aluguel: %s\n", aluga->cod_aluguel);
     printf("Tempo de aluguel (em horas): \n");
     scanf("%d",&aluga->tempo);
     getchar();
     printf("Digite a data do aluguel (dd/mm/yyyy): \n");
-    fgets(aluga->data,11,stdin);
+    fgets(aluga->data,12,stdin);
+    tam = strlen(aluga->data);
+    aluga->data[tam-1] = '\0';
     getchar();
     sscanf(aluga->data, "%d/%d/%d", &dd, &mm, &yy);
     getchar();
-     while (!valida_data (dd, mm, yy)) {
-        printf("Data digitada não é válida!\n");
-        printf("Informe a data novamente:\n ");
-        fgets(aluga->data, 11, stdin);
-        getchar();
+    while (!valida_data (dd, mm, yy)) {
+      printf("Data digitada não é válida!\n");
+      printf("Informe a data novamente:\n ");
+      fgets(aluga->data, 12, stdin);
+      tam = strlen(aluga->data);
+      aluga->data[tam-1] = '\0';
+      getchar();
     }
-    aluga->valor=valor_aluguel();
+    aluga->valor = valor_aluguel(aluga->tempo);
     aluga->status= 'c';
     aluga->vigencia= 's';
+
     printf("\n");
     printf("\n");
     printf("Cadastro realizado com sucesso!\n");
@@ -132,6 +159,20 @@ Aluguel* novo_aluguel(void) {
 }
 
 
+
+
+//FUNÇÃO GERA CÓDIGO DO ALUGUEL BASEADO EM HORA LOCAL
+
+char* codi (void) {
+
+  time_t segundos;
+  time(&segundos);
+  struct tm *codigo = localtime(&segundos);
+  char* tempo = (char*)malloc(9 * sizeof(char)); 
+  sprintf(tempo, "%02d%02d%02d", codigo->tm_hour, codigo->tm_min, codigo->tm_sec);
+  return tempo; 
+  free (tempo);
+}
 
 
 /// FUNÇÃO GRAVA ALUGUEL NO SISTEMA
@@ -155,8 +196,8 @@ void gravar_aluguel(Aluguel* aluga) {
 Aluguel* buscar_aluguel(void) {
 
   Aluguel* aluga;
-  char* cpf;
-  cpf=ler_cpf();
+	char* cod;
+  cod=cod_aluguel();
 	FILE* fp;
 	aluga = (Aluguel*) malloc(sizeof(Aluguel));
 	fp = fopen("aluguel.dat", "rb");
@@ -166,16 +207,12 @@ Aluguel* buscar_aluguel(void) {
 	  getchar();
 	}
 	while(fread(aluga, sizeof(Aluguel), 1, fp)) {
-		if ((strcmp(aluga->cpf, cpf) == 0) && (aluga->status == 'c')) {
+		if ((strcmp(aluga->cod_aluguel, cod) == 0)) {
 			return aluga;
 		}
 	}
 	fclose(fp);
 	return NULL;
-  printf("\n");
-  printf("\n");
-  printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-  getchar();
   
 }
 
@@ -183,13 +220,13 @@ Aluguel* buscar_aluguel(void) {
 ///// FUNÇÃO QUE EXIBE ALUGUEL NA TELA
 
 void print_aluguel(Aluguel* aluga) {
-  if ((aluga == NULL) || (aluga->status == 'x')) {
+  if ((aluga == NULL)) {
     printf("\nAluguel não existe!\n");
   } else {
       printf("Código da bike: %s\n", aluga->cod_bike);
       printf("Código do aluguel: %s\n", aluga->cod_aluguel);
       printf("Data do aluguel: %s\n", aluga->data);
-      printf("Tempo de aluguel: %d\n", aluga->tempo);
+      printf("Tempo de aluguel: %d horas\n", aluga->tempo);
       printf("CPF do cliente: %s\n", aluga->cpf);
       printf("Valor: %.2f\n", aluga->valor);
       printf("Status: %c\n", aluga->status);
@@ -202,9 +239,10 @@ void print_aluguel(Aluguel* aluga) {
 
 char* cod_aluguel(void) {
 
-	char* cod_aluguel;
+	char* cod;
+  int tam;
 
-	cod_aluguel = (char*) malloc(12*sizeof(char));
+	cod = (char*) malloc(9*sizeof(char));
 	printf("\n");
 	system("clear||cls");
   printf("\n");
@@ -217,9 +255,11 @@ char* cod_aluguel(void) {
   printf("\n");
 	printf("Digite o código do aluguel: \n");
   printf("\n");
-	fgets(cod_aluguel,4,stdin);
+	fgets(cod,9,stdin);
+  tam = strlen(cod);
+  cod[tam-1] = '\0';
   getchar();
-  return cod_aluguel;
+  return cod;
 }
 
 
@@ -264,15 +304,19 @@ void excluir_aluguel(void) {
   free(ex);
 }
 
+
+//FUNÇÃO QUE DA BAIXA EM ALUGUEL;
        
-void baixa_aluguel(void) {
+void baixa_aluguel(Bike *bike) {
 
-  char* cod;
-  Aluguel* ex = (Aluguel*) malloc(sizeof(Aluguel));
+  
+  Aluguel* aluga = (Aluguel*) malloc(sizeof(Aluguel));
   FILE* fp;
-  int busca = 0;
-
-  cod = cod_aluguel();
+  char cod[9];
+  int busca=0;
+  printf("Digite o código do aluguel a ser dado baixa:\n");
+  scanf("%s",cod);
+  getchar();
   fp= fopen("aluguel.dat", "r+b");
   if (fp==NULL) {
     printf("Não foi possível abrir o arquivo!\n");
@@ -280,12 +324,13 @@ void baixa_aluguel(void) {
 	  getchar();
   }
   else{  
-    while (fread(ex, sizeof(Aluguel), 1, fp)) {
-      if (strcmp(ex->cod_aluguel, cod)==0) {
-        busca=1; 
-        ex->vigencia='n';
+    while (fread(aluga, sizeof(Aluguel), 1, fp)) {
+      if ((strcmp(cod, aluga->cod_aluguel)==0) && (aluga->vigencia == 's')) {
+        busca=1;
+        aluga->vigencia='n';
+        bike->dispon='s';
         fseek(fp, (-1L)*sizeof(Aluguel), SEEK_CUR);
-        fwrite(ex, sizeof(Aluguel), 1, fp);  
+        fwrite(aluga, sizeof(Aluguel), 1, fp);  
         printf("Baixa em aluguel com sucesso!\n");
         break;
       }
@@ -297,7 +342,7 @@ void baixa_aluguel(void) {
   printf("\n\nTecle ENTER para continuar!\n\n");
   getchar();
   fclose(fp);
-  free(ex);
+  free(aluga);
 }
 
 
@@ -306,28 +351,24 @@ void baixa_aluguel(void) {
 
 //FUNÇÃO QUE CALCULA O VALOR DO ALUGUEL
 
-float valor_aluguel (void){
+float valor_aluguel (int tempo){
 
   char bike;
-  int temp;
   float valor;
-  printf("\n");
-  printf("O aluguel será por quantas horas?\n");
-  scanf("%d", &temp);
-  getchar();
-  printf("\n");
+
   bike=tipo_bike();
+
   if (bike=='1'){
-    valor= 20*temp;   
+    valor= 20*tempo;   
   }
   if (bike=='2'){
-    valor = 25*temp;
+    valor = 25*tempo;
   }
   if (bike=='3'){
-    valor = 30*temp;
+    valor = 30*tempo;
   }
   if (bike=='4'){
-    valor= 35*temp;
+    valor= 35*tempo;
   }
   printf("\n");
   printf("O valor do aluguel será de : %.2f\n", valor);
@@ -335,3 +376,56 @@ float valor_aluguel (void){
 }
 
 
+
+
+
+char disponibilidade (Aluguel *aluga) {
+  
+  char check;
+  Bike* bike;
+  FILE* fp = fopen("bikes.dat", "rb");
+
+  if (fp == NULL) {
+    printf("\t\t\t>>> Houve um erro ao abrir o arquivo!\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    getchar();
+  }
+  bike = (Bike*) malloc(sizeof(Bike));
+  while (fread(bike, sizeof(Bike), 1, fp) == 1) {
+    if (strcmp(bike->cod, aluga->cod_bike)==0){
+      check = bike->dispon= 'n';
+      fclose(fp);
+      free(bike);
+      return check;
+    }
+  }
+  fclose(fp);
+  free(bike);
+  return 'n';
+}
+
+
+char check_bike (char* cod) {
+  
+  char check;
+  Bike* bike;
+  FILE* fp = fopen("bikes.dat", "rb");
+
+  if (fp == NULL) {
+    printf("\t\t\t>>> Houve um erro ao abrir o arquivo!\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    getchar();
+  }
+  bike = (Bike*) malloc(sizeof(Bike));
+  while (fread(bike, sizeof(Bike), 1, fp) == 1) {
+    if (strcmp(bike->cod, cod)==0){
+      check = bike->status;
+      fclose(fp);
+      free(bike);
+      return check;
+    }
+  }
+  fclose(fp);
+  free(bike);
+  return 'n';
+}

@@ -68,6 +68,8 @@ Cliente* cadastrar_cliente(void) {
 
     Cliente* cli;
     cli = (Cliente*) malloc(sizeof(Cliente));
+    
+
     system("clear||cls");
     printf("\n");
     printf("-------------------------------------------------\n");
@@ -80,17 +82,18 @@ Cliente* cadastrar_cliente(void) {
     printf("\n");
     printf("\n");
 	  printf("Nome:\n ");
-	  fgets(cli->nome, 51, stdin);
+	  fgets(cli->nome, 49, stdin);
+    getchar();
     while (!valida_nome (cli->nome)) {
         printf("Nome digitado não é válido!\n");
         printf("Informe o nome novamente:\n ");
-        fgets(cli->nome, 51, stdin);
+        fgets(cli->nome, 49, stdin);
         getchar();
     }
     printf("\n");
     printf("CPF (somente números):\n ");
     fgets(cli->cpf, 12, stdin);
-    while (!valida_cpf (cli->cpf)) {
+    while ((!valida_cpf (cli->cpf)) || (!cpf_repeted (cli->cpf))) {
         printf("Cpf digitado não é válido!\n");
         printf("Informe o cpf novamente (somente números):\n ");
         fgets(cli->cpf, 12, stdin);
@@ -108,21 +111,24 @@ Cliente* cadastrar_cliente(void) {
     printf("Dados do Endereço:\n");
     printf("\n");
     printf("Logradouro:\n ");
-    fgets(cli->log, 12, stdin);
+    fgets(cli->log, 25, stdin);
+    getchar();
     printf("\n");
     printf("Número:\n ");
     fgets(cli->num, 5, stdin);
     getchar();
     printf("\n");
     printf("Bairro:\n ");
-    fgets(cli->bai, 15, stdin);
+    fgets(cli->bai, 18, stdin);
+    getchar();
     printf("\n");
     printf("Email:\n ");
-    fgets(cli->email, 40, stdin);
+    fgets(cli->email, 48, stdin);
+    getchar();
     while (!valida_email (cli->email)){
         printf("Email inválido!\n");
         printf("Informe novamente o email:\n ");
-        fgets(cli->email, 40, stdin);
+        fgets(cli->email, 48, stdin);
         getchar();
     }
     cli->status = 'c';
@@ -195,7 +201,31 @@ char* ler_cpf(void) {
   printf("\n");
 	fgets(cpf,12,stdin);
   getchar();
+  while ((!valida_cpf (cpf))) {
+        printf("Cpf digitado não é válido!\n");
+        printf("Informe o cpf novamente (somente números):\n ");
+        fgets(cpf, 12, stdin);
+        getchar();
+ }
   return cpf;
+}
+
+
+
+int cpf_repeted(char* cpf) {
+
+    FILE* fp = fopen("cli.dat", "rb");
+
+    Cliente cli;
+    while (fread(&cli, sizeof(Cliente), 1, fp)) {
+        if (strcmp(cli.cpf, cpf) == 0) {
+            fclose(fp);
+            return 0; // CPF repetido (já cadastrado)
+        }
+    }
+
+    fclose(fp); // Fecha o arquivo
+    return 1; // CPF não repetido
 }
 
 
@@ -208,6 +238,7 @@ void print_cliente(Cliente* cli) {
     printf("Nome: %s\n", cli->nome);
     printf("CPF: %s\n", cli->cpf);
     printf("Email: %s\n", cli->email);
+    printf("Telefone: %s\n", cli->tel);
     printf("Logradouro: %s\n", cli->log);
     printf("Número: %s\n", cli->num);
     printf("Bairro: %s\n", cli->bai);
@@ -282,6 +313,8 @@ void edit_nome(void) {
     Cliente* new = (Cliente*) malloc(sizeof(Cliente));
     FILE* fp;
     int busca = 0;
+    
+
     system("clear||cls");
     printf("\n");
     printf("-------------------------------------------------\n");
@@ -302,11 +335,12 @@ void edit_nome(void) {
       while (fread(new, sizeof(Cliente), 1, fp)==1) {
         if (strcmp(new->cpf, cpf)==0) {
           printf("Nome: \n");
-	        fgets(new->nome, 51, stdin);
+	        fgets(new->nome, 49, stdin);
+          getchar();
           while (!valida_nome (new->nome)) {
             printf("Nome digitado não é válido!\n");
             printf("Informe o nome novamente: \n");
-            fgets(new->nome, 51, stdin);
+            fgets(new->nome, 49, stdin);
             getchar();
           }       
           fseek(fp, (-1L)*sizeof(Cliente), SEEK_CUR);
@@ -336,6 +370,8 @@ void edit_tel(void) {
     Cliente* new = (Cliente*) malloc(sizeof(Cliente));
     FILE* fp;
     int busca = 0;
+   
+
     system("clear||cls");
     printf("\n");
     printf("-------------------------------------------------\n");
@@ -355,6 +391,7 @@ void edit_tel(void) {
         if (strcmp(new->cpf, cpf)==0) {
           printf("Telefone com DDD (somente números): \n");
 	        fgets(new->tel, 12, stdin);
+          getchar();
           while (!valida_telefone (new->tel)) {
             printf("Telefone inválido!\nInforme o telefone com DDD novamente: \n");
             fgets(new->tel, 12, stdin);
@@ -437,6 +474,8 @@ void altera_logradouro(void) {
     Cliente* new = (Cliente*) malloc(sizeof(Cliente));
     FILE* fp;
     int busca = 0;  
+    
+
     system("clear||cls");
     printf("\n");
     printf("-------------------------------------------------\n");
@@ -457,7 +496,8 @@ void altera_logradouro(void) {
       while (fread(new, sizeof(Cliente), 1, fp)==1) {
         if (strcmp(new->cpf, cpf)==0) {
           printf("Logradouro: ");
-	        fgets(new->log, 20, stdin);     
+	        fgets(new->log, 25, stdin);  
+          getchar();
           fseek(fp, (-1L)*-sizeof(Cliente), SEEK_CUR);
           fwrite(new, sizeof(Cliente), 1, fp);
           busca=1;
@@ -486,6 +526,8 @@ void altera_numero(void) {
     Cliente* new = (Cliente*) malloc(sizeof(Cliente));
     FILE* fp;
     int busca = 0;  
+   
+
     system("clear||cls");
     printf("\n");
     printf("-------------------------------------------------\n");
@@ -532,6 +574,8 @@ void altera_bairro(void) {
     Cliente* new = (Cliente*) malloc(sizeof(Cliente));
     FILE* fp;
     int busca = 0; 
+    
+
     system("clear||cls");
     printf("\n");
     printf("-------------------------------------------------\n");
@@ -550,13 +594,8 @@ void altera_bairro(void) {
       while (fread(new, sizeof(Cliente), 1, fp)==1) {
         if (strcmp(new->cpf, cpf)==0) {
           printf("Bairro: \n");
-	        fgets(new->bai, 15, stdin);
-          while (!valida_nome (new->bai)) {
-            printf("Bairro digitado não é válido!\n");
-            printf("Informe o bairro novamente:\n ");
-            fgets(new->bai, 15, stdin);
-            getchar();
-          }       
+	        fgets(new->bai, 18, stdin);
+          getchar();
           fseek(fp, (-1L)*sizeof(Cliente), SEEK_CUR);
           fwrite(new, sizeof(Cliente), 1, fp);
           busca=1;
@@ -584,6 +623,8 @@ void edit_mail(void) {
     Cliente* new = (Cliente*) malloc(sizeof(Cliente));
     FILE* fp;
     int busca = 0; 
+    
+
     system("clear||cls");
     printf("\n");
     printf("-------------------------------------------------\n");
@@ -603,11 +644,12 @@ void edit_mail(void) {
       while (fread(new, sizeof(Cliente), 1, fp)==1) {
         if (strcmp(new->cpf, cpf)==0) {
           printf("Email: \n");
-	        fgets(new->email,40, stdin);
+	        fgets(new->email,48, stdin);
+          getchar();
          while (!valida_email (new->email)){
           printf("Email inválido!\n");
           printf("Informe novamente o email: \n");
-          fgets(new->email, 40, stdin);
+          fgets(new->email, 48, stdin);
           getchar();
         }       
           fseek(fp, (-1L)*sizeof(Cliente), SEEK_CUR);

@@ -1,12 +1,15 @@
 
 #include<stdio.h>
 #include<stdlib.h>
-#include <unistd.h>
+#include<unistd.h>
 #include<locale.h>
 #include<string.h>
+#include<time.h>
 #include"bike.h"
 #include"valid.h"
 #include"aluguel.h"
+
+
 
 
 ////OPÇÕES PARA MENU BIKES
@@ -27,7 +30,7 @@ void modulo_bike (void) {
             case '3': 	bike=buscar_bike();
                         print_bike(bike);
                         printf("\n\nTecle ENTER para continuar!\n\n");
-	                    getchar();
+	                      getchar();
                         free(bike);
                         break;
             case '4': 	excluir_bike();
@@ -67,7 +70,9 @@ char bikes(void) {
 ////OPÇÃO CASE 1 (CADASTRA NOVA BIKE NO SISTEMA)
 
 Bike* cadastrar_bike(void) {
+
     
+    char* x;
     Bike* bike;
     bike = (Bike*) malloc(sizeof(Bike));
     system("clear||cls");
@@ -87,14 +92,14 @@ Bike* cadastrar_bike(void) {
     fgets(bike->aro,5,stdin);
     getchar();
     printf("Valor do aluguel:\n");
-	scanf("%f", &bike->valor_aluguel);
+	  scanf("%f", &bike->valor_aluguel);
     getchar();
     printf("Marca da bike:\n");
-	fgets(bike->marca,20 ,stdin);
+	  fgets(bike->marca,20 ,stdin);
     getchar();
-    printf("Código da bike:\n");
-	fgets(bike->cod,6 ,stdin);
-    getchar();
+    x=cod();
+    strcpy(bike->cod, x);
+    printf("Código da bike: %s\n", bike->cod);
     bike->status= 'c';
     bike->dispon= 's';
     printf("\n");
@@ -106,6 +111,20 @@ Bike* cadastrar_bike(void) {
     getchar();
     return bike;
 
+}
+
+
+//FUNÇÃO GERA CÓDIGO DA BIKE BASEADO EM HORA LOCAL
+
+char* cod (void) {
+
+  time_t segundos;
+  time(&segundos);
+  struct tm *codigo = localtime(&segundos);
+  char* tempo = (char*)malloc(9 * sizeof(char)); // Alocação dinâmica de memória para o código
+  sprintf(tempo, "%02d%02d%02d", codigo->tm_hour, codigo->tm_min, codigo->tm_sec);
+  free(codigo);
+  return tempo; // Retorna o ponteiro para o código da bike
 }
 
 
@@ -137,18 +156,6 @@ char tipo_bike(void) {
     scanf("%c", &esc);
     getchar();
     printf("\n");
-    if (esc ==1){
-        printf("Mountain BIke");
-    if (esc ==2){
-        printf("Bike elétrica");
-    if (esc==3){
-        printf("Bike speed");
-    if (esc==4){
-        printf("Bike urbana");
-    }
-    }
-    }
-    }
     return esc;
 }
 
@@ -205,35 +212,42 @@ char editar_bike(void) {
     return esc;
 }
 
-/// FUNÇÃO LÊ CÓDIGO DA BIKE 
+///FUNÇÃO LÊ CÓDIGO DA BIKE 
 
 char* ler_cod_bike(void){
-    char* cod;
-    cod = (char*) malloc(6*sizeof(char));
-	printf("\n");
-	system("clear||cls");
-    printf("\n");
-    printf("-------------------------------------------------\n");
-    printf("*******************RENT A BIKE*******************\n");
-    printf("-------------------------------------------------\n");
-    printf("-------------------MENU BIKES--------------------\n");
-    printf("-------------------------------------------------\n");
-    printf("\n");
-    printf("\n");
-	printf("Digite o código: \n");
-	fgets(cod,6,stdin);
-    getchar();
-    return cod;
+  char* cod;
+  int tam;
+  
+
+  cod = (char*) malloc(9*sizeof(char));
+  printf("\n");
+  system("clear||cls");
+  printf("\n");
+  printf("-------------------------------------------------\n");
+  printf("*******************RENT A BIKE*******************\n");
+  printf("-------------------------------------------------\n");
+  printf("-------------------MENU BIKES--------------------\n");
+  printf("-------------------------------------------------\n");
+  printf("\n");
+  printf("\n");
+  printf("Digite o código: \n");
+  fgets(cod,9,stdin);
+  tam = strlen(cod);
+  cod[tam-1] = '\0';
+  getchar();
+  return cod;
 }
 
 
 //FUNÇÃO PARA ALTERAR TIPO DE BIKE CADASTRADA
 
 void altera_tipo(void) {
+
     char* cod;
     Bike* new = (Bike*) malloc(sizeof(Bike));
     FILE* fp;
     int busca = 0;
+    
 
     system("clear||cls");
     printf("\n");
@@ -282,6 +296,8 @@ void altera_aro(void) {
     Bike* new = (Bike*) malloc(sizeof(Bike));
     FILE* fp;
     int busca = 0;
+    
+    
     system("clear||cls");
     printf("\n");
     printf("-------------------------------------------------\n");
@@ -306,10 +322,8 @@ void altera_aro(void) {
                 fwrite(new, sizeof(Bike), 1, fp);
                 busca=1;
                 break;
-            }       
-        
-        }
-      
+            }              
+        }     
     }
     if (!busca) {
       printf("Código não existe!\n");
@@ -319,8 +333,7 @@ void altera_aro(void) {
     }
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-    getchar();
-    
+    getchar();   
 }
 
 
@@ -380,6 +393,8 @@ void altera_marca(void) {
     Bike* new = (Bike*) malloc(sizeof(Bike));
     FILE* fp;
     int busca = 0;
+    
+
     system("clear||cls");
     printf("\n");
     printf("-------------------------------------------------\n");
@@ -423,16 +438,16 @@ void altera_marca(void) {
 /////OPÇÃO CASE 3 (BUSCA BIKE NO SISTEMA ATRAVÉS DO CÓDIGO DA BIKE)
 
 Bike* buscar_bike(void) {
-    Bike* bike;
+  Bike* bike;
 	char* cod;
-    cod=ler_cod_bike();
+  cod=ler_cod_bike();
 	FILE* fp;
 	bike = (Bike*) malloc(sizeof(Bike));
 	fp = fopen("bikes.dat", "rb");
 	if (fp == NULL) {
 		printf("Não foi possível abrir o arquivo!");
-        printf("\n\nTecle ENTER para continuar!\n\n");
-	    getchar();
+    printf("\n\nTecle ENTER para continuar!\n\n");
+	  getchar();
 	}
 	while(fread(bike, sizeof(Bike), 1, fp)) {
 		if ((strcmp(bike->cod, cod) == 0) && (bike->status == 'c')) {
@@ -480,7 +495,8 @@ void excluir_bike(void) {
         fread(ex, sizeof(Bike), 1, fp);    
         if (strcmp(ex->cod, cod)==0) {
             busca=1;
-            ex->status='x'; 
+            ex->status='x';
+            ex->dispon='n'; 
             fseek(fp, -sizeof(Bike), SEEK_CUR);
             fwrite(ex, sizeof(Bike), 1, fp);  
             printf("Bike excluída com sucesso!\n");
@@ -498,32 +514,27 @@ void excluir_bike(void) {
 }
 
 
-char disponibilidade (char* cod) {
-  Aluguel* aluga;
-  char disp;
-  FILE* fp = fopen("aluguel.dat", "rb");
+char check_bike (char* cod) {
+  
+  char check;
+  Bike* bike;
+  FILE* fp = fopen("bikes.dat", "rb");
 
   if (fp == NULL) {
     printf("\t\t\t>>> Houve um erro ao abrir o arquivo!\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
   }
-  aluga = (Aluguel*) malloc(sizeof(Aluguel));
-  while (fread(aluga, sizeof(Aluguel), 1, fp) == 1) {
-    if (strcmp(aluga->cod_bike, cod)==0){
-      disp = 'n';
+  bike = (Bike*) malloc(sizeof(Bike));
+  while (fread(bike, sizeof(Bike), 1, fp) == 1) {
+    if (strcmp(bike->cod, cod)==0){
+      check = bike->status;
       fclose(fp);
-      free(aluga);
-      return disp;
-    }
-    else{
-      disp='s';
-      fclose(fp);
-      free(aluga);
-      return disp;
+      free(bike);
+      return check;
     }
   }
   fclose(fp);
-  free(aluga);
+  free(bike);
   return 'n';
 }
